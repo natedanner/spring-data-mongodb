@@ -112,10 +112,12 @@ public abstract class AbstractReactiveMongoQuery implements RepositoryQuery {
 		this.updateOps = operations.update(type);
 	}
 
+	@Override
 	public MongoQueryMethod getQueryMethod() {
 		return method;
 	}
 
+	@Override
 	public Publisher<Object> execute(Object[] parameters) {
 
 		return method.hasReactiveWrapperParameter() ? executeDeferred(parameters)
@@ -419,7 +421,10 @@ public abstract class AbstractReactiveMongoQuery implements RepositoryQuery {
 	 * @param accessor must not be {@literal null}.
 	 * @return a {@link Mono} emitting the {@link SpELExpressionEvaluator} when ready.
 	 * @since 3.4
+	 * @deprecated since 4.3, use
+	 *             {@link #getValueExpressionEvaluatorLater(ExpressionDependencies, MongoParameterAccessor)} instead
 	 */
+	@Deprecated(since = "4.3")
 	protected Mono<SpELExpressionEvaluator> getSpelEvaluatorFor(ExpressionDependencies dependencies,
 			MongoParameterAccessor accessor) {
 
@@ -473,7 +478,6 @@ public abstract class AbstractReactiveMongoQuery implements RepositoryQuery {
 							return (T) expression.evaluate(evaluationContext);
 						}
 					};
-
 				});
 	}
 
