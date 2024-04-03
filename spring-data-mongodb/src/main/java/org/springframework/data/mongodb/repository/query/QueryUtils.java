@@ -20,11 +20,11 @@ import java.util.List;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.bson.Document;
+
 import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.data.mapping.model.ValueExpressionEvaluator;
 import org.springframework.data.mongodb.core.query.Collation;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.repository.query.QueryMethodEvaluationContextProvider;
-import org.springframework.expression.ExpressionParser;
 import org.springframework.lang.Nullable;
 import org.springframework.util.ClassUtils;
 
@@ -76,16 +76,15 @@ class QueryUtils {
 	 * @param query must not be {@literal null}.
 	 * @param collationExpression must not be {@literal null}.
 	 * @param accessor must not be {@literal null}.
+	 * @param expressionEvaluator must not be {@literal null}.
 	 * @return the {@link Query} having proper {@link Collation}.
 	 * @see Query#collation(Collation)
 	 * @since 2.2
 	 */
 	static Query applyCollation(Query query, @Nullable String collationExpression, ConvertingParameterAccessor accessor,
-			MongoParameters parameters, ExpressionParser expressionParser,
-			QueryMethodEvaluationContextProvider evaluationContextProvider) {
+			ValueExpressionEvaluator expressionEvaluator) {
 
-		Collation collation = CollationUtils.computeCollation(collationExpression, accessor, parameters, expressionParser,
-				evaluationContextProvider);
+		Collation collation = CollationUtils.computeCollation(collationExpression, accessor, expressionEvaluator);
 		return collation == null ? query : query.collation(collation);
 	}
 
