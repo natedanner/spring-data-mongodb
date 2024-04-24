@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  */
 public class CompoundIndexDefinition extends Index {
 
-	private Document keys;
+	private final Document keys;
 
 	/**
 	 * Creates a new {@link CompoundIndexDefinition} for the given keys.

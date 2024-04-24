@@ -96,9 +96,8 @@ public class ReactiveGridFsTemplateTests {
 
 		operations.find(query(where("_id").is(reference))) //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(((BsonObjectId) actual.getId()).getValue()).isEqualTo(reference);
-				}) //
+				.assertNext(actual ->
+					assertThat(((BsonObjectId) actual.getId()).getValue()).isEqualTo(reference)) //
 				.verifyComplete();
 	}
 
@@ -151,9 +150,8 @@ public class ReactiveGridFsTemplateTests {
 
 		operations.find(query(whereMetaData("key").is("value"))) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.getObjectId()).isEqualTo(reference);
-				}) //
+				.consumeNextWith(actual ->
+					assertThat(actual.getObjectId()).isEqualTo(reference)) //
 				.verifyComplete();
 	}
 
@@ -209,10 +207,9 @@ public class ReactiveGridFsTemplateTests {
 		operations.findFirst(query(where("filename").regex("foo*"))) //
 				.flatMap(operations::getResource) //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 
-					assertThat(actual.getGridFSFile()).isNotNull();
-				}).verifyComplete();
+					assertThat(actual.getGridFSFile()).isNotNull()).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2240

@@ -36,7 +36,7 @@ import com.mongodb.WriteConcern;
  * @author Christoph Strobl
  * @since 4.3
  */
-class SimpleMongoTransactionOptions implements MongoTransactionOptions {
+final class SimpleMongoTransactionOptions implements MongoTransactionOptions {
 
 	static final Set<String> KNOWN_KEYS = Arrays.stream(OptionKey.values()).map(OptionKey::getKey)
 			.collect(Collectors.toSet());

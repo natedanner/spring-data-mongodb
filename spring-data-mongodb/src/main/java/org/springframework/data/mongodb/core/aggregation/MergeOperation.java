@@ -155,7 +155,7 @@ public class MergeOperation implements FieldsExposingAggregationOperation, Inher
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class UniqueMergeId {
+	public static final class UniqueMergeId {
 
 		private static final UniqueMergeId ID = new UniqueMergeId(Collections.emptyList());
 
@@ -218,7 +218,7 @@ public class MergeOperation implements FieldsExposingAggregationOperation, Inher
 	 * @author Christoph Strobl
 	 * @since 2.3
 	 */
-	public static class MergeOperationTarget {
+	public static final class MergeOperationTarget {
 
 		private final @Nullable String database;
 		private final String collection;
@@ -256,7 +256,7 @@ public class MergeOperation implements FieldsExposingAggregationOperation, Inher
 		Document toDocument(AggregationOperationContext context) {
 
 			return new Document("into",
-					!StringUtils.hasText(database) ? collection : new Document("db", database).append("coll", collection));
+					StringUtils.hasText(database) ? new Document("db", database).append("coll", collection) : collection);
 		}
 	}
 
@@ -267,7 +267,7 @@ public class MergeOperation implements FieldsExposingAggregationOperation, Inher
 	 * @author Christoph Strobl
 	 * @since 2.3
 	 */
-	public static class WhenDocumentsMatch {
+	public static final class WhenDocumentsMatch {
 
 		private final Object value;
 
@@ -354,7 +354,7 @@ public class MergeOperation implements FieldsExposingAggregationOperation, Inher
 	 * @author Christoph Strobl
 	 * @since 2.3
 	 */
-	public static class WhenDocumentsDontMatch {
+	public static final class WhenDocumentsDontMatch {
 
 		private final String value;
 

@@ -123,14 +123,11 @@ class ReactiveMongoTransactionManagerUnitTests {
 
 		TransactionalOperator operator = TransactionalOperator.create(txManager, new DefaultTransactionDefinition());
 
-		operator.execute(tx -> {
-
-			return template.execute(db -> {
+		operator.execute(tx -> template.execute(db -> {
 				db.drop();
 				tx.setRollbackOnly();
 				return Mono.empty();
-			});
-		}).as(StepVerifier::create).verifyComplete();
+			})).as(StepVerifier::create).verifyComplete();
 
 		verify(databaseFactory, times(1)).withSession(eq(session));
 
@@ -152,9 +149,7 @@ class ReactiveMongoTransactionManagerUnitTests {
 		definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_NOT_SUPPORTED);
 		TransactionalOperator inner = TransactionalOperator.create(txManager, definition);
 
-		outer.execute(tx1 -> {
-
-			return template.execute(db -> {
+		outer.execute(tx1 -> template.execute(db -> {
 
 				db.drop();
 
@@ -164,8 +159,7 @@ class ReactiveMongoTransactionManagerUnitTests {
 						return Mono.empty();
 					});
 				});
-			});
-		}).as(StepVerifier::create).verifyComplete();
+			})).as(StepVerifier::create).verifyComplete();
 
 		verify(session).startTransaction();
 		verify(session2, never()).startTransaction();
@@ -196,9 +190,7 @@ class ReactiveMongoTransactionManagerUnitTests {
 		definition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
 		TransactionalOperator inner = TransactionalOperator.create(txManager, definition);
 
-		outer.execute(tx1 -> {
-
-			return template.execute(db -> {
+		outer.execute(tx1 -> template.execute(db -> {
 
 				db.drop();
 
@@ -208,8 +200,7 @@ class ReactiveMongoTransactionManagerUnitTests {
 						return Mono.empty();
 					});
 				});
-			});
-		}).as(StepVerifier::create).verifyComplete();
+			})).as(StepVerifier::create).verifyComplete();
 
 		verify(session).startTransaction();
 		verify(session2).startTransaction();

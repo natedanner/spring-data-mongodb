@@ -49,7 +49,7 @@ public class ReplaceWithOperation extends ReplaceRootOperation {
 	 * @return new instance of {@link ReplaceWithOperation}.
 	 */
 	public static ReplaceWithOperation replaceWithValue(Object value) {
-		return new ReplaceWithOperation((ctx) -> value);
+		return new ReplaceWithOperation(ctx -> value);
 	}
 
 	/**

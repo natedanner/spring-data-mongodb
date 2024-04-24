@@ -82,10 +82,7 @@ class ReactiveMongoDatabaseUtilsUnitTests {
 		ReactiveMongoTransactionManager txManager = new ReactiveMongoTransactionManager(databaseFactory);
 		TransactionalOperator operator = TransactionalOperator.create(txManager, new DefaultTransactionDefinition());
 
-		operator.execute(tx -> {
-
-			return ReactiveMongoDatabaseUtils.isTransactionActive(databaseFactory);
-		}).as(StepVerifier::create).expectNext(true).verifyComplete();
+		operator.execute(tx -> ReactiveMongoDatabaseUtils.isTransactionActive(databaseFactory)).as(StepVerifier::create).expectNext(true).verifyComplete();
 	}
 
 	@Test // GH-3760
@@ -127,17 +124,14 @@ class ReactiveMongoDatabaseUtilsUnitTests {
 
 		TransactionalOperator operator = TransactionalOperator.create(txManager, new DefaultTransactionDefinition());
 
-		operator.execute(tx -> {
-
-			return TransactionSynchronizationManager.forCurrentTransaction().doOnNext(synchronizationManager -> {
+		operator.execute(tx -> TransactionSynchronizationManager.forCurrentTransaction().doOnNext(synchronizationManager -> {
 
 				assertThat(synchronizationManager.isSynchronizationActive()).isTrue();
 				assertThat(tx.isNewTransaction()).isTrue();
 
 				assertThat(synchronizationManager.hasResource(databaseFactory)).isTrue();
 
-			}).then(Mono.fromRunnable(tx::setRollbackOnly));
-		}).as(StepVerifier::create).verifyComplete();
+			}).then(Mono.fromRunnable(tx::setRollbackOnly))).as(StepVerifier::create).verifyComplete();
 
 		verify(session).startTransaction();
 		verify(session).abortTransaction();

@@ -79,7 +79,7 @@ public class MongoNamespaceReplicaSetTests {
 		assertThat(replicaSetSeeds).isNotNull();
 		assertThat(replicaSetSeeds).hasSize(3);
 
-		List<Integer> ports = new ArrayList<Integer>();
+		List<Integer> ports = new ArrayList<>();
 		for (ServerAddress replicaSetSeed : replicaSetSeeds) {
 			ports.add(replicaSetSeed.getPort());
 		}

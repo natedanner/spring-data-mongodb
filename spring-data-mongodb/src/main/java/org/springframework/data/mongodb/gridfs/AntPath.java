@@ -52,12 +52,12 @@ class AntPath {
 	 */
 	public boolean isPattern() {
 		String path = stripPrefix(this.path);
-		return (path.indexOf('*') != -1 || path.indexOf('?') != -1);
+		return path.indexOf('*') != -1 || path.indexOf('?') != -1;
 	}
 
 	private static String stripPrefix(String path) {
 		int index = path.indexOf(PREFIX_DELIMITER);
-		return (index > -1 ? path.substring(index + 1) : path);
+		return index > -1 ? path.substring(index + 1) : path;
 	}
 
 	/**

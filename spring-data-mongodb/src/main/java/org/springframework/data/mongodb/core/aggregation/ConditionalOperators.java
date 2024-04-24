@@ -238,7 +238,7 @@ public class ConditionalOperators {
 	 * @see <a href=
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/">https://docs.mongodb.com/manual/reference/operator/aggregation/ifNull/</a>
 	 */
-	public static class IfNull implements AggregationExpression {
+	public static final class IfNull implements AggregationExpression {
 
 		private final Object condition;
 		private final Object value;
@@ -452,7 +452,7 @@ public class ConditionalOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Switch extends AbstractAggregationExpression {
+	public static final class Switch extends AbstractAggregationExpression {
 
 		private Switch(java.util.Map<String, Object> values) {
 			super(values);
@@ -498,7 +498,7 @@ public class ConditionalOperators {
 		/**
 		 * Encapsulates the aggregation framework case document inside a {@code $switch}-operation.
 		 */
-		public static class CaseOperator implements AggregationExpression {
+		public static final class CaseOperator implements AggregationExpression {
 
 			private final AggregationExpression when;
 			private final Object then;
@@ -568,7 +568,7 @@ public class ConditionalOperators {
 	 * @see <a href=
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/cond/">https://docs.mongodb.com/manual/reference/operator/aggregation/cond/</a>
 	 */
-	public static class Cond implements AggregationExpression {
+	public static final class Cond implements AggregationExpression {
 
 		private final Object condition;
 		private final Object thenValue;
@@ -869,7 +869,7 @@ public class ConditionalOperators {
 		 *
 		 * @author Mark Paluch
 		 */
-		static class ConditionalExpressionBuilder implements WhenBuilder, ThenBuilder, OtherwiseBuilder {
+		static final class ConditionalExpressionBuilder implements WhenBuilder, ThenBuilder, OtherwiseBuilder {
 
 			private @Nullable Object condition;
 			private @Nullable Object thenValue;

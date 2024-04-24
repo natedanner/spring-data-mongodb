@@ -163,14 +163,14 @@ public class UntypedExampleMatcherUnitTests {
 				.withNullHandler(NullHandler.IGNORE) //
 				.withIgnoreCase("ignored-case") //
 				.withMatcher("hello", ExampleMatcher.GenericPropertyMatchers.contains().caseSensitive()) //
-				.withMatcher("world", matcher -> matcher.endsWith());
+				.withMatcher("world", ExampleMatcher.GenericPropertyMatcher::endsWith);
 
 		ExampleMatcher sameAsMatcher = UntypedExampleMatcher.matching() //
 				.withIgnorePaths("foo", "bar", "baz") //
 				.withNullHandler(NullHandler.IGNORE) //
 				.withIgnoreCase("ignored-case") //
 				.withMatcher("hello", ExampleMatcher.GenericPropertyMatchers.contains().caseSensitive()) //
-				.withMatcher("world", matcher -> matcher.endsWith());
+				.withMatcher("world", ExampleMatcher.GenericPropertyMatcher::endsWith);
 
 		ExampleMatcher different = UntypedExampleMatcher.matching() //
 				.withIgnorePaths("foo", "bar", "baz") //

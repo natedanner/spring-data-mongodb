@@ -75,7 +75,7 @@ public class LoggingEventListenerTests {
 	@Test // DATAMONGO-1645
 	public void shouldSerializeAfterConvertEventCorrectly() {
 
-		listener.onAfterConvert(new AfterConvertEvent<Object>(new Document("foo", new Foo()), this, "collection"));
+		listener.onAfterConvert(new AfterConvertEvent<>(new Document("foo", new Foo()), this, "collection"));
 
 		assertThat(appender.list.get(0).getFormattedMessage()).startsWith("onAfterConvert: { \"foo\"");
 	}
@@ -83,7 +83,7 @@ public class LoggingEventListenerTests {
 	@Test // DATAMONGO-1645
 	public void shouldSerializeBeforeSaveEventEventCorrectly() {
 
-		listener.onBeforeSave(new BeforeSaveEvent<Object>(new Foo(), new Document("foo", new Foo()), "collection"));
+		listener.onBeforeSave(new BeforeSaveEvent<>(new Foo(), new Document("foo", new Foo()), "collection"));
 
 		assertThat(appender.list.get(0).getFormattedMessage())
 				.startsWith("onBeforeSave: org.springframework.data.mongodb.core.");
@@ -92,7 +92,7 @@ public class LoggingEventListenerTests {
 	@Test // DATAMONGO-1645
 	public void shouldSerializeAfterSaveEventEventCorrectly() {
 
-		listener.onAfterSave(new AfterSaveEvent<Object>(new Foo(), new Document("foo", new Foo()), "collection"));
+		listener.onAfterSave(new AfterSaveEvent<>(new Foo(), new Document("foo", new Foo()), "collection"));
 
 		assertThat(appender.list.get(0).getFormattedMessage())
 				.startsWith("onAfterSave: org.springframework.data.mongodb.core.");
@@ -101,7 +101,7 @@ public class LoggingEventListenerTests {
 	@Test // DATAMONGO-1645
 	public void shouldSerializeBeforeDeleteEventEventCorrectly() {
 
-		listener.onBeforeDelete(new BeforeDeleteEvent<Object>(new Document("foo", new Foo()), Object.class, "collection"));
+		listener.onBeforeDelete(new BeforeDeleteEvent<>(new Document("foo", new Foo()), Object.class, "collection"));
 
 		assertThat(appender.list.get(0).getFormattedMessage()).startsWith("onBeforeDelete: { \"foo\"");
 	}
@@ -109,7 +109,7 @@ public class LoggingEventListenerTests {
 	@Test // DATAMONGO-1645
 	public void shouldSerializeAfterDeleteEventEventCorrectly() {
 
-		listener.onAfterDelete(new AfterDeleteEvent<Object>(new Document("foo", new Foo()), Object.class, "collection"));
+		listener.onAfterDelete(new AfterDeleteEvent<>(new Document("foo", new Foo()), Object.class, "collection"));
 
 		assertThat(appender.list.get(0).getFormattedMessage()).startsWith("onAfterDelete: { \"foo\"");
 	}

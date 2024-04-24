@@ -126,7 +126,7 @@ class SpelExpressionTransformer implements AggregationExpressionTransformer {
 	 * @author Thomas Darimont
 	 * @author Oliver Gierke
 	 */
-	private static abstract class ExpressionNodeConversion<T extends ExpressionNode>
+	private abstract static class ExpressionNodeConversion<T extends ExpressionNode>
 			implements AggregationExpressionTransformer {
 
 		private final AggregationExpressionTransformer transformer;
@@ -189,7 +189,7 @@ class SpelExpressionTransformer implements AggregationExpressionTransformer {
 			Assert.notNull(node, "ExpressionNode must not be null");
 			Assert.notNull(context, "AggregationExpressionTransformationContext must not be null");
 
-			return transform(new AggregationExpressionTransformationContext<ExpressionNode>(node, parent, operation,
+			return transform(new AggregationExpressionTransformationContext<>(node, parent, operation,
 					context.getAggregationContext()));
 		}
 

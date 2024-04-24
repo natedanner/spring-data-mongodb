@@ -236,9 +236,7 @@ class DefaultReactiveBulkOperations extends BulkOperationsSupport implements Rea
 		});
 
 		MongoCollection<Document> theCollection = collection;
-		return concat.collectList().flatMap(it -> {
-
-			return Mono
+		return concat.collectList().flatMap(it -> Mono
 					.from(theCollection
 							.bulkWrite(it.stream().map(SourceAwareWriteModelHolder::model).collect(Collectors.toList()), bulkOptions))
 					.doOnSuccess(state -> {
@@ -247,8 +245,7 @@ class DefaultReactiveBulkOperations extends BulkOperationsSupport implements Rea
 						List<Mono<Object>> monos = it.stream().map(this::maybeInvokeAfterSaveCallback).collect(Collectors.toList());
 
 						return Flux.concat(monos).then(Mono.just(state));
-					});
-		});
+					}));
 	}
 
 	/**

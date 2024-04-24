@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
  * @since 2.1
  * @see <a href="https://docs.mongodb.com/manual/core/schema-validation/#json-schema">Schema Validation</a>
  */
-class JsonSchemaValidator implements Validator {
+final class JsonSchemaValidator implements Validator {
 
 	private final MongoJsonSchema schema;
 
@@ -64,10 +64,12 @@ class JsonSchemaValidator implements Validator {
 	@Override
 	public boolean equals(@Nullable Object o) {
 
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 
 		JsonSchemaValidator that = (JsonSchemaValidator) o;
 

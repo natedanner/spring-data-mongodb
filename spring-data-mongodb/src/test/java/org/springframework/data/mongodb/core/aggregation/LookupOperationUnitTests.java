@@ -86,8 +86,7 @@ public class LookupOperationUnitTests {
 	private Document extractDocumentFromLookupOperation(LookupOperation lookupOperation) {
 
 		Document document = lookupOperation.toDocument(Aggregation.DEFAULT_CONTEXT);
-		Document lookupClause = DocumentTestUtils.getAsDocument(document, "$lookup");
-		return lookupClause;
+		return DocumentTestUtils.getAsDocument(document, "$lookup");
 	}
 
 	@Test // DATAMONGO-1326

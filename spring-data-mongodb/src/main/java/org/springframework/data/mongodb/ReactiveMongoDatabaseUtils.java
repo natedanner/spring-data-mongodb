@@ -144,11 +144,8 @@ public class ReactiveMongoDatabaseUtils {
 
 		return TransactionSynchronizationManager.forCurrentTransaction()
 				.filter(TransactionSynchronizationManager::isSynchronizationActive) //
-				.flatMap(synchronizationManager -> {
-
-					return doGetSession(synchronizationManager, factory, sessionSynchronization) //
-							.flatMap(it -> getMongoDatabaseOrDefault(dbName, factory.withSession(it)));
-				}) //
+				.flatMap(synchronizationManager -> doGetSession(synchronizationManager, factory, sessionSynchronization) //
+							.flatMap(it -> getMongoDatabaseOrDefault(dbName, factory.withSession(it)))) //
 				.onErrorResume(NoTransactionException.class, e -> getMongoDatabaseOrDefault(dbName, factory))
 				.switchIfEmpty(getMongoDatabaseOrDefault(dbName, factory));
 	}

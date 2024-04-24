@@ -733,10 +733,9 @@ public class TypedJsonSchemaObject extends UntypedJsonSchemaObject {
 
 		private static Set<Type> validateTypes(Set<Type> types) {
 
-			types.forEach(type -> {
+			types.forEach(type ->
 				Assert.isTrue(NUMERIC_TYPES.contains(type),
-						() -> String.format("%s is not a valid numeric type; Expected one of %s", type, NUMERIC_TYPES));
-			});
+						() -> String.format("%s is not a valid numeric type; Expected one of %s", type, NUMERIC_TYPES)));
 
 			return types;
 		}

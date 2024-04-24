@@ -510,7 +510,7 @@ public class TypeBasedAggregationOperationContextUnitTests {
 	}
 
 	Converter<Age, org.bson.Document> ageWriteConverter() {
-		return new Converter<Age, org.bson.Document>() {
+		return new Converter<>() {
 			@Override
 			public org.bson.Document convert(Age age) {
 				return new org.bson.Document("v", age.value);
@@ -519,7 +519,7 @@ public class TypeBasedAggregationOperationContextUnitTests {
 	}
 
 	Converter<org.bson.Document, Age> ageReadConverter() {
-		return new Converter<org.bson.Document, Age>() {
+		return new Converter<>() {
 			@Override
 			public Age convert(org.bson.Document document) {
 				return new Age(((Integer) document.get("v")));

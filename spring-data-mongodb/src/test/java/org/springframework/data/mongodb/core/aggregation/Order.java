@@ -34,7 +34,7 @@ public class Order {
 	final List<LineItem> items;
 
 	public Order(String id, String customerId, Date orderDate) {
-		this(id, customerId, orderDate, new ArrayList<LineItem>());
+		this(id, customerId, orderDate, new ArrayList<>());
 	}
 
 	public Order(String id, String customerId, Date orderDate, List<LineItem> items) {
@@ -46,7 +46,7 @@ public class Order {
 
 	public Order addItem(LineItem item) {
 
-		List<LineItem> newItems = new ArrayList<LineItem>(items != null ? items : Collections.<LineItem> emptyList());
+		List<LineItem> newItems = new ArrayList<>(items != null ? items : Collections.<LineItem> emptyList());
 		newItems.add(item);
 
 		return new Order(id, customerId, orderDate, newItems);

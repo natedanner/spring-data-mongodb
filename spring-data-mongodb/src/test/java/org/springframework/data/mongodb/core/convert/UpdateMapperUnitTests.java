@@ -1484,7 +1484,7 @@ class UpdateMapperUnitTests {
 
 	}
 
-	static abstract class AbstractChildClass {
+	abstract static class AbstractChildClass {
 
 		String id;
 		String value;
@@ -1675,7 +1675,7 @@ class UpdateMapperUnitTests {
 
 	}
 
-	static abstract class SomeAbstractType {
+	abstract static class SomeAbstractType {
 
 	}
 

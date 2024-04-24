@@ -130,7 +130,7 @@ public class MappingTests {
 	@Test
 	public void testPersonMapProperty() {
 		PersonMapProperty p = new PersonMapProperty(1234567, "Map", "PropertyPath");
-		Map<String, AccountPojo> accounts = new HashMap<String, AccountPojo>();
+		Map<String, AccountPojo> accounts = new HashMap<>();
 
 		AccountPojo checking = new AccountPojo("checking", 1000.0f);
 		AccountPojo savings = new AccountPojo("savings", 10000.0f);
@@ -163,7 +163,7 @@ public class MappingTests {
 		acct.setBalance(1000.00f);
 		template.insert(acct, "account");
 
-		List<Account> accounts = new ArrayList<Account>();
+		List<Account> accounts = new ArrayList<>();
 		accounts.add(acct);
 
 		Person p = new Person(123456789, "John", "Doe", 37, addr);
@@ -208,7 +208,7 @@ public class MappingTests {
 
 	@Test
 	public void testCustomCollectionInList() {
-		List<BasePerson> persons = new ArrayList<BasePerson>();
+		List<BasePerson> persons = new ArrayList<>();
 		persons.add(new PersonCustomCollection1(55555, "Person", "One"));
 		persons.add(new PersonCustomCollection2(66666, "Person", "Two"));
 		template.insertAll(persons);
@@ -296,8 +296,8 @@ public class MappingTests {
 
 	@Test
 	public void testMultiDimensionalCollectionProperties() {
-		List<List<String>> grid = new ArrayList<List<String>>();
-		ArrayList<String> inner = new ArrayList<String>();
+		List<List<String>> grid = new ArrayList<>();
+		ArrayList<String> inner = new ArrayList<>();
 		inner.add("1");
 		inner.add("2");
 		inner.add("3");
@@ -578,7 +578,7 @@ public class MappingTests {
 
 	static class IterableItem extends Item implements Iterable<ItemData> {
 
-		List<ItemData> data = new ArrayList<MappingTests.ItemData>();
+		List<ItemData> data = new ArrayList<>();
 
 		@Override
 		public Iterator<ItemData> iterator() {

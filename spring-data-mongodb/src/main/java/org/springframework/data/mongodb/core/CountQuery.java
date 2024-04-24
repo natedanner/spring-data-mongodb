@@ -36,7 +36,7 @@ import org.springframework.util.ObjectUtils;
  * @author Mark Paluch
  * @since 3.0
  */
-class CountQuery {
+final class CountQuery {
 
 	private final Document source;
 

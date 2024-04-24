@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
 public class TextIndexDefinition implements IndexDefinition {
 
 	private @Nullable String name;
-	private Set<TextIndexedFieldSpec> fieldSpecs;
+	private final Set<TextIndexedFieldSpec> fieldSpecs;
 	private @Nullable String defaultLanguage;
 	private @Nullable String languageOverride;
 	private @Nullable IndexFilter filter;

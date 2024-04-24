@@ -146,7 +146,7 @@ public class DensifyOperation implements AggregationOperation {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static abstract class DensifyRange implements Range {
+	public abstract static class DensifyRange implements Range {
 
 		private @Nullable DensifyUnit unit;
 		private Number step;

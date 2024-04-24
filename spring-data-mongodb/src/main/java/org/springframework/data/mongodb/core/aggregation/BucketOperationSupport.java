@@ -384,7 +384,7 @@ public abstract class BucketOperationSupport<T extends BucketOperationSupport<T,
 	 *
 	 * @author Mark Paluch
 	 */
-	protected static class Outputs implements AggregationExpression {
+	protected static final class Outputs implements AggregationExpression {
 
 		protected static final Outputs EMPTY = new Outputs();
 
@@ -394,7 +394,7 @@ public abstract class BucketOperationSupport<T extends BucketOperationSupport<T,
 		 * Creates a new, empty {@link Outputs}.
 		 */
 		private Outputs() {
-			this.outputs = new ArrayList<Output>();
+			this.outputs = new ArrayList<>();
 		}
 
 		/**
@@ -405,7 +405,7 @@ public abstract class BucketOperationSupport<T extends BucketOperationSupport<T,
 		 */
 		private Outputs(Collection<Output> current, Output output) {
 
-			this.outputs = new ArrayList<Output>(current.size() + 1);
+			this.outputs = new ArrayList<>(current.size() + 1);
 			this.outputs.addAll(current);
 			this.outputs.add(output);
 		}

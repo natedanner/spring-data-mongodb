@@ -115,9 +115,9 @@ public class SessionAwareMethodInterceptor<D, C> implements MethodInterceptor {
 
 		Optional<Method> targetMethod = METHOD_CACHE.lookup(methodInvocation.getMethod(), targetType, sessionType);
 
-		return !targetMethod.isPresent() ? methodInvocation.proceed()
-				: ReflectionUtils.invokeMethod(targetMethod.get(), target,
-						prependSessionToArguments(session, methodInvocation));
+		return targetMethod.isPresent() ? ReflectionUtils.invokeMethod(targetMethod.get(), target,
+						prependSessionToArguments(session, methodInvocation))
+				: methodInvocation.proceed();
 	}
 
 	private boolean requiresDecoration(Method method) {

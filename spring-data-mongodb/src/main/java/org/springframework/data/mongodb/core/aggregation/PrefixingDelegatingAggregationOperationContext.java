@@ -107,7 +107,7 @@ public class PrefixingDelegatingAggregationOperationContext implements Aggregati
 	}
 
 	private String prefixKey(String key) {
-		return (key.startsWith("$") || isDenied(key)) ? key : (prefix + "." + key);
+		return key.startsWith("$") || isDenied(key) ? key : (prefix + "." + key);
 	}
 
 	private Object prefixCollection(Collection<Object> sourceCollection) {

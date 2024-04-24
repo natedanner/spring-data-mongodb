@@ -150,7 +150,7 @@ public class TailableCursorRequest<T> implements SubscriptionRequest<Document, T
 		 * @author Christoph Strobl
 		 * @since 2.1
 		 */
-		public static class TailableCursorRequestOptionsBuilder {
+		public static final class TailableCursorRequestOptionsBuilder {
 
 			private @Nullable String collectionName;
 			private @Nullable Query query;
@@ -207,7 +207,7 @@ public class TailableCursorRequest<T> implements SubscriptionRequest<Document, T
 	 * @since 2.1
 	 * @see TailableCursorRequestOptions
 	 */
-	public static class TailableCursorRequestBuilder<T> {
+	public static final class TailableCursorRequestBuilder<T> {
 
 		private @Nullable MessageListener<Document, ? super T> listener;
 		private TailableCursorRequestOptionsBuilder delegate = TailableCursorRequestOptions.builder();

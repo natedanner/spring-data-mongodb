@@ -44,7 +44,7 @@ import com.mongodb.client.model.CollationStrength;
  * @see <a href="https://docs.mongodb.com/manual/reference/collation/">MongoDB Reference - Collation</a>
  * @since 2.0
  */
-public class Collation {
+public final class Collation {
 
 	private static final Collation SIMPLE = of("simple");
 
@@ -562,7 +562,7 @@ public class Collation {
 	/**
 	 * Primary-strength {@link ICUComparisonLevel}.
 	 */
-	public static class PrimaryICUComparisonLevel extends ICUComparisonLevel {
+	public static final class PrimaryICUComparisonLevel extends ICUComparisonLevel {
 
 		static final PrimaryICUComparisonLevel DEFAULT = new PrimaryICUComparisonLevel();
 		static final PrimaryICUComparisonLevel WITH_CASE_LEVEL = new PrimaryICUComparisonLevel(true);
@@ -598,7 +598,7 @@ public class Collation {
 	/**
 	 * Secondary-strength {@link ICUComparisonLevel}.
 	 */
-	public static class SecondaryICUComparisonLevel extends ICUComparisonLevel {
+	public static final class SecondaryICUComparisonLevel extends ICUComparisonLevel {
 
 		static final SecondaryICUComparisonLevel DEFAULT = new SecondaryICUComparisonLevel();
 		static final SecondaryICUComparisonLevel WITH_CASE_LEVEL = new SecondaryICUComparisonLevel(true);
@@ -634,7 +634,7 @@ public class Collation {
 	/**
 	 * Tertiary-strength {@link ICUComparisonLevel}.
 	 */
-	public static class TertiaryICUComparisonLevel extends ICUComparisonLevel {
+	public static final class TertiaryICUComparisonLevel extends ICUComparisonLevel {
 
 		static final TertiaryICUComparisonLevel DEFAULT = new TertiaryICUComparisonLevel();
 
@@ -662,7 +662,7 @@ public class Collation {
 	/**
 	 * @since 2.0
 	 */
-	public static class CaseFirst {
+	public static final class CaseFirst {
 
 		private static final CaseFirst UPPER = new CaseFirst("upper");
 		private static final CaseFirst LOWER = new CaseFirst("lower");
@@ -741,7 +741,7 @@ public class Collation {
 	/**
 	 * @since 2.0
 	 */
-	public static class AlternateWithMaxVariable extends Alternate {
+	public static final class AlternateWithMaxVariable extends Alternate {
 
 		static final AlternateWithMaxVariable DEFAULT = new AlternateWithMaxVariable("shifted");
 		static final Alternate SHIFTED_PUNCT = new AlternateWithMaxVariable("shifted", "punct");
@@ -780,7 +780,7 @@ public class Collation {
 	 * @see <a href="http://site.icu-project.org">ICU - International Components for Unicode</a>
 	 * @since 2.0
 	 */
-	public static class CollationLocale {
+	public static final class CollationLocale {
 
 		private final String language;
 		private final Optional<String> variant;
@@ -824,11 +824,10 @@ public class Collation {
 
 			StringBuilder sb = new StringBuilder(language);
 
-			variant.filter(it -> !it.isEmpty()).ifPresent(val -> {
+			variant.filter(it -> !it.isEmpty()).ifPresent(val ->
 
 				// Mongo requires variant rendered as ICU keyword (@key=value;key=value…)
-				sb.append("@collation=").append(val);
-			});
+				sb.append("@collation=").append(val));
 
 			return sb.toString();
 		}

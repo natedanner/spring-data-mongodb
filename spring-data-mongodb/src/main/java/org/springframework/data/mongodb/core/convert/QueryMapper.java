@@ -940,7 +940,7 @@ public class QueryMapper {
 		}
 
 		public boolean isOrOrNor() {
-			return key.equalsIgnoreCase("$or") || key.equalsIgnoreCase("$nor");
+			return "$or".equalsIgnoreCase(key) || "$nor".equalsIgnoreCase(key);
 		}
 
 		/**

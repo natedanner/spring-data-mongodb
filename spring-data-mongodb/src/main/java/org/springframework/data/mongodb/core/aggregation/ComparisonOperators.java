@@ -343,7 +343,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Cmp extends AbstractAggregationExpression {
+	public static final class Cmp extends AbstractAggregationExpression {
 
 		private Cmp(List<?> value) {
 			super(value);
@@ -420,7 +420,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Eq extends AbstractAggregationExpression {
+	public static final class Eq extends AbstractAggregationExpression {
 
 		private Eq(List<?> value) {
 			super(value);
@@ -497,7 +497,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Gt extends AbstractAggregationExpression {
+	public static final class Gt extends AbstractAggregationExpression {
 
 		private Gt(List<?> value) {
 			super(value);
@@ -574,7 +574,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Lt extends AbstractAggregationExpression {
+	public static final class Lt extends AbstractAggregationExpression {
 
 		private Lt(List<?> value) {
 			super(value);
@@ -651,7 +651,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Gte extends AbstractAggregationExpression {
+	public static final class Gte extends AbstractAggregationExpression {
 
 		private Gte(List<?> value) {
 			super(value);
@@ -728,7 +728,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Lte extends AbstractAggregationExpression {
+	public static final class Lte extends AbstractAggregationExpression {
 
 		private Lte(List<?> value) {
 			super(value);
@@ -805,7 +805,7 @@ public class ComparisonOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Ne extends AbstractAggregationExpression {
+	public static final class Ne extends AbstractAggregationExpression {
 
 		private Ne(List<?> value) {
 			super(value);

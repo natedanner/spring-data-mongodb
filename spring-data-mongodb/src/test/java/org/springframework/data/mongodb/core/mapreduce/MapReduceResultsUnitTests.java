@@ -33,7 +33,7 @@ public class MapReduceResultsUnitTests {
 	public void resolvesOutputCollectionForPlainResult() {
 
 		Document rawResult = new Document("result", "FOO");
-		MapReduceResults<Object> results = new MapReduceResults<Object>(Collections.emptyList(), rawResult);
+		MapReduceResults<Object> results = new MapReduceResults<>(Collections.emptyList(), rawResult);
 
 		assertThat(results.getOutputCollection()).isEqualTo("FOO");
 	}
@@ -42,7 +42,7 @@ public class MapReduceResultsUnitTests {
 	public void resolvesOutputCollectionForDocumentResult() {
 
 		Document rawResult = new Document("result", new Document("collection", "FOO"));
-		MapReduceResults<Object> results = new MapReduceResults<Object>(Collections.emptyList(), rawResult);
+		MapReduceResults<Object> results = new MapReduceResults<>(Collections.emptyList(), rawResult);
 
 		assertThat(results.getOutputCollection()).isEqualTo("FOO");
 	}

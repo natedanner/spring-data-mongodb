@@ -57,7 +57,7 @@ public class SpringDataMongoDB {
 	public static Version version() {
 
 		Package pkg = SpringDataMongoDB.class.getPackage();
-		String versionString = (pkg != null ? pkg.getImplementationVersion() : null);
+		String versionString = pkg != null ? pkg.getImplementationVersion() : null;
 
 		if (!StringUtils.hasText(versionString)) {
 

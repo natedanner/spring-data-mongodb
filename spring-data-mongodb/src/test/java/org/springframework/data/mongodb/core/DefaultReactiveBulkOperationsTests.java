@@ -74,9 +74,8 @@ class DefaultReactiveBulkOperationsTests {
 
 		createBulkOps(BulkMode.ORDERED).insert(documents) //
 				.execute().as(StepVerifier::create) //
-				.consumeNextWith(result -> {
-					assertThat(result.getInsertedCount()).isEqualTo(2);
-				}).verifyComplete();
+				.consumeNextWith(result ->
+					assertThat(result.getInsertedCount()).isEqualTo(2)).verifyComplete();
 	}
 
 	@Test // GH-2821
@@ -86,9 +85,8 @@ class DefaultReactiveBulkOperationsTests {
 
 		createBulkOps(BulkMode.ORDERED).insert(documents) //
 				.execute().as(StepVerifier::create) //
-				.verifyErrorSatisfies(error -> {
-					assertThat(error).isInstanceOf(DuplicateKeyException.class);
-				});
+				.verifyErrorSatisfies(error ->
+					assertThat(error).isInstanceOf(DuplicateKeyException.class));
 	}
 
 	@Test // GH-2821
@@ -98,9 +96,8 @@ class DefaultReactiveBulkOperationsTests {
 
 		createBulkOps(BulkMode.UNORDERED).insert(documents) //
 				.execute().as(StepVerifier::create) //
-				.consumeNextWith(result -> {
-					assertThat(result.getInsertedCount()).isEqualTo(2);
-				}).verifyComplete();
+				.consumeNextWith(result ->
+					assertThat(result.getInsertedCount()).isEqualTo(2)).verifyComplete();
 	}
 
 	@Test // GH-2821

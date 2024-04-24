@@ -310,7 +310,7 @@ public class AccumulatorOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Sum extends AbstractAggregationExpression {
+	public static final class Sum extends AbstractAggregationExpression {
 
 		private Sum(Object value) {
 			super(value);
@@ -402,7 +402,7 @@ public class AccumulatorOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Avg extends AbstractAggregationExpression {
+	public static final class Avg extends AbstractAggregationExpression {
 
 		private Avg(Object value) {
 			super(value);
@@ -480,7 +480,7 @@ public class AccumulatorOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Max extends AbstractAggregationExpression {
+	public static final class Max extends AbstractAggregationExpression {
 
 		private Max(Object value) {
 			super(value);
@@ -577,7 +577,7 @@ public class AccumulatorOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Min extends AbstractAggregationExpression {
+	public static final class Min extends AbstractAggregationExpression {
 
 		private Min(Object value) {
 			super(value);
@@ -675,7 +675,7 @@ public class AccumulatorOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class StdDevPop extends AbstractAggregationExpression {
+	public static final class StdDevPop extends AbstractAggregationExpression {
 
 		private StdDevPop(Object value) {
 			super(value);
@@ -753,7 +753,7 @@ public class AccumulatorOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class StdDevSamp extends AbstractAggregationExpression {
+	public static final class StdDevSamp extends AbstractAggregationExpression {
 
 		private StdDevSamp(Object value) {
 			super(value);
@@ -832,7 +832,7 @@ public class AccumulatorOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class CovariancePop extends AbstractAggregationExpression {
+	public static final class CovariancePop extends AbstractAggregationExpression {
 
 		private CovariancePop(Object value) {
 			super(value);
@@ -892,7 +892,7 @@ public class AccumulatorOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class CovarianceSamp extends AbstractAggregationExpression {
+	public static final class CovarianceSamp extends AbstractAggregationExpression {
 
 		private CovarianceSamp(Object value) {
 			super(value);
@@ -952,7 +952,7 @@ public class AccumulatorOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class ExpMovingAvg extends AbstractAggregationExpression {
+	public static final class ExpMovingAvg extends AbstractAggregationExpression {
 
 		private ExpMovingAvg(Object value) {
 			super(value);
@@ -1013,7 +1013,7 @@ public class AccumulatorOperators {
 	 * @author Julia Lee
 	 * @since 4.2
 	 */
-	public static class Percentile extends AbstractAggregationExpression {
+	public static final class Percentile extends AbstractAggregationExpression {
 
 		private Percentile(Object value) {
 			super(value);
@@ -1099,7 +1099,7 @@ public class AccumulatorOperators {
 	 * @author Julia Lee
 	 * @since 4.2
 	 */
-	public static class Median extends AbstractAggregationExpression {
+	public static final class Median extends AbstractAggregationExpression {
 
 		private Median(Object value) {
 			super(value);

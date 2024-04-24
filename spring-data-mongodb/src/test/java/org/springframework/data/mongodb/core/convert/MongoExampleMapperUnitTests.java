@@ -110,7 +110,7 @@ class MongoExampleMapperUnitTests {
 		FlatDocument probe = new FlatDocument();
 		probe.listOfString = Arrays.asList("Prof", "Tia", "David");
 
-		List list = (Arrays.asList("Prof", "Tia", "David"));
+		List list = Arrays.asList("Prof", "Tia", "David");
 
 		assertThat(mapper.getMappedExample(of(probe), context.getRequiredPersistentEntity(FlatDocument.class)))
 				.containsEntry("listOfString", list);

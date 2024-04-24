@@ -28,9 +28,9 @@ public class PersonWithAList {
 
 	private int age;
 
-	private List<String> wishList = new ArrayList<String>();
+	private List<String> wishList = new ArrayList<>();
 
-	private List<Friend> friends = new ArrayList<Friend>();
+	private List<Friend> friends = new ArrayList<>();
 
 	public ObjectId getId() {
 		return id;

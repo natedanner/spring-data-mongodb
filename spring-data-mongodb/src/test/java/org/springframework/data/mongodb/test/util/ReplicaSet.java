@@ -34,9 +34,9 @@ import com.mongodb.client.MongoClient;
  * @deprecated Use {@link MongoServerCondition} with {@link EnableIfReplicaSetAvailable} instead.
  */
 @Deprecated
-public class ReplicaSet implements TestRule {
+public final class ReplicaSet implements TestRule {
 
-	boolean required = false;
+	boolean required;
 	AtomicReference<Boolean> runsAsReplicaSet = new AtomicReference<>();
 
 	private ReplicaSet(boolean required) {
@@ -73,7 +73,7 @@ public class ReplicaSet implements TestRule {
 				if (!required) {
 
 					IfProfileValue profileValue = description.getAnnotation(IfProfileValue.class);
-					if (profileValue == null || !profileValue.name().equalsIgnoreCase("replSet")) {
+					if (profileValue == null || !"replSet".equalsIgnoreCase(profileValue.name())) {
 						base.evaluate();
 						return;
 					}

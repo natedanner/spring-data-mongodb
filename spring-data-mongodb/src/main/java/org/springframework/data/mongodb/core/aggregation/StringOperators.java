@@ -757,7 +757,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Concat extends AbstractAggregationExpression {
+	public static final class Concat extends AbstractAggregationExpression {
 
 		private Concat(List<?> value) {
 			super(value);
@@ -844,7 +844,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Substr extends AbstractAggregationExpression {
+	public static final class Substr extends AbstractAggregationExpression {
 
 		private Substr(List<?> value) {
 			super(value);
@@ -902,7 +902,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class ToLower extends AbstractAggregationExpression {
+	public static final class ToLower extends AbstractAggregationExpression {
 
 		private ToLower(Object value) {
 			super(value);
@@ -955,7 +955,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class ToUpper extends AbstractAggregationExpression {
+	public static final class ToUpper extends AbstractAggregationExpression {
 
 		private ToUpper(Object value) {
 			super(value);
@@ -1008,7 +1008,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class StrCaseCmp extends AbstractAggregationExpression {
+	public static final class StrCaseCmp extends AbstractAggregationExpression {
 
 		private StrCaseCmp(List<?> value) {
 			super(value);
@@ -1077,7 +1077,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class IndexOfBytes extends AbstractAggregationExpression {
+	public static final class IndexOfBytes extends AbstractAggregationExpression {
 
 		private IndexOfBytes(List<?> value) {
 			super(value);
@@ -1122,7 +1122,7 @@ public class StringOperators {
 			return new IndexOfBytes(append(AggregationUtils.toRangeValues(range)));
 		}
 
-		public static class SubstringBuilder {
+		public static final class SubstringBuilder {
 
 			private final Object stringExpression;
 
@@ -1167,7 +1167,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class IndexOfCP extends AbstractAggregationExpression {
+	public static final class IndexOfCP extends AbstractAggregationExpression {
 
 		private IndexOfCP(List<?> value) {
 			super(value);
@@ -1212,7 +1212,7 @@ public class StringOperators {
 			return new IndexOfCP(append(AggregationUtils.toRangeValues(range)));
 		}
 
-		public static class SubstringBuilder {
+		public static final class SubstringBuilder {
 
 			private final Object stringExpression;
 
@@ -1257,7 +1257,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Split extends AbstractAggregationExpression {
+	public static final class Split extends AbstractAggregationExpression {
 
 		private Split(List<?> values) {
 			super(values);
@@ -1334,7 +1334,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class StrLenBytes extends AbstractAggregationExpression {
+	public static final class StrLenBytes extends AbstractAggregationExpression {
 
 		private StrLenBytes(Object value) {
 			super(value);
@@ -1373,7 +1373,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class StrLenCP extends AbstractAggregationExpression {
+	public static final class StrLenCP extends AbstractAggregationExpression {
 
 		private StrLenCP(Object value) {
 			super(value);
@@ -1412,7 +1412,7 @@ public class StringOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class SubstrCP extends AbstractAggregationExpression {
+	public static final class SubstrCP extends AbstractAggregationExpression {
 
 		private SubstrCP(List<?> value) {
 			super(value);
@@ -1464,7 +1464,7 @@ public class StringOperators {
 	 * @author Christoph Strobl
 	 * @since 2.1
 	 */
-	public static class Trim extends AbstractAggregationExpression {
+	public static final class Trim extends AbstractAggregationExpression {
 
 		private Trim(Object value) {
 			super(value);
@@ -1561,7 +1561,7 @@ public class StringOperators {
 	 * @author Christoph Strobl
 	 * @since 2.1
 	 */
-	public static class LTrim extends AbstractAggregationExpression {
+	public static final class LTrim extends AbstractAggregationExpression {
 
 		private LTrim(Object value) {
 			super(value);
@@ -1640,7 +1640,7 @@ public class StringOperators {
 	 * @author Christoph Strobl
 	 * @since 2.1
 	 */
-	public static class RTrim extends AbstractAggregationExpression {
+	public static final class RTrim extends AbstractAggregationExpression {
 
 		private RTrim(Object value) {
 			super(value);

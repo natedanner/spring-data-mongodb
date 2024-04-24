@@ -57,7 +57,7 @@ public class DataMongo273Tests {
 		Train train = new Train("Santa Fe", 200);
 		Automobile automobile = new Automobile("Tesla", "Roadster", 2);
 
-		Map<String, Object> mapOfThings = new HashMap<String, Object>();
+		Map<String, Object> mapOfThings = new HashMap<>();
 		mapOfThings.put("plane", plane);
 		mapOfThings.put("train", train);
 		mapOfThings.put("automobile", automobile);
@@ -109,7 +109,7 @@ public class DataMongo273Tests {
 		listOfThings.add(train);
 		listOfThings.add(automobile);
 
-		Map<String, Object> box = new HashMap<String, Object>();
+		Map<String, Object> box = new HashMap<>();
 		box.put("one", listOfThings);
 
 		Shipment shipment = new Shipment(box);

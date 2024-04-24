@@ -58,8 +58,12 @@ class CleanMongoDBTests {
 	private @Mock MongoClient mongoClientMock;
 
 	// Some Mock DBs
-	private @Mock MongoDatabase db1mock, db2mock, admin;
-	private @Mock MongoCollection<Document> db1collection1mock, db1collection2mock, db2collection1mock;
+	private @Mock MongoDatabase db1mock;
+	private @Mock MongoDatabase db2mock;
+	private @Mock MongoDatabase admin;
+	private @Mock MongoCollection<Document> db1collection1mock;
+	private @Mock MongoCollection<Document> db1collection2mock;
+	private @Mock MongoCollection<Document> db2collection1mock;
 
 	@SuppressWarnings({ "serial", "unchecked" })
 	@BeforeEach

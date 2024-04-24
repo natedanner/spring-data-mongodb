@@ -59,7 +59,7 @@ public class GroupOperation implements FieldsExposingAggregationOperation {
 	public GroupOperation(Fields fields) {
 
 		this.idFields = ExposedFields.nonSynthetic(fields);
-		this.operations = new ArrayList<Operation>();
+		this.operations = new ArrayList<>();
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class GroupOperation implements FieldsExposingAggregationOperation {
 		Assert.notNull(nextOperations, "NextOperations must not be null");
 
 		this.idFields = groupOperation.idFields;
-		this.operations = new ArrayList<Operation>(nextOperations.size() + 1);
+		this.operations = new ArrayList<>(nextOperations.size() + 1);
 		this.operations.addAll(groupOperation.operations);
 		this.operations.addAll(nextOperations);
 	}

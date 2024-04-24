@@ -209,7 +209,7 @@ public class Meta {
 
 		Assert.notNull(option, "CursorOption must not be null");
 
-		if (this.flags == Collections.EMPTY_SET) {
+		if (this.flags == Collections.emptySet()) {
 			this.flags = new LinkedHashSet<>(2);
 		}
 
@@ -275,7 +275,7 @@ public class Meta {
 
 		Assert.hasText(key, "Meta key must not be 'null' or blank");
 
-		if (values == Collections.EMPTY_MAP) {
+		if (values == Collections.emptyMap()) {
 			values = new LinkedHashMap<>(2);
 		}
 

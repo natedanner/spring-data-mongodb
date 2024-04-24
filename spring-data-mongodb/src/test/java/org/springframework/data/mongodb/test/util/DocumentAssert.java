@@ -319,7 +319,7 @@ public class DocumentAssert extends AbstractMapAssert<DocumentAssert, Map<String
 		return myself;
 	}
 
-	static class Lookup<T> {
+	static final class Lookup<T> {
 
 		private final T value;
 		private final boolean pathFound;

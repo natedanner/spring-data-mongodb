@@ -162,7 +162,7 @@ public class Aggregation {
 	 * @param operations must not be {@literal null} or empty.
 	 */
 	public static <T> TypedAggregation<T> newAggregation(Class<T> type, AggregationOperation... operations) {
-		return new TypedAggregation<T>(type, operations);
+		return new TypedAggregation<>(type, operations);
 	}
 
 	/**

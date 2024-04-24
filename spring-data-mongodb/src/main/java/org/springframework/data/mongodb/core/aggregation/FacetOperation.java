@@ -99,7 +99,7 @@ public class FacetOperation implements FieldsExposingAggregationOperation {
 	 *
 	 * @author Mark Paluch
 	 */
-	public static class FacetOperationBuilder {
+	public static final class FacetOperationBuilder {
 
 		private final Facets current;
 		private final List<AggregationOperation> operations;
@@ -129,7 +129,7 @@ public class FacetOperation implements FieldsExposingAggregationOperation {
 	 *
 	 * @author Mark Paluch
 	 */
-	private static class Facets {
+	private static final class Facets {
 
 		private static final Facets EMPTY = new Facets(Collections.<Facet> emptyList());
 
@@ -181,7 +181,7 @@ public class FacetOperation implements FieldsExposingAggregationOperation {
 			Assert.hasText(fieldName, "FieldName must not be null or empty");
 			Assert.notNull(operations, "AggregationOperations must not be null");
 
-			List<Facet> facets = new ArrayList<Facet>(this.facets.size() + 1);
+			List<Facet> facets = new ArrayList<>(this.facets.size() + 1);
 			facets.addAll(this.facets);
 			facets.add(new Facet(new ExposedField(fieldName, true), operations));
 

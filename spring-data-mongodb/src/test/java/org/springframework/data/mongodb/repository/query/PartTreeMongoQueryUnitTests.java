@@ -262,7 +262,8 @@ class PartTreeMongoQueryUnitTests {
 
 	static class PersonDto {
 
-		public String firstname, lastname;
+		public String firstname;
+		public String lastname;
 
 		public PersonDto(String firstname, String lastname) {
 

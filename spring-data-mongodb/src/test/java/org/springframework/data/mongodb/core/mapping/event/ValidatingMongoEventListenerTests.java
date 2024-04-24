@@ -46,9 +46,8 @@ class ValidatingMongoEventListenerTests {
 		User user = new User("john", 17);
 
 		assertThatExceptionOfType(ConstraintViolationException.class).isThrownBy(() -> mongoTemplate.save(user))
-				.satisfies(e -> {
-					assertThat(e.getConstraintViolations()).hasSize(2);
-				});
+				.satisfies(e ->
+					assertThat(e.getConstraintViolations()).hasSize(2));
 	}
 
 	@Test

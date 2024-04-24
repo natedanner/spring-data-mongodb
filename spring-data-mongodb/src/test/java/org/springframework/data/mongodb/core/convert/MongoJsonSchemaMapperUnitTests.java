@@ -202,7 +202,7 @@ public class MongoJsonSchemaMapperUnitTests {
 		String postCode;
 	}
 
-	static enum Gender {
+	enum Gender {
 		M, F
 	}
 

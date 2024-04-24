@@ -70,8 +70,16 @@ public class SimpleReactiveMongoRepositoryTests implements BeanClassLoaderAware,
 	private ReactivePersonRepository repository;
 	private ReactiveImmutablePersonRepository immutableRepository;
 
-	private ReactivePerson dave, oliver, carter, boyd, stefan, leroi, alicia;
-	private ImmutableReactivePerson keith, james, mariah;
+	private ReactivePerson dave;
+	private ReactivePerson oliver;
+	private ReactivePerson carter;
+	private ReactivePerson boyd;
+	private ReactivePerson stefan;
+	private ReactivePerson leroi;
+	private ReactivePerson alicia;
+	private ImmutableReactivePerson keith;
+	private ImmutableReactivePerson james;
+	private ImmutableReactivePerson mariah;
 
 	@Override
 	public void setBeanClassLoader(ClassLoader classLoader) {
@@ -339,9 +347,8 @@ public class SimpleReactiveMongoRepositoryTests implements BeanClassLoaderAware,
 		immutableRepository.deleteAll().as(StepVerifier::create).verifyComplete();
 
 		immutableRepository.saveAll(Flux.just(keith)).as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual.id).isNotNull();
-				}) //
+				.consumeNextWith(actual ->
+					assertThat(actual.id).isNotNull()) //
 			.verifyComplete();
 	}
 

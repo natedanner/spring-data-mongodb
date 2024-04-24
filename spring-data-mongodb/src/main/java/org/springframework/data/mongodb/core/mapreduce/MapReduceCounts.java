@@ -96,9 +96,6 @@ public class MapReduceCounts {
 		if (inputCount != other.inputCount) {
 			return false;
 		}
-		if (outputCount != other.outputCount) {
-			return false;
-		}
-		return true;
+		return !(outputCount != other.outputCount);
 	}
 }

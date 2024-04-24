@@ -30,7 +30,7 @@ import org.springframework.lang.Nullable;
 public class MappingContextConfigurer {
 
 	private @Nullable Set<Class<?>> intitalEntitySet;
-	boolean autocreateIndex = false;
+	boolean autocreateIndex;
 
 	public void autocreateIndex(boolean autocreateIndex) {
 		this.autocreateIndex = autocreateIndex;

@@ -55,7 +55,7 @@ public class ServerAddressPropertyEditor extends PropertyEditorSupport {
 		}
 
 		String[] replicaSetStringArray = StringUtils.commaDelimitedListToStringArray(replicaSetString);
-		Set<ServerAddress> serverAddresses = new HashSet<ServerAddress>(replicaSetStringArray.length);
+		Set<ServerAddress> serverAddresses = new HashSet<>(replicaSetStringArray.length);
 
 		for (String element : replicaSetStringArray) {
 

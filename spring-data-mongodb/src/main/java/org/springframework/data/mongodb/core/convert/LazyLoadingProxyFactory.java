@@ -163,7 +163,10 @@ public final class LazyLoadingProxyFactory {
 	public static class LazyLoadingInterceptor
 			implements MethodInterceptor, org.springframework.cglib.proxy.MethodInterceptor, Serializable {
 
-		private static final Method INITIALIZE_METHOD, TO_DBREF_METHOD, FINALIZE_METHOD, GET_SOURCE_METHOD;
+		private static final Method INITIALIZE_METHOD;
+		private static final Method TO_DBREF_METHOD;
+		private static final Method FINALIZE_METHOD;
+		private static final Method GET_SOURCE_METHOD;
 
 		static {
 			try {

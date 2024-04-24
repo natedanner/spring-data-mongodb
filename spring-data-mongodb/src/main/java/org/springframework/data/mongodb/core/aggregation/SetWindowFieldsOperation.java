@@ -555,7 +555,7 @@ public class SetWindowFieldsOperation
 	 *
 	 * @author Christoph Strobl
 	 */
-	static abstract class WindowImpl implements Window {
+	abstract static class WindowImpl implements Window {
 
 		private final Object lower;
 		private final Object upper;

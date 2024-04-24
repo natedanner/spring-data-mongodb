@@ -64,7 +64,7 @@ public interface GridFsObject<ID, CONTENT> {
 	 *
 	 * @author Christoph Strobl
 	 */
-	class Options {
+	final class Options {
 
 		private final Document metadata;
 		private final int chunkSize;

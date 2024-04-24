@@ -39,7 +39,7 @@ import org.springframework.util.Assert;
  * @see SpelExpressionTransformer
  * @since 1.10
  */
-public class AggregationSpELExpression implements AggregationExpression {
+public final class AggregationSpELExpression implements AggregationExpression {
 
 	private static final SpelExpressionTransformer TRANSFORMER = new SpelExpressionTransformer();
 	private final String rawExpression;

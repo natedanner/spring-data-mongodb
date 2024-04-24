@@ -23,7 +23,9 @@ import org.springframework.lang.Nullable;
 @Deprecated
 public class MapReduceTiming {
 
-	private long mapTime, emitLoopTime, totalTime;
+	private long mapTime;
+	private long emitLoopTime;
+	private long totalTime;
 
 	public MapReduceTiming(long mapTime, long emitLoopTime, long totalTime) {
 

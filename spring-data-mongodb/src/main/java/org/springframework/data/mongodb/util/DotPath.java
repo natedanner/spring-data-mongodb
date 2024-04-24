@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * @author Mark Paluch
  * @since 3.2
  */
-public class DotPath {
+public final class DotPath {
 
 	private static final DotPath EMPTY = new DotPath("");
 

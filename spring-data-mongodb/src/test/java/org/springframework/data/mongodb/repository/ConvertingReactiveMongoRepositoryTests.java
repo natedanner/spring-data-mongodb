@@ -68,7 +68,13 @@ public class ConvertingReactiveMongoRepositoryTests {
 	@Autowired ReactivePersonRepostitory reactivePersonRepostitory;
 	@Autowired RxJava3PersonRepostitory rxJava3PersonRepostitory;
 
-	ReactivePerson dave, oliver, carter, boyd, stefan, leroi, alicia;
+	ReactivePerson dave;
+	ReactivePerson oliver;
+	ReactivePerson carter;
+	ReactivePerson boyd;
+	ReactivePerson stefan;
+	ReactivePerson leroi;
+	ReactivePerson alicia;
 
 	@Before
 	public void setUp() {

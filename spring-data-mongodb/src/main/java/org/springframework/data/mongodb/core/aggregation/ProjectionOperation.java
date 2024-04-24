@@ -96,7 +96,7 @@ public class ProjectionOperation implements FieldsExposingAggregationOperation {
 		Assert.notNull(current, "Current projections must not be null");
 		Assert.notNull(projections, "Projections must not be null");
 
-		this.projections = new ArrayList<ProjectionOperation.Projection>(current.size() + projections.size());
+		this.projections = new ArrayList<>(current.size() + projections.size());
 		this.projections.addAll(current);
 		this.projections.addAll(projections);
 	}
@@ -120,7 +120,7 @@ public class ProjectionOperation implements FieldsExposingAggregationOperation {
 	 */
 	private ProjectionOperation andReplaceLastOneWith(Projection projection) {
 
-		List<Projection> projections = this.projections.isEmpty() ? Collections.<Projection> emptyList()
+		List<Projection> projections = this.projections.isEmpty() ? Collections. emptyList()
 				: this.projections.subList(0, this.projections.size() - 1);
 		return new ProjectionOperation(projections, Collections.singletonList(projection));
 	}
@@ -262,7 +262,7 @@ public class ProjectionOperation implements FieldsExposingAggregationOperation {
 	 *
 	 * @author Thomas Darimont
 	 */
-	private static abstract class AbstractProjectionOperationBuilder implements AggregationOperation {
+	private abstract static class AbstractProjectionOperationBuilder implements AggregationOperation {
 
 		protected final Object value;
 		protected final ProjectionOperation operation;
@@ -1369,7 +1369,7 @@ public class ProjectionOperation implements FieldsExposingAggregationOperation {
 			public static List<FieldProjection> from(Fields fields, @Nullable Object value) {
 
 				Assert.notNull(fields, "Fields must not be null");
-				List<FieldProjection> projections = new ArrayList<FieldProjection>();
+				List<FieldProjection> projections = new ArrayList<>();
 
 				for (Field field : fields) {
 					projections.add(new FieldProjection(field, value));
@@ -1644,7 +1644,7 @@ public class ProjectionOperation implements FieldsExposingAggregationOperation {
 	 *
 	 * @author Oliver Gierke
 	 */
-	private static abstract class Projection {
+	private abstract static class Projection {
 
 		private final ExposedField field;
 

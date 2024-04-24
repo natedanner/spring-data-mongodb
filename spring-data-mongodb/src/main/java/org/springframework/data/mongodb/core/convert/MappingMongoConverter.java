@@ -141,7 +141,7 @@ public class MappingMongoConverter extends AbstractMongoConverter
 	protected @Nullable ApplicationContext applicationContext;
 	protected @Nullable Environment environment;
 	protected MongoTypeMapper typeMapper;
-	protected @Nullable String mapKeyDotReplacement = null;
+	protected @Nullable String mapKeyDotReplacement;
 	protected @Nullable CodecRegistryProvider codecRegistryProvider;
 
 	private MongoTypeMapper defaultTypeMapper;
@@ -1040,10 +1040,8 @@ public class MappingMongoConverter extends AbstractMongoConverter
 
 			if (property.isAssociation()) {
 
-				List<Object> targetCollection = collection.stream().map(it -> {
-					return documentPointerFactory.computePointer(mappingContext, property, it, property.getActualType())
-							.getPointer();
-				}).collect(Collectors.toList());
+				List<Object> targetCollection = collection.stream().map(it -> documentPointerFactory.computePointer(mappingContext, property, it, property.getActualType())
+							.getPointer()).collect(Collectors.toList());
 
 				return writeCollectionInternal(targetCollection, TypeInformation.of(DocumentPointer.class),
 						new ArrayList<>(targetCollection.size()));
@@ -1593,7 +1591,7 @@ public class MappingMongoConverter extends AbstractMongoConverter
 			return removeTypeInfo(newDocument, false);
 		}
 
-		return !obj.getClass().equals(typeInformation.getType()) ? newDocument : removeTypeInfo(newDocument, true);
+		return obj.getClass().equals(typeInformation.getType()) ? removeTypeInfo(newDocument, true) : newDocument;
 	}
 
 	@Override
@@ -2473,7 +2471,7 @@ public class MappingMongoConverter extends AbstractMongoConverter
 		}
 	}
 
-	private static class PropertyTranslatingPropertyAccessor<T> implements PersistentPropertyAccessor<T> {
+	private static final class PropertyTranslatingPropertyAccessor<T> implements PersistentPropertyAccessor<T> {
 
 		private final PersistentPropertyAccessor<T> delegate;
 		private final PersistentPropertyTranslator propertyTranslator;

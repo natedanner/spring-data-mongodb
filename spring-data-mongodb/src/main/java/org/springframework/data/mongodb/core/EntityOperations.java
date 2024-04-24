@@ -842,7 +842,7 @@ class EntityOperations {
 		}
 	}
 
-	private static class AdaptibleMappedEntity<T> extends MappedEntity<T> implements AdaptibleEntity<T> {
+	private static final class AdaptibleMappedEntity<T> extends MappedEntity<T> implements AdaptibleEntity<T> {
 
 		private final MongoPersistentEntity<?> entity;
 		private final ConvertingPropertyAccessor<T> propertyAccessor;

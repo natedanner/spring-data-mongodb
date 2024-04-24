@@ -34,7 +34,7 @@ import com.mongodb.client.gridfs.model.GridFSFile;
  * @author Mark Paluch
  * @since 3.0
  */
-public class GridFsUpload<ID> implements GridFsObject<ID, InputStream> {
+public final class GridFsUpload<ID> implements GridFsObject<ID, InputStream> {
 
 	private final @Nullable ID id;
 	private final Lazy<InputStream> dataStream;
@@ -96,7 +96,7 @@ public class GridFsUpload<ID> implements GridFsObject<ID, InputStream> {
 	 *
 	 * @param <T> the target id type.
 	 */
-	public static class GridFsUploadBuilder<T> {
+	public static final class GridFsUploadBuilder<T> {
 
 		private Object id;
 		private Lazy<InputStream> dataStream;

@@ -190,22 +190,24 @@ class CriteriaTests {
 		}
 
 		public boolean equals(final Object o) {
-			if (o == this)
+			if (o == this) {
 				return true;
-			if (!(o instanceof DocumentWithBitmask))
+			}
+			if (!(o instanceof DocumentWithBitmask)) {
 				return false;
+			}
 			final DocumentWithBitmask other = (DocumentWithBitmask) o;
-			if (!other.canEqual((Object) this))
+			if (!other.canEqual((Object) this)) {
 				return false;
+			}
 			final Object this$id = this.getId();
 			final Object other$id = other.getId();
-			if (this$id == null ? other$id != null : !this$id.equals(other$id))
+			if (this$id == null ? other$id != null : !this$id.equals(other$id)) {
 				return false;
+			}
 			final Object this$binaryValue = this.getBinaryValue();
 			final Object other$binaryValue = other.getBinaryValue();
-			if (this$binaryValue == null ? other$binaryValue != null : !this$binaryValue.equals(other$binaryValue))
-				return false;
-			return true;
+			return !(this$binaryValue == null ? other$binaryValue != null : !this$binaryValue.equals(other$binaryValue));
 		}
 
 		protected boolean canEqual(final Object other) {
@@ -213,12 +215,12 @@ class CriteriaTests {
 		}
 
 		public int hashCode() {
-			final int PRIME = 59;
+			final int prime = 59;
 			int result = 1;
 			final Object $id = this.getId();
-			result = result * PRIME + ($id == null ? 43 : $id.hashCode());
+			result = result * prime + ($id == null ? 43 : $id.hashCode());
 			final Object $binaryValue = this.getBinaryValue();
-			result = result * PRIME + ($binaryValue == null ? 43 : $binaryValue.hashCode());
+			result = result * prime + ($binaryValue == null ? 43 : $binaryValue.hashCode());
 			return result;
 		}
 	}

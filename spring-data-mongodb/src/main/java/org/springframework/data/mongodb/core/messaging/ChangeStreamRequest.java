@@ -237,7 +237,7 @@ public class ChangeStreamRequest<T>
 	 * @since 2.1
 	 * @see ChangeStreamOptions
 	 */
-	public static class ChangeStreamRequestBuilder<T> {
+	public static final class ChangeStreamRequestBuilder<T> {
 
 		private @Nullable String databaseName;
 		private @Nullable String collectionName;

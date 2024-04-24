@@ -72,7 +72,7 @@ public class UpdateMapper extends QueryMapper {
 		for (String s : document.keySet()) {
 			if (s.startsWith("$")) {
 
-				if (s.equals("$set")) {
+				if ("$set".equals(s)) {
 					set = document.get(s, Document.class);
 				}
 				hasOperators = true;

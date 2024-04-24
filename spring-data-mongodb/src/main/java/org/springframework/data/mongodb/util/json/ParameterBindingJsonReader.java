@@ -93,7 +93,7 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 	 */
 	public ParameterBindingJsonReader(String json, Object[] values) {
 
-		this(json, (index) -> values[index], new SpelExpressionParser(),
+		this(json, index -> values[index], new SpelExpressionParser(),
 				EvaluationContextProvider.DEFAULT.getEvaluationContext(values));
 	}
 
@@ -332,16 +332,15 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 		}
 
 		switch (getContext().getContextType()) {
-			case DOCUMENT:
-			case SCOPE_DOCUMENT:
-			default:
-				setState(State.NAME);
-				break;
 			case ARRAY:
 			case JAVASCRIPT_WITH_SCOPE:
 			case TOP_LEVEL:
 				setState(State.VALUE);
 				break;
+			case DOCUMENT:
+			case SCOPE_DOCUMENT:
+			default:
+				setState(State.NAME);
 		}
 		return getCurrentBsonType();
 	}
@@ -1196,21 +1195,21 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 
 		verifyToken(JsonTokenType.COLON);
 
-		if (firstKey.equals("$binary")) {
+		if ("$binary".equals(firstKey)) {
 			JsonToken nextToken = popToken();
 			if (nextToken.getType() == JsonTokenType.BEGIN_OBJECT) {
 				JsonToken nameToken = popToken();
 				String firstNestedKey = nameToken.getValue(String.class);
 				byte[] data;
 				byte type;
-				if (firstNestedKey.equals("base64")) {
+				if ("base64".equals(firstNestedKey)) {
 					verifyToken(JsonTokenType.COLON);
 					data = Base64.getDecoder().decode(readStringFromExtendedJson());
 					verifyToken(JsonTokenType.COMMA);
 					verifyString("subType");
 					verifyToken(JsonTokenType.COLON);
 					type = readBinarySubtypeFromExtendedJson();
-				} else if (firstNestedKey.equals("subType")) {
+				} else if ("subType".equals(firstNestedKey)) {
 					verifyToken(JsonTokenType.COLON);
 					type = readBinarySubtypeFromExtendedJson();
 					verifyToken(JsonTokenType.COMMA);
@@ -1243,7 +1242,7 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 			byte[] data;
 			byte type;
 
-			if (firstKey.equals("$binary")) {
+			if ("$binary".equals(firstKey)) {
 				data = Base64.getDecoder().decode(readStringFromExtendedJson());
 				verifyToken(JsonTokenType.COMMA);
 				verifyString("$type");
@@ -1288,7 +1287,7 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 		if (valueToken.getType() == JsonTokenType.BEGIN_OBJECT) {
 			JsonToken nameToken = popToken();
 			String name = nameToken.getValue(String.class);
-			if (!name.equals("$numberLong")) {
+			if (!"$numberLong".equals(name)) {
 				throw new JsonParseException(
 						String.format("JSON reader expected $numberLong within $date, but found %s", name));
 			}
@@ -1354,14 +1353,14 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 		String options = "";
 
 		String firstKey = readStringFromExtendedJson();
-		if (firstKey.equals("pattern")) {
+		if ("pattern".equals(firstKey)) {
 			verifyToken(JsonTokenType.COLON);
 			pattern = readStringFromExtendedJson();
 			verifyToken(JsonTokenType.COMMA);
 			verifyString("options");
 			verifyToken(JsonTokenType.COLON);
 			options = readStringFromExtendedJson();
-		} else if (firstKey.equals("options")) {
+		} else if ("options".equals(firstKey)) {
 			verifyToken(JsonTokenType.COLON);
 			options = readStringFromExtendedJson();
 			verifyToken(JsonTokenType.COMMA);
@@ -1385,7 +1384,7 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 
 			String pattern;
 			String options = "";
-			if (firstKey.equals("$regex")) {
+			if ("$regex".equals(firstKey)) {
 				pattern = readStringFromExtendedJson();
 				verifyToken(JsonTokenType.COMMA);
 				verifyString("$options");
@@ -1436,14 +1435,14 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 		int increment;
 
 		String firstKey = readStringFromExtendedJson();
-		if (firstKey.equals("t")) {
+		if ("t".equals(firstKey)) {
 			verifyToken(JsonTokenType.COLON);
 			time = readIntFromExtendedJson();
 			verifyToken(JsonTokenType.COMMA);
 			verifyString("i");
 			verifyToken(JsonTokenType.COLON);
 			increment = readIntFromExtendedJson();
-		} else if (firstKey.equals("i")) {
+		} else if ("i".equals(firstKey)) {
 			verifyToken(JsonTokenType.COLON);
 			increment = readIntFromExtendedJson();
 			verifyToken(JsonTokenType.COMMA);
@@ -1508,7 +1507,7 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 	private BsonUndefined visitUndefinedExtendedJson() {
 		verifyToken(JsonTokenType.COLON);
 		JsonToken valueToken = popToken();
-		if (!valueToken.getValue(String.class).equals("true")) {
+		if (!"true".equals(valueToken.getValue(String.class))) {
 			throw new JsonParseException("JSON reader requires $undefined to have the value of true but found '%s'.",
 					valueToken.getValue());
 		}
@@ -1580,14 +1579,14 @@ public class ParameterBindingJsonReader extends AbstractBsonReader {
 		ObjectId oid;
 
 		String firstKey = readStringFromExtendedJson();
-		if (firstKey.equals("$ref")) {
+		if ("$ref".equals(firstKey)) {
 			verifyToken(JsonTokenType.COLON);
 			ref = readStringFromExtendedJson();
 			verifyToken(JsonTokenType.COMMA);
 			verifyString("$id");
 			oid = readDbPointerIdFromExtendedJson();
 			verifyToken(JsonTokenType.END_OBJECT);
-		} else if (firstKey.equals("$id")) {
+		} else if ("$id".equals(firstKey)) {
 			oid = readDbPointerIdFromExtendedJson();
 			verifyToken(JsonTokenType.COMMA);
 			verifyString("$ref");

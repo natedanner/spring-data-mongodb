@@ -119,7 +119,7 @@ public enum MongoRegexCreator {
 			return PUNCTATION_PATTERN.matcher(source).find() ? Pattern.quote(source) : source;
 		}
 
-		if (source.equals("*")) {
+		if ("*".equals(source)) {
 			return ".*";
 		}
 

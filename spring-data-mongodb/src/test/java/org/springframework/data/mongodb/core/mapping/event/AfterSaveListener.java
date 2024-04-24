@@ -22,7 +22,7 @@ import org.springframework.context.ApplicationListener;
 
 public class AfterSaveListener implements ApplicationListener<AfterSaveEvent<Object>> {
 
-	public final ArrayList<ApplicationEvent> seenEvents = new ArrayList<ApplicationEvent>();
+	public final ArrayList<ApplicationEvent> seenEvents = new ArrayList<>();
 
 	public void onApplicationEvent(AfterSaveEvent<Object> event) {
 		this.seenEvents.add(event);

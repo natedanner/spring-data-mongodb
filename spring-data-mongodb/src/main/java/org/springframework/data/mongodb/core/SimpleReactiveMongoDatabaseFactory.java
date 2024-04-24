@@ -232,10 +232,12 @@ public class SimpleReactiveMongoDatabaseFactory implements DisposableBean, React
 
 		@Override
 		public boolean equals(@Nullable Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 
 			ClientSessionBoundMongoDbFactory that = (ClientSessionBoundMongoDbFactory) o;
 

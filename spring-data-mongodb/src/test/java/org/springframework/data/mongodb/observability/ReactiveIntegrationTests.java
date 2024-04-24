@@ -74,10 +74,9 @@ public class ReactiveIntegrationTests extends SampleTestRunner {
 
 			repository.findByLastname("Matthews") //
 					.contextWrite(Context.of(ObservationThreadLocalAccessor.KEY, intermediate)) //
-					.as(StepVerifier::create).assertNext(actual -> {
+					.as(StepVerifier::create).assertNext(actual ->
 
-						assertThat(actual).extracting("firstname", "lastname").containsExactly("Dave", "Matthews");
-					}).verifyComplete();
+						assertThat(actual).extracting("firstname", "lastname").containsExactly("Dave", "Matthews")).verifyComplete();
 
 			intermediate.stop();
 			System.out.println(((SimpleMeterRegistry) meterRegistry).getMetersAsString());

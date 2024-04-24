@@ -59,7 +59,7 @@ public class MongoTestTemplate extends MongoTemplate {
 
 	public MongoTestTemplate(Consumer<MongoTestTemplateConfiguration> cfg) {
 
-		this(new Supplier<MongoTestTemplateConfiguration>() {
+		this(new Supplier<>() {
 			@Override
 			public MongoTestTemplateConfiguration get() {
 

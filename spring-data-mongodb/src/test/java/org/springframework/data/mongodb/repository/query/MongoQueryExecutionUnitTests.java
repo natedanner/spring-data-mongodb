@@ -81,7 +81,7 @@ class MongoQueryExecutionUnitTests {
 	@Mock TerminatingFindNear<Object> terminatingGeoMock;
 	@Mock DbRefResolver dbRefResolver;
 
-	private SpelExpressionParser EXPRESSION_PARSER = new SpelExpressionParser();
+	private SpelExpressionParser expressionParser = new SpelExpressionParser();
 	private Point POINT = new Point(10, 20);
 	private Distance DISTANCE = new Distance(2.5, Metrics.KILOMETERS);
 	private RepositoryMetadata metadata = new DefaultRepositoryMetadata(PersonRepository.class);
@@ -152,7 +152,7 @@ class MongoQueryExecutionUnitTests {
 		ConvertingParameterAccessor accessor = new ConvertingParameterAccessor(converter,
 				new MongoParametersParameterAccessor(queryMethod, new Object[] { POINT, DISTANCE, PageRequest.of(0, 10) }));
 
-		PartTreeMongoQuery query = new PartTreeMongoQuery(queryMethod, mongoOperationsMock, EXPRESSION_PARSER,
+		PartTreeMongoQuery query = new PartTreeMongoQuery(queryMethod, mongoOperationsMock, expressionParser,
 				QueryMethodEvaluationContextProvider.DEFAULT);
 
 		PagingGeoNearExecution execution = new PagingGeoNearExecution(findOperationMock, queryMethod, accessor, query);
@@ -173,7 +173,7 @@ class MongoQueryExecutionUnitTests {
 		ConvertingParameterAccessor accessor = new ConvertingParameterAccessor(converter,
 				new MongoParametersParameterAccessor(queryMethod, new Object[] { POINT, DISTANCE, PageRequest.of(2, 10) }));
 
-		PartTreeMongoQuery query = new PartTreeMongoQuery(queryMethod, mongoOperationsMock, EXPRESSION_PARSER,
+		PartTreeMongoQuery query = new PartTreeMongoQuery(queryMethod, mongoOperationsMock, expressionParser,
 				QueryMethodEvaluationContextProvider.DEFAULT);
 
 		PagingGeoNearExecution execution = new PagingGeoNearExecution(findOperationMock, queryMethod, accessor, query);

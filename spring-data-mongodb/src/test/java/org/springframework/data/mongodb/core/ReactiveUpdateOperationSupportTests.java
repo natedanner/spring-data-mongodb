@@ -180,10 +180,9 @@ class ReactiveUpdateOperationSupportTests {
 
 		template.update(Person.class).matching(queryHan()).apply(new Update().set("firstname", "Han"))
 				.withOptions(FindAndModifyOptions.options().returnNew(true)).findAndModify().as(StepVerifier::create)
-				.consumeNextWith(actual -> {
+				.consumeNextWith(actual ->
 
-					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Han");
-				}).verifyComplete();
+					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Han")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1719
@@ -208,9 +207,8 @@ class ReactiveUpdateOperationSupportTests {
 
 		template.findOne(queryHan(), Person.class) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Luke");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Luke")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1827
@@ -220,9 +218,8 @@ class ReactiveUpdateOperationSupportTests {
 		luke.firstname = "Luke";
 
 		template.update(Person.class).matching(queryHan()).replaceWith(luke).as(Jedi.class).findAndReplace() //
-				.as(StepVerifier::create).consumeNextWith(it -> {
-					assertThat(it.getName()).isEqualTo(han.firstname);
-				}).verifyComplete();
+				.as(StepVerifier::create).consumeNextWith(it ->
+					assertThat(it.getName()).isEqualTo(han.firstname)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1827
@@ -236,9 +233,8 @@ class ReactiveUpdateOperationSupportTests {
 
 		template.findOne(queryHan(), Person.class) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Luke");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Luke")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1827
@@ -250,9 +246,8 @@ class ReactiveUpdateOperationSupportTests {
 		template.update(Person.class).matching(queryHan()).replaceWith(luke)
 				.withOptions(FindAndReplaceOptions.options().returnNew()).findAndReplace() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(actual -> {
-					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Luke");
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).isNotEqualTo(han).hasFieldOrPropertyWithValue("firstname", "Luke")).verifyComplete();
 	}
 
 	private Query queryHan() {

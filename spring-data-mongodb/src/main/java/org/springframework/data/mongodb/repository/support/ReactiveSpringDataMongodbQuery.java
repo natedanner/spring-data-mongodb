@@ -174,7 +174,7 @@ class ReactiveSpringDataMongodbQuery<K> extends SpringDataMongodbQuerySupport<Re
 					if (offset != null) {
 						basicQuery.skip(offset);
 					}
-					if (orderBy.size() > 0) {
+					if (!orderBy.isEmpty()) {
 						basicQuery.setSortObject(createSort(orderBy));
 					}
 

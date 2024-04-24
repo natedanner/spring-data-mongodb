@@ -105,7 +105,6 @@ public class UnwindOperationUnitTests {
 	private Document extractDocumentFromUnwindOperation(UnwindOperation unwindOperation) {
 
 		Document document = unwindOperation.toDocument(Aggregation.DEFAULT_CONTEXT);
-		Document unwindClause = DocumentTestUtils.getAsDocument(document, "$unwind");
-		return unwindClause;
+		return DocumentTestUtils.getAsDocument(document, "$unwind");
 	}
 }

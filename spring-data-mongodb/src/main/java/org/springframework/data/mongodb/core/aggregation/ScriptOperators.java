@@ -85,7 +85,7 @@ public class ScriptOperators {
 	 * @see <a href="https://docs.mongodb.com/master/reference/operator/aggregation/function/">MongoDB Documentation:
 	 *      $function</a>
 	 */
-	public static class Function extends AbstractAggregationExpression {
+	public static final class Function extends AbstractAggregationExpression {
 
 		private Function(Map<String, Object> values) {
 			super(values);
@@ -203,7 +203,7 @@ public class ScriptOperators {
 	 * @see <a href="https://docs.mongodb.com/master/reference/operator/aggregation/accumulator/">MongoDB Documentation:
 	 *      $accumulator</a>
 	 */
-	public static class Accumulator extends AbstractAggregationExpression {
+	public static final class Accumulator extends AbstractAggregationExpression {
 
 		private Accumulator(Map<String, Object> value) {
 			super(value);

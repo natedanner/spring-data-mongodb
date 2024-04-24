@@ -356,6 +356,7 @@ class MongoQueryCreator extends AbstractQueryCreator<Query, Criteria> {
 			case WHEN_POSSIBLE:
 			case ALWAYS:
 				regexOptions = "i";
+				break;
 			case NEVER:
 		}
 		return regexOptions;

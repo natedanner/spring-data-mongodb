@@ -25,13 +25,13 @@ import java.util.ArrayList;
  */
 public class SimpleMappingEventListener extends AbstractMongoEventListener<Object> {
 
-	public final ArrayList<BeforeConvertEvent<Object>> onBeforeConvertEvents = new ArrayList<BeforeConvertEvent<Object>>();
-	public final ArrayList<BeforeSaveEvent<Object>> onBeforeSaveEvents = new ArrayList<BeforeSaveEvent<Object>>();
-	public final ArrayList<AfterSaveEvent<Object>> onAfterSaveEvents = new ArrayList<AfterSaveEvent<Object>>();
-	public final ArrayList<AfterLoadEvent<Object>> onAfterLoadEvents = new ArrayList<AfterLoadEvent<Object>>();
-	public final ArrayList<AfterConvertEvent<Object>> onAfterConvertEvents = new ArrayList<AfterConvertEvent<Object>>();
-	public final ArrayList<BeforeDeleteEvent<Object>> onBeforeDeleteEvents = new ArrayList<BeforeDeleteEvent<Object>>();
-	public final ArrayList<AfterDeleteEvent<Object>> onAfterDeleteEvents = new ArrayList<AfterDeleteEvent<Object>>();
+	public final ArrayList<BeforeConvertEvent<Object>> onBeforeConvertEvents = new ArrayList<>();
+	public final ArrayList<BeforeSaveEvent<Object>> onBeforeSaveEvents = new ArrayList<>();
+	public final ArrayList<AfterSaveEvent<Object>> onAfterSaveEvents = new ArrayList<>();
+	public final ArrayList<AfterLoadEvent<Object>> onAfterLoadEvents = new ArrayList<>();
+	public final ArrayList<AfterConvertEvent<Object>> onAfterConvertEvents = new ArrayList<>();
+	public final ArrayList<BeforeDeleteEvent<Object>> onBeforeDeleteEvents = new ArrayList<>();
+	public final ArrayList<AfterDeleteEvent<Object>> onAfterDeleteEvents = new ArrayList<>();
 
 	@Override
 	public void onBeforeConvert(BeforeConvertEvent<Object> event) {

@@ -84,9 +84,8 @@ public class ReactiveMongoTemplateReplaceTests {
 		}).verifyComplete();
 
 		retrieve(collection -> collection.find(Filters.eq("_id", 1)).first()).as(StepVerifier::create)
-				.consumeNextWith(document -> {
-					assertThat(document).containsEntry("r-name", "Central Pork Cafe");
-				}).verifyComplete();
+				.consumeNextWith(document ->
+					assertThat(document).containsEntry("r-name", "Central Pork Cafe")).verifyComplete();
 	}
 
 	@Test // GH-4462
@@ -101,9 +100,8 @@ public class ReactiveMongoTemplateReplaceTests {
 		}).verifyComplete();
 
 		retrieve(collection -> collection.find(Filters.eq("_id", 2)).first()).as(StepVerifier::create)
-				.consumeNextWith(document -> {
-					assertThat(document).containsEntry("r-name", "Central Pork Cafe");
-				}).verifyComplete();
+				.consumeNextWith(document ->
+					assertThat(document).containsEntry("r-name", "Central Pork Cafe")).verifyComplete();
 	}
 
 	@Test // GH-4462
@@ -119,9 +117,8 @@ public class ReactiveMongoTemplateReplaceTests {
 		}).verifyComplete();
 
 		retrieve(collection -> collection.find(Filters.eq("_id", 1)).first()).as(StepVerifier::create)
-				.consumeNextWith(document -> {
-					assertThat(document).containsEntry("r-name", "Central Pork Cafe");
-				}).verifyComplete();
+				.consumeNextWith(document ->
+					assertThat(document).containsEntry("r-name", "Central Pork Cafe")).verifyComplete();
 	}
 
 	@Test // GH-4462
@@ -136,9 +133,8 @@ public class ReactiveMongoTemplateReplaceTests {
 		}).verifyComplete();
 
 		retrieve(collection -> collection.find(Filters.eq("_id", 1)).first()).as(StepVerifier::create)
-				.consumeNextWith(document -> {
-					assertThat(document).containsEntry("r-name", "Central Pork Cafe");
-				}).verifyComplete();
+				.consumeNextWith(document ->
+					assertThat(document).containsEntry("r-name", "Central Pork Cafe")).verifyComplete();
 	}
 
 	@Test // GH-4462
@@ -153,9 +149,8 @@ public class ReactiveMongoTemplateReplaceTests {
 		}).verifyComplete();
 
 		retrieve(collection -> collection.find(Filters.eq("_id", 1)).first()).as(StepVerifier::create)
-				.consumeNextWith(document -> {
-					assertThat(document).containsEntry("r-name", "Central Pork Cafe");
-				}).verifyComplete();
+				.consumeNextWith(document ->
+					assertThat(document).containsEntry("r-name", "Central Pork Cafe")).verifyComplete();
 	}
 
 	@Test // GH-4462
@@ -196,9 +191,8 @@ public class ReactiveMongoTemplateReplaceTests {
 		}).verifyComplete();
 
 		retrieve(collection -> collection.find(Filters.eq("_id", 4)).first()).as(StepVerifier::create)
-				.consumeNextWith(document -> {
-					assertThat(document).containsEntry("r-name", "Pizza Rat's Pizzaria");
-				});
+				.consumeNextWith(document ->
+					assertThat(document).containsEntry("r-name", "Pizza Rat's Pizzaria"));
 	}
 
 	void initTestData() {

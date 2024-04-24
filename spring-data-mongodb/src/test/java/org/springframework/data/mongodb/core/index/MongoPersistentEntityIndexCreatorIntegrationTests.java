@@ -115,7 +115,7 @@ public class MongoPersistentEntityIndexCreatorIntegrationTests {
 	}
 
 	@Document(RECURSIVE_TYPE_COLLECTION_NAME)
-	static abstract class RecursiveGenericType<RGT extends RecursiveGenericType<RGT>> {
+	abstract static class RecursiveGenericType<RGT extends RecursiveGenericType<RGT>> {
 
 		@Id Long id;
 

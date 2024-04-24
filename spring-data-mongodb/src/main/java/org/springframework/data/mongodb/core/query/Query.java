@@ -64,7 +64,7 @@ public class Query implements ReadConcernAware, ReadPreferenceAware {
 
 	private Set<Class<?>> restrictedTypes = Collections.emptySet();
 	private final Map<String, CriteriaDefinition> criteria = new LinkedHashMap<>();
-	private @Nullable Field fieldSpec = null;
+	private @Nullable Field fieldSpec;
 	private Sort sort = Sort.unsorted();
 	private long skip;
 	private Limit limit = Limit.unlimited();
@@ -386,7 +386,7 @@ public class Query implements ReadConcernAware, ReadPreferenceAware {
 		Assert.notNull(type, "Type must not be null");
 		Assert.notNull(additionalTypes, "AdditionalTypes must not be null");
 
-		if (restrictedTypes == Collections.EMPTY_SET) {
+		if (restrictedTypes == Collections.emptySet()) {
 			restrictedTypes = new HashSet<>(1 + additionalTypes.length);
 		}
 

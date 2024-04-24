@@ -61,7 +61,7 @@ public class DefaultMessageListenerContainer implements MessageListenerContainer
 	private final Lock subscriptionRead = Lock.of(subscriptionMonitor.readLock());
 	private final Lock subscriptionWrite = Lock.of(subscriptionMonitor.writeLock());
 
-	private boolean running = false;
+	private boolean running;
 
 	/**
 	 * Create a new {@link DefaultMessageListenerContainer}.
@@ -157,7 +157,7 @@ public class DefaultMessageListenerContainer implements MessageListenerContainer
 			Class<T> bodyType) {
 
 		return register(request, bodyType, errorHandler.orElseGet(
-				() -> new DecoratingLoggingErrorHandler((exception) -> lookup(request).ifPresent(Subscription::cancel))));
+				() -> new DecoratingLoggingErrorHandler(exception -> lookup(request).ifPresent(Subscription::cancel))));
 	}
 
 	@Override
@@ -238,10 +238,12 @@ public class DefaultMessageListenerContainer implements MessageListenerContainer
 
 		@Override
 		public boolean equals(@Nullable Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 
 			TaskSubscription that = (TaskSubscription) o;
 

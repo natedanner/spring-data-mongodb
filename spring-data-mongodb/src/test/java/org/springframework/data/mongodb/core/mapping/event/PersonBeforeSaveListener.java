@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.core.mapping.PersonPojoStringId;
 
 public class PersonBeforeSaveListener extends AbstractMongoEventListener<PersonPojoStringId> {
 
-	public final List<ApplicationEvent> seenEvents = new ArrayList<ApplicationEvent>();
+	public final List<ApplicationEvent> seenEvents = new ArrayList<>();
 
 	@Override
 	public void onBeforeSave(BeforeSaveEvent<PersonPojoStringId> event) {

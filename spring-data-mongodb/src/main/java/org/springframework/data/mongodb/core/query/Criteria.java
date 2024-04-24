@@ -76,15 +76,15 @@ public class Criteria implements CriteriaDefinition {
 
 	private @Nullable String key;
 	private List<Criteria> criteriaChain;
-	private LinkedHashMap<String, Object> criteria = new LinkedHashMap<String, Object>();
+	private LinkedHashMap<String, Object> criteria = new LinkedHashMap<>();
 	private @Nullable Object isValue = NOT_SET;
 
 	public Criteria() {
-		this.criteriaChain = new ArrayList<Criteria>();
+		this.criteriaChain = new ArrayList<>();
 	}
 
 	public Criteria(String key) {
-		this.criteriaChain = new ArrayList<Criteria>();
+		this.criteriaChain = new ArrayList<>();
 		this.criteriaChain.add(this);
 		this.key = key;
 	}

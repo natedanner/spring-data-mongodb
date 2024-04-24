@@ -98,7 +98,7 @@ public class AggregationTests {
 
 	private static final String INPUT_COLLECTION = "aggregation_test_collection";
 
-	private static boolean initialized = false;
+	private static boolean initialized;
 	private static List<Document> documents = parseDocuments();
 
 	@Template //
@@ -2125,7 +2125,7 @@ public class AggregationTests {
 	private static Document createDocument(String title, String... tags) {
 
 		Document doc = new Document("title", title);
-		List<String> tagList = new ArrayList<String>();
+		List<String> tagList = new ArrayList<>();
 
 		for (String tag : tags) {
 			tagList.add(tag);
@@ -2245,7 +2245,7 @@ public class AggregationTests {
 
 	static class CarDescriptor {
 
-		private List<Entry> entries = new ArrayList<AggregationTests.CarDescriptor.Entry>();
+		private List<Entry> entries = new ArrayList<>();
 
 		CarDescriptor(Entry... entries) {
 
@@ -2923,7 +2923,7 @@ public class AggregationTests {
 		}
 	}
 
-	static enum MyEnum {
+	enum MyEnum {
 		ONE, TWO
 	}
 
@@ -2978,10 +2978,12 @@ public class AggregationTests {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 
 			Widget widget = (Widget) o;
 

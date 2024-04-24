@@ -93,7 +93,13 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 	@Autowired ReactiveContactRepository contactRepository;
 	@Autowired ReactiveCappedCollectionRepository cappedRepository;
 
-	private Person dave, oliver, carter, boyd, stefan, leroi, alicia;
+	private Person dave;
+	private Person oliver;
+	private Person carter;
+	private Person boyd;
+	private Person stefan;
+	private Person leroi;
+	private Person alicia;
 	private QPerson person = QPerson.person;
 
 	@Configuration
@@ -419,18 +425,16 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 	@Test // DATAMONGO-1979
 	void findAppliesAnnotatedSort() {
 
-		repository.findByAgeGreaterThan(40).collectList().as(StepVerifier::create).consumeNextWith(result -> {
-			assertThat(result).containsSequence(carter, boyd, dave, leroi);
-		}).verifyComplete();
+		repository.findByAgeGreaterThan(40).collectList().as(StepVerifier::create).consumeNextWith(result ->
+			assertThat(result).containsSequence(carter, boyd, dave, leroi)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1979
 	void findWithSortOverwritesAnnotatedSort() {
 
 		repository.findByAgeGreaterThan(40, Sort.by(Direction.ASC, "age")).collectList().as(StepVerifier::create)
-				.consumeNextWith(result -> {
-					assertThat(result).containsSequence(leroi, dave, boyd, carter);
-				}).verifyComplete();
+				.consumeNextWith(result ->
+					assertThat(result).containsSequence(leroi, dave, boyd, carter)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2181
@@ -465,9 +469,8 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 		repository.findAll(person.id.in(Arrays.asList(dave.id, carter.id))) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(actual).containsExactlyInAnyOrder(dave, carter);
-				}).verifyComplete();
+				.assertNext(actual ->
+					assertThat(actual).containsExactlyInAnyOrder(dave, carter)).verifyComplete();
 	}
 
 	@Test // GH-4308
@@ -477,18 +480,16 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 		repository.findBy(person.id.in(Arrays.asList(dave.id, carter.id, boyd.id)), //
 				q -> q.limit(2).sortBy(Sort.by("firstname")).scroll(ScrollPosition.keyset())) //
 				.as(StepVerifier::create) //
-				.recordWith(() -> capture).assertNext(actual -> {
-					assertThat(actual).hasSize(2).containsExactly(boyd, carter);
-				}).verifyComplete();
+				.recordWith(() -> capture).assertNext(actual ->
+					assertThat(actual).hasSize(2).containsExactly(boyd, carter)).verifyComplete();
 
 		Window<Person> scroll = capture.get(0);
 
 		repository.findBy(person.id.in(Arrays.asList(dave.id, carter.id, boyd.id)), //
 				q -> q.limit(2).sortBy(Sort.by("firstname")).scroll(scroll.positionAt(scroll.size() - 1))) //
 				.as(StepVerifier::create) //
-				.recordWith(() -> capture).assertNext(actual -> {
-					assertThat(actual).containsOnly(dave);
-				}).verifyComplete();
+				.recordWith(() -> capture).assertNext(actual ->
+					assertThat(actual).containsOnly(dave)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2153
@@ -497,9 +498,8 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 		repository.findAllLastnames() //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
-					assertThat(actual).contains("Lessard", "Keys", "Tinsley", "Beauford", "Moore", "Matthews");
-				}).verifyComplete();
+				.assertNext(actual ->
+					assertThat(actual).contains("Lessard", "Keys", "Tinsley", "Beauford", "Moore", "Matthews")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2153
@@ -508,15 +508,14 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 		repository.groupByLastnameAnd("firstname") //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 					assertThat(actual) //
 							.contains(new PersonAggregate("Lessard", "Stefan")) //
 							.contains(new PersonAggregate("Keys", "Alicia")) //
 							.contains(new PersonAggregate("Tinsley", "Boyd")) //
 							.contains(new PersonAggregate("Beauford", "Carter")) //
 							.contains(new PersonAggregate("Moore", "Leroi")) //
-							.contains(new PersonAggregate("Matthews", Arrays.asList("Dave", "Oliver August")));
-				}).verifyComplete();
+							.contains(new PersonAggregate("Matthews", Arrays.asList("Dave", "Oliver August")))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2153
@@ -525,7 +524,7 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 		repository.groupByLastnameAnd("firstname", Sort.by("lastname")) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 					assertThat(actual) //
 							.containsSequence( //
 									new PersonAggregate("Beauford", "Carter"), //
@@ -533,8 +532,7 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 									new PersonAggregate("Lessard", "Stefan"), //
 									new PersonAggregate("Matthews", Arrays.asList("Dave", "Oliver August")), //
 									new PersonAggregate("Moore", "Leroi"), //
-									new PersonAggregate("Tinsley", "Boyd"));
-				}) //
+									new PersonAggregate("Tinsley", "Boyd"))) //
 				.verifyComplete();
 	}
 
@@ -544,12 +542,11 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 		repository.groupByLastnameAnd("firstname", PageRequest.of(1, 2, Sort.by("lastname"))) //
 				.collectList() //
 				.as(StepVerifier::create) //
-				.assertNext(actual -> {
+				.assertNext(actual ->
 					assertThat(actual) //
 							.containsExactly( //
 									new PersonAggregate("Lessard", "Stefan"), //
-									new PersonAggregate("Matthews", Arrays.asList("Dave", "Oliver August")));
-				}) //
+									new PersonAggregate("Matthews", Arrays.asList("Dave", "Oliver August")))) //
 				.verifyComplete();
 	}
 
@@ -585,9 +582,8 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 
 		repository.findDocumentById(dave.getId()) //
 				.as(StepVerifier::create) //
-				.consumeNextWith(it -> {
-					assertThat(it).containsEntry("firstname", dave.getFirstname()).containsEntry("lastname", dave.getLastname());
-				}).verifyComplete();
+				.consumeNextWith(it ->
+					assertThat(it).containsEntry("firstname", dave.getFirstname()).containsEntry("lastname", dave.getLastname())).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2153
@@ -595,9 +591,8 @@ class ReactiveMongoRepositoryTests implements DirtiesStateExtension.StateFunctio
 
 		repository.sumAgeAndReturnSumAsMap() //
 				.as(StepVerifier::create) //
-				.consumeNextWith(it -> {
-					assertThat(it).isInstanceOf(Map.class);
-				}).verifyComplete();
+				.consumeNextWith(it ->
+					assertThat(it).isInstanceOf(Map.class)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2403

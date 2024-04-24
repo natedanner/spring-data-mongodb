@@ -84,8 +84,8 @@ class DefaultDbRefResolverUnitTests {
 
 		verify(collectionMock, times(1)).find(captor.capture());
 
-		Document _id = DocumentTestUtils.getAsDocument(captor.getValue(), "_id");
-		Iterable<Object> $in = DocumentTestUtils.getTypedValue(_id, "$in", Iterable.class);
+		Document id = DocumentTestUtils.getAsDocument(captor.getValue(), "_id");
+		Iterable<Object> $in = DocumentTestUtils.getTypedValue(id, "$in", Iterable.class);
 
 		assertThat($in).hasSize(2);
 	}

@@ -69,8 +69,7 @@ public class SpelExpressionTransformerIntegrationTests {
 		TypeBasedAggregationOperationContext ctxt = new TypeBasedAggregationOperationContext(Data.class,
 				new MongoMappingContext(), new QueryMapper(converter));
 
-		assertThatExceptionOfType(InvalidPersistentPropertyPath.class).isThrownBy(() -> {
-			transformer.transform("item.value2", ctxt, new Object[0]).toString();
-		});
+		assertThatExceptionOfType(InvalidPersistentPropertyPath.class).isThrownBy(() ->
+			transformer.transform("item.value2", ctxt, new Object[0]).toString());
 	}
 }

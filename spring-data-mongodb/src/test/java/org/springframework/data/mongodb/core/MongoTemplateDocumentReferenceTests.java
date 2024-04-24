@@ -74,14 +74,12 @@ public class MongoTemplateDocumentReferenceTests {
 			it.defaultDb(DB_NAME);
 		});
 
-		cfg.configureConversion(it -> {
+		cfg.configureConversion(it ->
 			it.customConverters(new ReferencableConverter(), new SimpleObjectRefWithReadingConverterToDocumentConverter(),
-					new DocumentToSimpleObjectRefWithReadingConverter());
-		});
+					new DocumentToSimpleObjectRefWithReadingConverter()));
 
-		cfg.configureMappingContext(it -> {
-			it.autocreateIndex(false);
-		});
+		cfg.configureMappingContext(it ->
+			it.autocreateIndex(false));
 	});
 
 	@BeforeEach
@@ -300,7 +298,7 @@ public class MongoTemplateDocumentReferenceTests {
 
 		SingleRefRoot result = template.findOne(query(where("id").is("id-1")), SingleRefRoot.class);
 
-		LazyLoadingTestUtils.assertProxy(result.simpleLazyValueRef, (proxy) -> {
+		LazyLoadingTestUtils.assertProxy(result.simpleLazyValueRef, proxy -> {
 
 			assertThat(proxy.isResolved()).isFalse();
 			assertThat(proxy.currentValue()).isNull();
@@ -510,7 +508,7 @@ public class MongoTemplateDocumentReferenceTests {
 
 		SingleRefRoot result = template.findOne(query(where("id").is("id-1")), SingleRefRoot.class);
 
-		LazyLoadingTestUtils.assertProxy(result.lazyObjectValueRefOnNonIdFields, (proxy) -> {
+		LazyLoadingTestUtils.assertProxy(result.lazyObjectValueRefOnNonIdFields, proxy -> {
 
 			assertThat(proxy.isResolved()).isFalse();
 			assertThat(proxy.currentValue()).isNull();
@@ -593,7 +591,7 @@ public class MongoTemplateDocumentReferenceTests {
 		WithRefA loadedA = template.query(WithRefA.class).matching(where("id").is(a.id)).firstValue();
 		assertThat(loadedA).isNotNull();
 		assertThat(loadedA.getToB()).isNotNull();
-		LazyLoadingTestUtils.assertProxy(loadedA.getToB().lazyToA, (proxy) -> {
+		LazyLoadingTestUtils.assertProxy(loadedA.getToB().lazyToA, proxy -> {
 
 			assertThat(proxy.isResolved()).isFalse();
 			assertThat(proxy.currentValue()).isNull();
@@ -642,7 +640,7 @@ public class MongoTemplateDocumentReferenceTests {
 		WithRefA loadedA = template.query(WithRefA.class).matching(where("id").is(a.id)).firstValue();
 		template.save(loadedA.getToB());
 
-		LazyLoadingTestUtils.assertProxy(loadedA.getToB().lazyToA, (proxy) -> {
+		LazyLoadingTestUtils.assertProxy(loadedA.getToB().lazyToA, proxy -> {
 
 			assertThat(proxy.isResolved()).isFalse();
 			assertThat(proxy.currentValue()).isNull();
@@ -762,7 +760,7 @@ public class MongoTemplateDocumentReferenceTests {
 		WithLazyRequiredArgsCtor target = template.findOne(query(where("id").is(source.id)), WithLazyRequiredArgsCtor.class);
 
 		// proxy not yet resolved
-		LazyLoadingTestUtils.assertProxy(target.publisher, (proxy) -> {
+		LazyLoadingTestUtils.assertProxy(target.publisher, proxy -> {
 
 			assertThat(proxy.isResolved()).isFalse();
 			assertThat(proxy.currentValue()).isNull();
@@ -770,9 +768,8 @@ public class MongoTemplateDocumentReferenceTests {
 
 		// resolve the proxy by invoking a method on it
 		assertThat(target.getPublisher().getName()).isEqualTo("ppp");
-		LazyLoadingTestUtils.assertProxy(target.publisher, (proxy) -> {
-			assertThat(proxy.isResolved()).isTrue();
-		});
+		LazyLoadingTestUtils.assertProxy(target.publisher, proxy ->
+			assertThat(proxy.isResolved()).isTrue());
 	}
 
 	@Test // GH-3602

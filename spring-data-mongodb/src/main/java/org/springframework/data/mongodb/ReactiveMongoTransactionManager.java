@@ -175,10 +175,9 @@ public class ReactiveMongoTransactionManager extends AbstractReactiveTransaction
 					.onErrorMap(
 							ex -> new TransactionSystemException(String.format("Could not start Mongo transaction for session %s.",
 									debugString(mongoTransactionObject.getSession())), ex))
-					.doOnSuccess(resourceHolder -> {
+					.doOnSuccess(resourceHolder ->
 
-						synchronizationManager.bindResource(getRequiredDatabaseFactory(), resourceHolder);
-					}).then();
+						synchronizationManager.bindResource(getRequiredDatabaseFactory(), resourceHolder)).then();
 		});
 	}
 
@@ -215,10 +214,8 @@ public class ReactiveMongoTransactionManager extends AbstractReactiveTransaction
 						debugString(mongoTransactionObject.getSession())));
 			}
 
-			return doCommit(synchronizationManager, mongoTransactionObject).onErrorMap(ex -> {
-				return new TransactionSystemException(String.format("Could not commit Mongo transaction for session %s.",
-						debugString(mongoTransactionObject.getSession())), ex);
-			});
+			return doCommit(synchronizationManager, mongoTransactionObject).onErrorMap(ex -> new TransactionSystemException(String.format("Could not commit Mongo transaction for session %s.",
+						debugString(mongoTransactionObject.getSession())), ex));
 		});
 	}
 
@@ -251,11 +248,9 @@ public class ReactiveMongoTransactionManager extends AbstractReactiveTransaction
 						debugString(mongoTransactionObject.getSession())));
 			}
 
-			return mongoTransactionObject.abortTransaction().onErrorResume(MongoException.class, ex -> {
-				return Mono
+			return mongoTransactionObject.abortTransaction().onErrorResume(MongoException.class, ex -> Mono
 						.error(new TransactionSystemException(String.format("Could not abort Mongo transaction for session %s.",
-								debugString(mongoTransactionObject.getSession())), ex));
-			});
+								debugString(mongoTransactionObject.getSession())), ex)));
 		});
 	}
 

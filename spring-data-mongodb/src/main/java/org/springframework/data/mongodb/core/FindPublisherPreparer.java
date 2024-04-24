@@ -39,7 +39,7 @@ public interface FindPublisherPreparer extends ReadPreferenceAware {
 	 *
 	 * @since 2.2
 	 */
-	FindPublisherPreparer NO_OP_PREPARER = (findPublisher -> findPublisher);
+	FindPublisherPreparer NO_OP_PREPARER = findPublisher -> findPublisher;
 
 	/**
 	 * Prepare the given cursor (apply limits, skips and so on). Returns the prepared cursor.

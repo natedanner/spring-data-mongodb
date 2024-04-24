@@ -108,7 +108,7 @@ public class SetOperation extends DocumentEnhancingOperation {
 	 * @author Christoph Strobl
 	 * @since 3.0
 	 */
-	public static class FieldAppender {
+	public static final class FieldAppender {
 
 		private final Map<Object, Object> valueMap;
 

@@ -44,7 +44,7 @@ import org.w3c.dom.Element;
  */
 public class MongoAuditingBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
-	private static boolean PROJECT_REACTOR_AVAILABLE = ClassUtils.isPresent("reactor.core.publisher.Mono",
+	private static final boolean PROJECT_REACTOR_AVAILABLE = ClassUtils.isPresent("reactor.core.publisher.Mono",
 			MongoAuditingRegistrar.class.getClassLoader());
 
 	@Override

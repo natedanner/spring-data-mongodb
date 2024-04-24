@@ -63,14 +63,14 @@ public class MongoClientSettingsFactoryBean extends AbstractFactoryBean<MongoCli
 
 	private ReadPreference readPreference = DEFAULT_MONGO_SETTINGS.getReadPreference();
 	private ReadConcern readConcern = DEFAULT_MONGO_SETTINGS.getReadConcern();
-	private @Nullable Boolean retryReads = null;
+	private @Nullable Boolean retryReads;
 
 	private WriteConcern writeConcern = DEFAULT_MONGO_SETTINGS.getWriteConcern();
-	private @Nullable Boolean retryWrites = null;
+	private @Nullable Boolean retryWrites;
 
-	private @Nullable String applicationName = null;
+	private @Nullable String applicationName;
 
-	private @Nullable UuidRepresentation uUidRepresentation = null;
+	private @Nullable UuidRepresentation uUidRepresentation;
 
 	// --> Socket Settings
 
@@ -84,7 +84,7 @@ public class MongoClientSettingsFactoryBean extends AbstractFactoryBean<MongoCli
 
 	private @Nullable String clusterSrvHost = DEFAULT_MONGO_SETTINGS.getClusterSettings().getSrvHost();
 	private List<ServerAddress> clusterHosts = Collections.emptyList();
-	private @Nullable ClusterConnectionMode clusterConnectionMode = null;
+	private @Nullable ClusterConnectionMode clusterConnectionMode;
 	private ClusterType custerRequiredClusterType = DEFAULT_MONGO_SETTINGS.getClusterSettings().getRequiredClusterType();
 	private String clusterRequiredReplicaSetName = DEFAULT_MONGO_SETTINGS.getClusterSettings()
 			.getRequiredReplicaSetName();
@@ -432,7 +432,7 @@ public class MongoClientSettingsFactoryBean extends AbstractFactoryBean<MongoCli
 				.codecRegistry(codecRegistry) //
 				.applicationName(applicationName) //
 				.autoEncryptionSettings(autoEncryptionSettings) //
-				.applyToClusterSettings((settings) -> {
+				.applyToClusterSettings(settings -> {
 
 					settings.serverSelectionTimeout(clusterServerSelectionTimeoutMS, TimeUnit.MILLISECONDS);
 					if (clusterConnectionMode != null) {
@@ -450,7 +450,7 @@ public class MongoClientSettingsFactoryBean extends AbstractFactoryBean<MongoCli
 						settings.srvHost(clusterSrvHost);
 					}
 				}) //
-				.applyToConnectionPoolSettings((settings) -> {
+				.applyToConnectionPoolSettings(settings -> {
 
 					settings.minSize(poolMinSize);
 					settings.maxSize(poolMaxSize);
@@ -461,19 +461,19 @@ public class MongoClientSettingsFactoryBean extends AbstractFactoryBean<MongoCli
 					settings.maintenanceFrequency(poolMaintenanceFrequencyMS, TimeUnit.MILLISECONDS);
 					settings.maintenanceInitialDelay(poolMaintenanceInitialDelayMS, TimeUnit.MILLISECONDS);
 				}) //
-				.applyToServerSettings((settings) -> {
+				.applyToServerSettings(settings -> {
 
 					settings.minHeartbeatFrequency(serverMinHeartbeatFrequencyMS, TimeUnit.MILLISECONDS);
 					settings.heartbeatFrequency(serverHeartbeatFrequencyMS, TimeUnit.MILLISECONDS);
 				}) //
-				.applyToSocketSettings((settings) -> {
+				.applyToSocketSettings(settings -> {
 
 					settings.connectTimeout(socketConnectTimeoutMS, TimeUnit.MILLISECONDS);
 					settings.readTimeout(socketReadTimeoutMS, TimeUnit.MILLISECONDS);
 					settings.receiveBufferSize(socketReceiveBufferSize);
 					settings.sendBufferSize(socketSendBufferSize);
 				}) //
-				.applyToSslSettings((settings) -> {
+				.applyToSslSettings(settings -> {
 
 					settings.enabled(sslEnabled);
 					if (sslEnabled) {

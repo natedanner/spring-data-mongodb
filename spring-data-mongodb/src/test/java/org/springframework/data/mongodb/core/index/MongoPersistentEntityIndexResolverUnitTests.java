@@ -1294,9 +1294,8 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 					WithHashedIndexOnId.class);
 
 			assertThat(indexDefinitions).hasSize(1);
-			assertThat(indexDefinitions.get(0)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).hasSize(1).containsEntry("_id", "hashed");
-			});
+			assertThat(indexDefinitions.get(0)).satisfies(it ->
+				assertThat(it.getIndexKeys()).hasSize(1).containsEntry("_id", "hashed"));
 		}
 
 		@Test // DATAMONGO-1183
@@ -1305,9 +1304,8 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 			List<IndexDefinitionHolder> indexDefinitions = prepareMappingContextAndResolveIndexForType(WithHashedIndex.class);
 
 			assertThat(indexDefinitions).hasSize(1);
-			assertThat(indexDefinitions.get(0)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).hasSize(1).containsEntry("value", "hashed");
-			});
+			assertThat(indexDefinitions.get(0)).satisfies(it ->
+				assertThat(it.getIndexKeys()).hasSize(1).containsEntry("value", "hashed"));
 		}
 
 		@Test // DATAMONGO-1183
@@ -1317,12 +1315,10 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 					WithHashedIndexAndIndex.class);
 
 			assertThat(indexDefinitions).hasSize(2);
-			assertThat(indexDefinitions.get(0)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("value", 1);
-			});
-			assertThat(indexDefinitions.get(1)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("value", "hashed");
-			});
+			assertThat(indexDefinitions.get(0)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("value", 1));
+			assertThat(indexDefinitions.get(1)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("value", "hashed"));
 		}
 
 		@Test // DATAMONGO-1183
@@ -1336,9 +1332,8 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 				assertThat(it.getIndexKeys()).containsEntry("value", 1);
 				assertThat(it.getIndexOptions()).containsEntry("name", "idx-name");
 			});
-			assertThat(indexDefinitions.get(1)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("value", "hashed");
-			});
+			assertThat(indexDefinitions.get(1)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("value", "hashed"));
 		}
 
 		@Test // DATAMONGO-1902
@@ -1348,12 +1343,10 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 					UnwrappableType.class);
 
 			assertThat(indexDefinitions).hasSize(2);
-			assertThat(indexDefinitions.get(0)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("stringValue", 1);
-			});
-			assertThat(indexDefinitions.get(1)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("with-at-field-annotation", 1);
-			});
+			assertThat(indexDefinitions.get(0)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("stringValue", 1));
+			assertThat(indexDefinitions.get(1)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("with-at-field-annotation", 1));
 		}
 
 		@Test // DATAMONGO-1902
@@ -1363,12 +1356,10 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 					WrapperAroundWithUnwrapped.class, WithUnwrapped.class, UnwrappableType.class);
 
 			assertThat(indexDefinitions).hasSize(2);
-			assertThat(indexDefinitions.get(0)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("withEmbedded.stringValue", 1);
-			});
-			assertThat(indexDefinitions.get(1)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("withEmbedded.with-at-field-annotation", 1);
-			});
+			assertThat(indexDefinitions.get(0)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("withEmbedded.stringValue", 1));
+			assertThat(indexDefinitions.get(1)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("withEmbedded.with-at-field-annotation", 1));
 		}
 
 		@Test // DATAMONGO-1902
@@ -1410,12 +1401,10 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 			List<IndexDefinitionHolder> indices = prepareMappingContextAndResolveIndexForType(
 					WithWildCardIndexOnProperty.class);
 			assertThat(indices).hasSize(3);
-			assertThat(indices.get(0)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("value.$**", 1);
-			});
-			assertThat(indices.get(1)).satisfies(it -> {
-				assertThat(it.getIndexKeys()).containsEntry("the_field.$**", 1);
-			});
+			assertThat(indices.get(0)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("value.$**", 1));
+			assertThat(indices.get(1)).satisfies(it ->
+				assertThat(it.getIndexKeys()).containsEntry("the_field.$**", 1));
 			assertThat(indices.get(2)).satisfies(it -> {
 				assertThat(it.getIndexKeys()).containsEntry("withOptions.$**", 1);
 				assertThat(it.getIndexOptions()).containsEntry("name", "withOptions.idx")
@@ -1439,9 +1428,8 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 		@Test // GH-3225
 		public void rejectsWildcardProjectionOnNestedPaths() {
 
-			assertThatExceptionOfType(MappingException.class).isThrownBy(() -> {
-				prepareMappingContextAndResolveIndexForType(WildcardIndexedProjectionOnNestedPath.class);
-			});
+			assertThatExceptionOfType(MappingException.class).isThrownBy(() ->
+				prepareMappingContextAndResolveIndexForType(WildcardIndexedProjectionOnNestedPath.class));
 		}
 
 		@Test // GH-3914
@@ -1578,7 +1566,7 @@ public class MongoPersistentEntityIndexResolverUnitTests {
 		class SimilarityHolingBean {
 
 			@Indexed @Field("norm") String normalProperty;
-			@Field("similarityL") private List<SimilaritySibling> listOfSimilarilyNamedEntities = null;
+			@Field("similarityL") private List<SimilaritySibling> listOfSimilarilyNamedEntities;
 		}
 
 		class SimilaritySibling {

@@ -91,7 +91,7 @@ public abstract class DocumentTestUtils {
 		Iterator<String> keyIterator = document.keySet().iterator();
 		while (keyIterator.hasNext()) {
 			String key = keyIterator.next();
-			if (key.equals("_class")) {
+			if ("_class".equals(key)) {
 				assertThat(document.get(key)).isEqualTo(expectedTypeString);
 				assertThat(keyIterator.hasNext()).isFalse();
 				return;

@@ -129,7 +129,7 @@ class MappingMongoJsonSchemaCreatorUnitTests {
 	void csfleWithKeyFromProperties() {
 
 		GenericApplicationContext applicationContext = new GenericApplicationContext();
-		applicationContext.registerBean("encryptionExtension", EncryptionExtension.class, () -> new EncryptionExtension());
+		applicationContext.registerBean("encryptionExtension", EncryptionExtension.class, EncryptionExtension::new);
 		applicationContext.refresh();
 
 		MongoMappingContext mappingContext = new MongoMappingContext();
@@ -147,7 +147,7 @@ class MappingMongoJsonSchemaCreatorUnitTests {
 	void csfleWithKeyFromMethod() {
 
 		GenericApplicationContext applicationContext = new GenericApplicationContext();
-		applicationContext.registerBean("encryptionExtension", EncryptionExtension.class, () -> new EncryptionExtension());
+		applicationContext.registerBean("encryptionExtension", EncryptionExtension.class, EncryptionExtension::new);
 		applicationContext.refresh();
 
 		MongoMappingContext mappingContext = new MongoMappingContext();
@@ -631,11 +631,11 @@ class MappingMongoJsonSchemaCreatorUnitTests {
 
 		public String keyId(String target) {
 
-			if (target.equals("EncryptionMetadataFromMethod")) {
+			if ("EncryptionMetadataFromMethod".equals(target)) {
 				return ENC_FROM_METHOD_ENTITY_KEY;
 			}
 
-			if (target.equals("EncryptionMetadataFromMethod.policyNumber")) {
+			if ("EncryptionMetadataFromMethod.policyNumber".equals(target)) {
 				return ENC_FROM_METHOD_PROPOERTY_KEY;
 			}
 

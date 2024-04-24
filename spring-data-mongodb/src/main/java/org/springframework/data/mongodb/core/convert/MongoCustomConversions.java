@@ -153,7 +153,7 @@ public class MongoCustomConversions extends org.springframework.data.convert.Cus
 		 */
 		private static final Set<Class<?>> JAVA_DRIVER_TIME_SIMPLE_TYPES = Set.of(LocalDate.class, LocalTime.class, LocalDateTime.class);
 
-		private boolean useNativeDriverJavaTimeCodecs = false;
+		private boolean useNativeDriverJavaTimeCodecs;
 		private final List<Object> customConverters = new ArrayList<>();
 
 		private final PropertyValueConversions internalValueConversion = PropertyValueConversions.simple(it -> {});
@@ -364,13 +364,12 @@ public class MongoCustomConversions extends org.springframework.data.convert.Cus
 			StoreConversions storeConversions = StoreConversions
 					.of(new SimpleTypeHolder(JAVA_DRIVER_TIME_SIMPLE_TYPES, MongoSimpleTypes.HOLDER), converters);
 
-			return new ConverterConfiguration(storeConversions, this.customConverters, convertiblePair -> {
+			return new ConverterConfiguration(storeConversions, this.customConverters, convertiblePair ->
 
 				// Avoid default registrations
 
-				return !JAVA_DRIVER_TIME_SIMPLE_TYPES.contains(convertiblePair.getSourceType())
-						|| !Date.class.isAssignableFrom(convertiblePair.getTargetType());
-			}, this.propertyValueConversions);
+				!JAVA_DRIVER_TIME_SIMPLE_TYPES.contains(convertiblePair.getSourceType())
+						|| !Date.class.isAssignableFrom(convertiblePair.getTargetType()), this.propertyValueConversions);
 		}
 
 		@ReadingConverter

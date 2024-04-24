@@ -56,7 +56,7 @@ public class MongoPersistentEntityIndexCreator implements ApplicationListener<Ma
 
 	private static final Log LOGGER = LogFactory.getLog(MongoPersistentEntityIndexCreator.class);
 
-	private final Map<Class<?>, Boolean> classesSeen = new ConcurrentHashMap<Class<?>, Boolean>();
+	private final Map<Class<?>, Boolean> classesSeen = new ConcurrentHashMap<>();
 	private final IndexOperationsProvider indexOperationsProvider;
 	private final MongoMappingContext mappingContext;
 	private final IndexResolver indexResolver;

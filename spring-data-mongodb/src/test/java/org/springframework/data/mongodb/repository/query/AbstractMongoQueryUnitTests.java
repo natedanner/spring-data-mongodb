@@ -180,7 +180,6 @@ class AbstractMongoQueryUnitTests {
 		verify(withQueryMock).matching(captor.capture());
 
 		assertThat(captor.getValue().getMeta().getComment()).isNull();
-		;
 	}
 
 	@Test // DATAMONGO-957
@@ -403,11 +402,10 @@ class AbstractMongoQueryUnitTests {
 	@Test // DATAMONGO-1854
 	void shouldThrowExceptionOnNonParsableCollation() {
 
-		assertThatIllegalArgumentException().isThrownBy(() -> {
+		assertThatIllegalArgumentException().isThrownBy(() ->
 
 			createQueryForMethod("findWithCollationUsingPlaceholderByFirstName", String.class, Object.class) //
-					.execute(new Object[] { "dalinar", 100 });
-		});
+					.execute(new Object[] { "dalinar", 100 }));
 	}
 
 	@Test // DATAMONGO-1854

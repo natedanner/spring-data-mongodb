@@ -108,7 +108,7 @@ public class AddFieldsOperation extends DocumentEnhancingOperation {
 	 * @author Christoph Strobl
 	 * @since 3.0
 	 */
-	public static class AddFieldsOperationBuilder {
+	public static final class AddFieldsOperationBuilder {
 
 		private final Map<Object, Object> valueMap;
 

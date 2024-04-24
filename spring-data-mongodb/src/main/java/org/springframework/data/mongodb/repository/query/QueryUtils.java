@@ -56,7 +56,7 @@ class QueryUtils {
 		ProxyFactory factory = new ProxyFactory(query);
 		factory.addAdvice((MethodInterceptor) invocation -> {
 
-			if (!invocation.getMethod().getName().equals("getSortObject")) {
+			if (!"getSortObject".equals(invocation.getMethod().getName())) {
 				return invocation.proceed();
 			}
 

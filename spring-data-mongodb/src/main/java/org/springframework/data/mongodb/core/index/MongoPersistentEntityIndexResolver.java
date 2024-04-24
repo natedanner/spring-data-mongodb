@@ -311,7 +311,7 @@ public class MongoPersistentEntityIndexResolver implements IndexResolver {
 				if (!it.hasNext()) {
 					name += it.next() + "_TextIndex";
 				} else {
-					name += (it.next().charAt(0) + ".");
+					name += it.next().charAt(0) + ".";
 				}
 			}
 
@@ -495,7 +495,7 @@ public class MongoPersistentEntityIndexResolver implements IndexResolver {
 
 		Object keyDefToUse = ExpressionUtils.evaluate(keyDefinitionString, () -> getEvaluationContextForProperty(entity));
 
-		org.bson.Document dbo = (keyDefToUse instanceof org.bson.Document document) ? document
+		org.bson.Document dbo = keyDefToUse instanceof org.bson.Document document ? document
 				: org.bson.Document.parse(ObjectUtils.nullSafeToString(keyDefToUse));
 
 		if (!StringUtils.hasText(dotPath)) {
@@ -904,7 +904,7 @@ public class MongoPersistentEntityIndexResolver implements IndexResolver {
 		 * @author Christoph Strobl
 		 * @author Mark Paluch
 		 */
-		static class Path {
+		static final class Path {
 
 			private static final Path EMPTY = new Path(Collections.emptyList(), false);
 
@@ -1016,10 +1016,12 @@ public class MongoPersistentEntityIndexResolver implements IndexResolver {
 
 			@Override
 			public boolean equals(@Nullable Object o) {
-				if (this == o)
+				if (this == o) {
 					return true;
-				if (o == null || getClass() != o.getClass())
+				}
+				if (o == null || getClass() != o.getClass()) {
 					return false;
+				}
 
 				Path that = (Path) o;
 

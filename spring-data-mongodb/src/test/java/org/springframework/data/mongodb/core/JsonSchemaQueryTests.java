@@ -52,7 +52,9 @@ public class JsonSchemaQueryTests {
 	@Template(database = DATABASE_NAME, initialEntitySet = Person.class) //
 	static MongoTestTemplate template;
 
-	Person jellyBelly, roseSpringHeart, kazmardBoombub;
+	Person jellyBelly;
+	Person roseSpringHeart;
+	Person kazmardBoombub;
 
 	@BeforeEach
 	public void setUp() {
@@ -349,7 +351,7 @@ public class JsonSchemaQueryTests {
 		}
 	}
 
-	static enum Gender {
+	enum Gender {
 		PIXY, UNICORN, GOBLIN
 	}
 

@@ -35,7 +35,7 @@ public class GeoJsonMultiLineString implements GeoJson<Iterable<GeoJsonLineStrin
 
 	private static final String TYPE = "MultiLineString";
 
-	private List<GeoJsonLineString> coordinates = new ArrayList<GeoJsonLineString>();
+	private List<GeoJsonLineString> coordinates = new ArrayList<>();
 
 	/**
 	 * Creates new {@link GeoJsonMultiLineString} for the given {@link Point}s.

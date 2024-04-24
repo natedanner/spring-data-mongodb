@@ -92,7 +92,7 @@ public class RedactOperation implements AggregationOperation {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class RedactOperationBuilder {
+	public static final class RedactOperationBuilder {
 
 		private Object when;
 		private Object then;

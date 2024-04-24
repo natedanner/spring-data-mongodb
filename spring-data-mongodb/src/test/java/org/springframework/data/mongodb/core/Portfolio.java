@@ -44,7 +44,7 @@ public class Portfolio {
 	}
 
 	public Portfolio() {
-		trades = new ArrayList<Trade>();
+		trades = new ArrayList<>();
 	}
 
 	public String getPortfolioName() {

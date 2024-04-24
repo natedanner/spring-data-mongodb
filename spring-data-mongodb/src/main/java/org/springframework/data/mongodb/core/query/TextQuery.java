@@ -31,13 +31,13 @@ import org.springframework.lang.Nullable;
  */
 public class TextQuery extends Query {
 
-	private final String DEFAULT_SCORE_FIELD_FIELDNAME = "score";
-	private final Document META_TEXT_SCORE = new Document("$meta", "textScore");
+	private static final String DEFAULT_SCORE_FIELD_FIELDNAME = "score";
+	private final Document metaTextScore = new Document("$meta", "textScore");
 
 	private String scoreFieldName = DEFAULT_SCORE_FIELD_FIELDNAME;
-	private boolean includeScore = false;
-	private boolean sortByScore = false;
-	private int sortByScoreIndex = 0;
+	private boolean includeScore;
+	private boolean sortByScore;
+	private int sortByScoreIndex;
 
 	/**
 	 * Creates new {@link TextQuery} using the the given {@code wordsAndPhrases} with {@link TextCriteria}
@@ -159,7 +159,7 @@ public class TextQuery extends Query {
 
 		Document fields = BsonUtils.asMutableDocument(super.getFieldsObject());
 
-		fields.put(getScoreFieldName(), META_TEXT_SCORE);
+		fields.put(getScoreFieldName(), metaTextScore);
 		return fields;
 	}
 
@@ -182,7 +182,7 @@ public class TextQuery extends Query {
 
 		Document sort = new Document();
 
-		sort.put(getScoreFieldName(), META_TEXT_SCORE);
+		sort.put(getScoreFieldName(), metaTextScore);
 		sort.putAll(super.getSortObject());
 
 		return sort;
@@ -195,14 +195,14 @@ public class TextQuery extends Query {
 
 		for (Entry<String, Object> entry : source.entrySet()) {
 			if (index == sortByScoreIndex) {
-				target.put(getScoreFieldName(), META_TEXT_SCORE);
+				target.put(getScoreFieldName(), metaTextScore);
 			}
 			target.put(entry.getKey(), entry.getValue());
 			index++;
 		}
 
 		if (index == sortByScoreIndex) {
-			target.put(getScoreFieldName(), META_TEXT_SCORE);
+			target.put(getScoreFieldName(), metaTextScore);
 		}
 
 		return target;

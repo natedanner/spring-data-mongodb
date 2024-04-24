@@ -250,11 +250,11 @@ abstract class AbstractAggregationExpression implements AggregationExpression {
 	protected List<Object> values() {
 
 		if (value instanceof List) {
-			return new ArrayList<Object>((List) value);
+			return new ArrayList<>((List) value);
 		}
 
 		if (value instanceof java.util.Map) {
-			return new ArrayList<Object>(((java.util.Map) value).values());
+			return new ArrayList<>(((java.util.Map) value).values());
 		}
 
 		return new ArrayList<>(Collections.singletonList(value));

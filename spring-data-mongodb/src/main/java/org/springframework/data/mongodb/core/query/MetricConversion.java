@@ -33,7 +33,7 @@ import org.springframework.data.geo.Metrics;
  */
 public class MetricConversion {
 
-	private static final BigDecimal METERS_MULTIPLIER = new BigDecimal(Metrics.KILOMETERS.getMultiplier())
+	private static final BigDecimal METERS_MULTIPLIER = BigDecimal.valueOf(Metrics.KILOMETERS.getMultiplier())
 			.multiply(new BigDecimal(1000));
 
 	// to achieve a calculation that is accurate to 0.3 meters
@@ -59,7 +59,7 @@ public class MetricConversion {
 	 * @return
 	 */
 	public static double getDistanceInMeters(Distance distance) {
-		return new BigDecimal(distance.getValue()).multiply(getMetricToMetersMultiplier(distance.getMetric()))
+		return BigDecimal.valueOf(distance.getValue()).multiply(getMetricToMetersMultiplier(distance.getMetric()))
 				.doubleValue();
 	}
 

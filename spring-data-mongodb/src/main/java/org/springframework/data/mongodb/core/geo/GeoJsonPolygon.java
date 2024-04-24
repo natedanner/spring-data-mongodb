@@ -41,7 +41,7 @@ public class GeoJsonPolygon extends Polygon implements GeoJson<List<GeoJsonLineS
 	private static final long serialVersionUID = 3936163018187247185L;
 	private static final String TYPE = "Polygon";
 
-	private List<GeoJsonLineString> coordinates = new ArrayList<GeoJsonLineString>();
+	private List<GeoJsonLineString> coordinates = new ArrayList<>();
 
 	/**
 	 * Creates new {@link GeoJsonPolygon} from the given {@link Point}s.
@@ -126,7 +126,7 @@ public class GeoJsonPolygon extends Polygon implements GeoJson<List<GeoJsonLineS
 
 	private static List<Point> asList(Point first, Point second, Point third, Point fourth, Point... others) {
 
-		ArrayList<Point> result = new ArrayList<Point>(3 + others.length);
+		ArrayList<Point> result = new ArrayList<>(3 + others.length);
 
 		result.add(first);
 		result.add(second);

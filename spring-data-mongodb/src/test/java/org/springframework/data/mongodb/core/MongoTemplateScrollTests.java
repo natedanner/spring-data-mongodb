@@ -75,20 +75,18 @@ class MongoTemplateScrollTests {
 			it.defaultDb(DB_NAME);
 		});
 
-		cfg.configureMappingContext(it -> {
-			it.autocreateIndex(false);
-		});
+		cfg.configureMappingContext(it ->
+			it.autocreateIndex(false));
 
 		cfg.configureApplicationContext(it -> {
 			it.applicationContext(context);
 			it.addEventListener(new PersonWithIdPropertyOfTypeUUIDListener());
 		});
 
-		cfg.configureAuditing(it -> {
+		cfg.configureAuditing(it ->
 			it.auditingHandler(ctx -> {
 				return new IsNewAwareAuditingHandler(PersistentEntities.of(ctx));
-			});
-		});
+			}));
 	});
 
 	private static int compareProxies(PersonInterfaceProjection actual, PersonInterfaceProjection expected) {
@@ -162,14 +160,14 @@ class MongoTemplateScrollTests {
 	@Test // GH-4308
 	void shouldAllowReverseSort() {
 
-		Person jane_20 = new Person("Jane", 20);
-		Person jane_40 = new Person("Jane", 40);
-		Person jane_42 = new Person("Jane", 42);
+		Person jane20 = new Person("Jane", 20);
+		Person jane40 = new Person("Jane", 40);
+		Person jane42 = new Person("Jane", 42);
 		Person john20 = new Person("John", 20);
-		Person john40_1 = new Person("John", 40);
-		Person john40_2 = new Person("John", 40);
+		Person john401 = new Person("John", 40);
+		Person john402 = new Person("John", 40);
 
-		template.insertAll(Arrays.asList(john20, john40_1, john40_2, jane_20, jane_40, jane_42));
+		template.insertAll(Arrays.asList(john20, john401, john402, jane20, jane40, jane42));
 		Query q = new Query(where("firstName").regex("J.*")).with(Sort.by("firstName", "age"));
 		q.with(ScrollPosition.keyset()).limit(6);
 
@@ -183,14 +181,14 @@ class MongoTemplateScrollTests {
 		window = template.scroll(q.with(scrollPosition.backward()).limit(2), Person.class);
 
 		assertThat(window).hasSize(2);
-		assertThat(window).containsOnly(jane_42, john20);
+		assertThat(window).containsOnly(jane42, john20);
 		assertThat(window.hasNext()).isTrue();
 		assertThat(window.isLast()).isFalse();
 
 		window = template.scroll(q.with(window.positionAt(0)).limit(2), Person.class);
 
 		assertThat(window).hasSize(2);
-		assertThat(window).containsOnly(jane_20, jane_40);
+		assertThat(window).containsOnly(jane20, jane40);
 		assertThat(window.hasNext()).isFalse();
 		assertThat(window.isLast()).isTrue();
 	}
@@ -198,22 +196,22 @@ class MongoTemplateScrollTests {
 	@Test // GH-4413
 	void shouldAllowInitialBackwardSort() {
 
-		Person jane_20 = new Person("Jane", 20);
-		Person jane_40 = new Person("Jane", 40);
-		Person jane_42 = new Person("Jane", 42);
+		Person jane20 = new Person("Jane", 20);
+		Person jane40 = new Person("Jane", 40);
+		Person jane42 = new Person("Jane", 42);
 		Person john20 = new Person("John", 20);
-		Person john40_1 = new Person("John", 40);
-		Person john40_2 = new Person("John", 40);
+		Person john401 = new Person("John", 40);
+		Person john402 = new Person("John", 40);
 
-		template.insertAll(Arrays.asList(john20, john40_1, john40_2, jane_20, jane_40, jane_42));
+		template.insertAll(Arrays.asList(john20, john401, john402, jane20, jane40, jane42));
 		Query q = new Query(where("firstName").regex("J.*")).with(Sort.by("firstName", "age"));
 		q.with(ScrollPosition.keyset().backward()).limit(3);
 
 		Window<Person> window = template.scroll(q, Person.class);
-		assertThat(window).containsExactly(john20, john40_1, john40_2);
+		assertThat(window).containsExactly(john20, john401, john402);
 
 		window = template.scroll(q.with(window.positionAt(0)).limit(3), Person.class);
-		assertThat(window).containsExactly(jane_20, jane_40, jane_42);
+		assertThat(window).containsExactly(jane20, jane40, jane42);
 	}
 
 	@ParameterizedTest // GH-4308
@@ -222,13 +220,13 @@ class MongoTemplateScrollTests {
 			Function<Person, T> assertionConverter, @Nullable Comparator<T> comparator) {
 
 		Person john20 = new Person("John", 20);
-		Person john40_1 = new Person("John", 40);
-		Person john40_2 = new Person("John", 40);
-		Person jane_20 = new Person("Jane", 20);
-		Person jane_40 = new Person("Jane", 40);
-		Person jane_42 = new Person("Jane", 42);
+		Person john401 = new Person("John", 40);
+		Person john402 = new Person("John", 40);
+		Person jane20 = new Person("Jane", 20);
+		Person jane40 = new Person("Jane", 40);
+		Person jane42 = new Person("Jane", 42);
 
-		template.insertAll(Arrays.asList(john20, john40_1, john40_2, jane_20, jane_40, jane_42));
+		template.insertAll(Arrays.asList(john20, john401, john402, jane20, jane40, jane42));
 		Query q = new Query(where("firstName").regex("J.*")).with(Sort.by("firstName", "age")).limit(2);
 
 		Window<T> window = template.query(Person.class).inCollection("person").as(resultType).matching(q)
@@ -237,7 +235,7 @@ class MongoTemplateScrollTests {
 		assertThat(window.hasNext()).isTrue();
 		assertThat(window.isLast()).isFalse();
 		assertThat(window).hasSize(2);
-		assertWindow(window, comparator).containsOnly(assertionConverter.apply(jane_20), assertionConverter.apply(jane_40));
+		assertWindow(window, comparator).containsOnly(assertionConverter.apply(jane20), assertionConverter.apply(jane40));
 
 		window = template.query(Person.class).inCollection("person").as(resultType).matching(q.limit(3))
 				.scroll(window.positionAt(window.size() - 1));
@@ -245,9 +243,9 @@ class MongoTemplateScrollTests {
 		assertThat(window.hasNext()).isTrue();
 		assertThat(window.isLast()).isFalse();
 		assertThat(window).hasSize(3);
-		assertWindow(window, comparator).contains(assertionConverter.apply(jane_42), assertionConverter.apply(john20));
-		assertWindow(window, comparator).containsAnyOf(assertionConverter.apply(john40_1),
-				assertionConverter.apply(john40_2));
+		assertWindow(window, comparator).contains(assertionConverter.apply(jane42), assertionConverter.apply(john20));
+		assertWindow(window, comparator).containsAnyOf(assertionConverter.apply(john401),
+				assertionConverter.apply(john402));
 
 		window = template.query(Person.class).inCollection("person").as(resultType).matching(q.limit(1))
 				.scroll(window.positionAt(window.size() - 1));
@@ -255,8 +253,8 @@ class MongoTemplateScrollTests {
 		assertThat(window.hasNext()).isFalse();
 		assertThat(window.isLast()).isTrue();
 		assertThat(window).hasSize(1);
-		assertWindow(window, comparator).containsAnyOf(assertionConverter.apply(john40_1),
-				assertionConverter.apply(john40_2));
+		assertWindow(window, comparator).containsAnyOf(assertionConverter.apply(john401),
+				assertionConverter.apply(john402));
 	}
 
 	@ParameterizedTest // GH-4308
@@ -413,10 +411,7 @@ class MongoTemplateScrollTests {
 
 		@Override
 		public boolean equals(Object o) {
-			if (o instanceof Proxy) {
-				return true;
-			}
-			return false;
+			return o instanceof Proxy;
 		}
 
 		@Override

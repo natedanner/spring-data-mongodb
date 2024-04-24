@@ -61,7 +61,7 @@ class BsonUtilsTest {
 	void simpleToBsonValue() {
 
 		assertThat(BsonUtils.simpleToBsonValue(Long.valueOf(10))).isEqualTo(new BsonInt64(10));
-		assertThat(BsonUtils.simpleToBsonValue(new Integer(10))).isEqualTo(new BsonInt32(10));
+		assertThat(BsonUtils.simpleToBsonValue(Integer.valueOf(10))).isEqualTo(new BsonInt32(10));
 		assertThat(BsonUtils.simpleToBsonValue(Double.valueOf(0.1D))).isEqualTo(new BsonDouble(0.1D));
 		assertThat(BsonUtils.simpleToBsonValue("value")).isEqualTo(new BsonString("value"));
 	}

@@ -73,8 +73,7 @@ public class BackgroundFlushingMetrics extends AbstractMonitor {
 
 	private Date getLast() {
 		Document bgFlush = (Document) getServerStatus().get("backgroundFlushing");
-		Date lastFinished = (Date) bgFlush.get("last_finished");
-		return lastFinished;
+		return (Date) bgFlush.get("last_finished");
 	}
 
 }

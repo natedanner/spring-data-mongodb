@@ -106,10 +106,9 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.ensureIndex(id).as(StepVerifier::create).expectNextCount(1).verifyComplete();
 
 		indexOps.getIndexInfo().filter(this.indexByName("partial-with-criteria")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
+				.consumeNextWith(indexInfo ->
 					assertThat(Document.parse(indexInfo.getPartialFilterExpression()))
-							.isEqualTo(Document.parse("{ \"q-t-y\" : { \"$gte\" : 10 } }"));
-				}) //
+							.isEqualTo(Document.parse("{ \"q-t-y\" : { \"$gte\" : 10 } }"))) //
 				.verifyComplete();
 	}
 
@@ -122,10 +121,9 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.ensureIndex(id).as(StepVerifier::create).expectNextCount(1).verifyComplete();
 
 		indexOps.getIndexInfo().filter(this.indexByName("partial-with-mapped-criteria")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
+				.consumeNextWith(indexInfo ->
 					assertThat(Document.parse(indexInfo.getPartialFilterExpression()))
-							.isEqualTo(Document.parse("{ \"qty\" : { \"$gte\" : 10 } }"));
-				}).verifyComplete();
+							.isEqualTo(Document.parse("{ \"qty\" : { \"$gte\" : 10 } }"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1682, DATAMONGO-2198
@@ -137,10 +135,9 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.ensureIndex(id).as(StepVerifier::create).expectNextCount(1).verifyComplete();
 
 		indexOps.getIndexInfo().filter(this.indexByName("partial-with-dbo")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
+				.consumeNextWith(indexInfo ->
 					assertThat(Document.parse(indexInfo.getPartialFilterExpression()))
-							.isEqualTo(Document.parse("{ \"qty\" : { \"$gte\" : 10 } }"));
-				}) //
+							.isEqualTo(Document.parse("{ \"qty\" : { \"$gte\" : 10 } }"))) //
 				.verifyComplete();
 
 	}
@@ -158,10 +155,9 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.ensureIndex(id).as(StepVerifier::create).expectNextCount(1).verifyComplete();
 
 		indexOps.getIndexInfo().filter(this.indexByName("partial-with-inheritance")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
+				.consumeNextWith(indexInfo ->
 					assertThat(Document.parse(indexInfo.getPartialFilterExpression()))
-							.isEqualTo(Document.parse("{ \"a_g_e\" : { \"$gte\" : 10 } }"));
-				}) //
+							.isEqualTo(Document.parse("{ \"a_g_e\" : { \"$gte\" : 10 } }"))) //
 				.verifyComplete();
 	}
 
@@ -173,9 +169,8 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.ensureIndex(index).then().as(StepVerifier::create).verifyComplete();
 
 		indexOps.getIndexInfo().filter(this.indexByName("my-index")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
-					assertThat(indexInfo.isHidden()).isFalse();
-				}) //
+				.consumeNextWith(indexInfo ->
+					assertThat(indexInfo.isHidden()).isFalse()) //
 				.verifyComplete();
 	}
 
@@ -187,9 +182,8 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.ensureIndex(index).then().as(StepVerifier::create).verifyComplete();
 
 		indexOps.getIndexInfo().filter(this.indexByName("my-hidden-index")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
-					assertThat(indexInfo.isHidden()).isTrue();
-				}) //
+				.consumeNextWith(indexInfo ->
+					assertThat(indexInfo.isHidden()).isTrue()) //
 				.verifyComplete();
 	}
 
@@ -203,9 +197,8 @@ public class DefaultReactiveIndexOperationsTests {
 		indexOps.alterIndex("my-index", org.springframework.data.mongodb.core.index.IndexOptions.hidden())
 				.as(StepVerifier::create).verifyComplete();
 		indexOps.getIndexInfo().filter(this.indexByName("my-index")).as(StepVerifier::create) //
-				.consumeNextWith(indexInfo -> {
-					assertThat(indexInfo.isHidden()).isTrue();
-				}) //
+				.consumeNextWith(indexInfo ->
+					assertThat(indexInfo.isHidden()).isTrue()) //
 				.verifyComplete();
 	}
 

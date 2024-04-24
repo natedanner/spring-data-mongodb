@@ -70,7 +70,7 @@ public class LiteralOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Literal extends AbstractAggregationExpression {
+	public static final class Literal extends AbstractAggregationExpression {
 
 		private Literal(Object value) {
 			super(value);

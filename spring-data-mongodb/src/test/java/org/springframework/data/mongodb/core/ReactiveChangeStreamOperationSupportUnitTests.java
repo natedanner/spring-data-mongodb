@@ -127,16 +127,14 @@ class ReactiveChangeStreamOperationSupportUnitTests {
 
 		Document filter = new Document("$match", new Document("operationType", "insert"));
 
-		changeStreamSupport.changeStream(Document.class).withOptions(options -> {
-			options.filter(filter);
-		}).listen().subscribe();
+		changeStreamSupport.changeStream(Document.class).withOptions(options ->
+			options.filter(filter)).listen().subscribe();
 
 		ArgumentCaptor<ChangeStreamOptions> optionsArgumentCaptor = ArgumentCaptor.forClass(ChangeStreamOptions.class);
 		verify(template).changeStream(isNull(), optionsArgumentCaptor.capture(), eq(Document.class));
 
-		assertThat(optionsArgumentCaptor.getValue()).satisfies(it -> {
-			assertThat(it.getFilter().get()).isEqualTo(Collections.singletonList(filter));
-		});
+		assertThat(optionsArgumentCaptor.getValue()).satisfies(it ->
+			assertThat(it.getFilter().get()).isEqualTo(Collections.singletonList(filter)));
 	}
 
 	@Test // DATAMONGO-2089
@@ -145,9 +143,8 @@ class ReactiveChangeStreamOperationSupportUnitTests {
 		Document filter = new Document("$match", new Document("operationType", "insert"));
 		Instant resumeTimestamp = Instant.now();
 
-		changeStreamSupport.changeStream(Document.class).withOptions(options -> {
-			options.filter(filter);
-		}).resumeAt(resumeTimestamp).listen().subscribe();
+		changeStreamSupport.changeStream(Document.class).withOptions(options ->
+			options.filter(filter)).resumeAt(resumeTimestamp).listen().subscribe();
 
 		ArgumentCaptor<ChangeStreamOptions> optionsArgumentCaptor = ArgumentCaptor.forClass(ChangeStreamOptions.class);
 		verify(template).changeStream(isNull(), optionsArgumentCaptor.capture(), eq(Document.class));

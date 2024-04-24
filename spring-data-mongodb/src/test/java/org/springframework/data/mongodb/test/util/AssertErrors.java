@@ -50,7 +50,7 @@ class AssertErrors {
 		return new ShouldNotHaveProperty(actual, key, value);
 	}
 
-	private static class ShouldHaveProperty extends BasicErrorMessageFactory {
+	private static final class ShouldHaveProperty extends BasicErrorMessageFactory {
 
 		private ShouldHaveProperty(Object actual, String key, Object value) {
 			super("\n" + //
@@ -64,7 +64,7 @@ class AssertErrors {
 		}
 	}
 
-	private static class ShouldNotHaveProperty extends BasicErrorMessageFactory {
+	private static final class ShouldNotHaveProperty extends BasicErrorMessageFactory {
 
 		private ShouldNotHaveProperty(Object actual, String key, Object value) {
 			super("\n" + //

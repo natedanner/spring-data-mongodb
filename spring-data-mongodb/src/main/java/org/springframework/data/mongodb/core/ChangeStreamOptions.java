@@ -165,10 +165,12 @@ public class ChangeStreamOptions {
 
 	@Override
 	public boolean equals(@Nullable Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 
 		ChangeStreamOptions that = (ChangeStreamOptions) o;
 
@@ -230,7 +232,7 @@ public class ChangeStreamOptions {
 	 * @author Christoph Strobl
 	 * @since 2.1
 	 */
-	public static class ChangeStreamOptionsBuilder {
+	public static final class ChangeStreamOptionsBuilder {
 
 		private @Nullable Object filter;
 		private @Nullable BsonValue resumeToken;

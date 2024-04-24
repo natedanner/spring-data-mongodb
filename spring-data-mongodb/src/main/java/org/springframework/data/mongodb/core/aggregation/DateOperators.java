@@ -165,7 +165,7 @@ public class DateOperators {
 	 * @author Mark Paluch
 	 * @since 2.1
 	 */
-	public static class Timezone {
+	public static final class Timezone {
 
 		private static final Timezone NONE = new Timezone(null);
 
@@ -871,7 +871,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 2.1
 	 */
-	public static class DateFromPartsOperatorFactory {
+	public static final class DateFromPartsOperatorFactory {
 
 		private final Timezone timezone;
 
@@ -967,7 +967,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 2.1
 	 */
-	public static abstract class TimezonedDateAggregationExpression extends AbstractAggregationExpression {
+	public abstract static class TimezonedDateAggregationExpression extends AbstractAggregationExpression {
 
 		protected TimezonedDateAggregationExpression(Object value) {
 			super(value);
@@ -1022,7 +1022,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class DayOfYear extends TimezonedDateAggregationExpression {
+	public static final class DayOfYear extends TimezonedDateAggregationExpression {
 
 		private DayOfYear(Object value) {
 			super(value);
@@ -1094,7 +1094,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class DayOfMonth extends TimezonedDateAggregationExpression {
+	public static final class DayOfMonth extends TimezonedDateAggregationExpression {
 
 		private DayOfMonth(Object value) {
 			super(value);
@@ -1166,7 +1166,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class DayOfWeek extends TimezonedDateAggregationExpression {
+	public static final class DayOfWeek extends TimezonedDateAggregationExpression {
 
 		private DayOfWeek(Object value) {
 			super(value);
@@ -1238,7 +1238,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Year extends TimezonedDateAggregationExpression {
+	public static final class Year extends TimezonedDateAggregationExpression {
 
 		private Year(Object value) {
 			super(value);
@@ -1310,7 +1310,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Month extends TimezonedDateAggregationExpression {
+	public static final class Month extends TimezonedDateAggregationExpression {
 
 		private Month(Object value) {
 			super(value);
@@ -1382,7 +1382,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Week extends TimezonedDateAggregationExpression {
+	public static final class Week extends TimezonedDateAggregationExpression {
 
 		private Week(Object value) {
 			super(value);
@@ -1454,7 +1454,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Hour extends TimezonedDateAggregationExpression {
+	public static final class Hour extends TimezonedDateAggregationExpression {
 
 		private Hour(Object value) {
 			super(value);
@@ -1526,7 +1526,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Minute extends TimezonedDateAggregationExpression {
+	public static final class Minute extends TimezonedDateAggregationExpression {
 
 		private Minute(Object value) {
 			super(value);
@@ -1598,7 +1598,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Second extends TimezonedDateAggregationExpression {
+	public static final class Second extends TimezonedDateAggregationExpression {
 
 		private Second(Object value) {
 			super(value);
@@ -1670,7 +1670,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class Millisecond extends TimezonedDateAggregationExpression {
+	public static final class Millisecond extends TimezonedDateAggregationExpression {
 
 		private Millisecond(Object value) {
 			super(value);
@@ -1742,7 +1742,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class DateToString extends TimezonedDateAggregationExpression {
+	public static final class DateToString extends TimezonedDateAggregationExpression {
 
 		private DateToString(Object value) {
 			super(value);
@@ -1919,7 +1919,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class IsoDayOfWeek extends TimezonedDateAggregationExpression {
+	public static final class IsoDayOfWeek extends TimezonedDateAggregationExpression {
 
 		private IsoDayOfWeek(Object value) {
 			super(value);
@@ -1991,7 +1991,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class IsoWeek extends TimezonedDateAggregationExpression {
+	public static final class IsoWeek extends TimezonedDateAggregationExpression {
 
 		private IsoWeek(Object value) {
 			super(value);
@@ -2063,7 +2063,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @author Matt Morrissette
 	 */
-	public static class IsoWeekYear extends TimezonedDateAggregationExpression {
+	public static final class IsoWeekYear extends TimezonedDateAggregationExpression {
 
 		private IsoWeekYear(Object value) {
 			super(value);
@@ -2277,7 +2277,7 @@ public class DateOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/dateFromParts/">https://docs.mongodb.com/manual/reference/operator/aggregation/dateFromParts/</a>
 	 * @since 2.1
 	 */
-	public static class DateFromParts extends TimezonedDateAggregationExpression implements DateParts<DateFromParts> {
+	public static final class DateFromParts extends TimezonedDateAggregationExpression implements DateParts<DateFromParts> {
 
 		private DateFromParts(Object value) {
 			super(value);
@@ -2452,7 +2452,7 @@ public class DateOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/dateFromParts/">https://docs.mongodb.com/manual/reference/operator/aggregation/dateFromParts/</a>
 	 * @since 2.1
 	 */
-	public static class IsoDateFromParts extends TimezonedDateAggregationExpression
+	public static final class IsoDateFromParts extends TimezonedDateAggregationExpression
 			implements DateParts<IsoDateFromParts> {
 
 		private IsoDateFromParts(Object value) {
@@ -2628,7 +2628,7 @@ public class DateOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/dateToParts/">https://docs.mongodb.com/manual/reference/operator/aggregation/dateToParts/</a>
 	 * @since 2.1
 	 */
-	public static class DateToParts extends TimezonedDateAggregationExpression {
+	public static final class DateToParts extends TimezonedDateAggregationExpression {
 
 		private DateToParts(Object value) {
 			super(value);
@@ -2709,7 +2709,7 @@ public class DateOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/dateFromString/">https://docs.mongodb.com/manual/reference/operator/aggregation/dateFromString/</a>
 	 * @since 2.1
 	 */
-	public static class DateFromString extends TimezonedDateAggregationExpression {
+	public static final class DateFromString extends TimezonedDateAggregationExpression {
 
 		private DateFromString(Object value) {
 			super(value);
@@ -2788,7 +2788,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class DateAdd extends TimezonedDateAggregationExpression {
+	public static final class DateAdd extends TimezonedDateAggregationExpression {
 
 		private DateAdd(Object value) {
 			super(value);
@@ -2885,7 +2885,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 4.0
 	 */
-	public static class DateSubtract extends TimezonedDateAggregationExpression {
+	public static final class DateSubtract extends TimezonedDateAggregationExpression {
 
 		private DateSubtract(Object value) {
 			super(value);
@@ -2982,7 +2982,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class DateDiff extends TimezonedDateAggregationExpression {
+	public static final class DateDiff extends TimezonedDateAggregationExpression {
 
 		private DateDiff(Object value) {
 			super(value);
@@ -3090,7 +3090,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 4.0
 	 */
-	public static class DateTrunc extends TimezonedDateAggregationExpression {
+	public static final class DateTrunc extends TimezonedDateAggregationExpression {
 
 		private DateTrunc(Object value) {
 			super(value);
@@ -3218,7 +3218,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 4.0
 	 */
-	public static class TsIncrement extends AbstractAggregationExpression {
+	public static final class TsIncrement extends AbstractAggregationExpression {
 
 		private TsIncrement(Object value) {
 			super(value);
@@ -3275,7 +3275,7 @@ public class DateOperators {
 	 * @author Christoph Strobl
 	 * @since 4.0
 	 */
-	public static class TsSecond extends AbstractAggregationExpression {
+	public static final class TsSecond extends AbstractAggregationExpression {
 
 		private TsSecond(Object value) {
 			super(value);

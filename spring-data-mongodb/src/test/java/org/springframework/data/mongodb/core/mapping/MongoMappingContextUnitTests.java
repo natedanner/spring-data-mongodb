@@ -201,12 +201,16 @@ public class MongoMappingContextUnitTests {
 
 	class Person {
 
-		String firstname, lastname;
+		String firstname;
+		String lastname;
 	}
 
 	class InvalidPerson {
 
-		@org.springframework.data.mongodb.core.mapping.Field("foo") String firstname, lastname;
+		@org.springframework.data.mongodb.core.mapping.Field("foo")
+		String firstname;
+		@org.springframework.data.mongodb.core.mapping.Field("foo")
+		String lastname;
 	}
 
 	class Parent {

@@ -90,14 +90,13 @@ public class ReactiveMongoTemplateUpdateTests {
 		template.update(Score.class).apply(update).all().then().as(StepVerifier::create).verifyComplete();
 
 		Flux.from(collection(Score.class).find(new org.bson.Document())).collectList().as(StepVerifier::create)
-				.consumeNextWith(it -> {
+				.consumeNextWith(it ->
 
 					assertThat(it).containsExactlyInAnyOrder( //
 							org.bson.Document.parse(
 									"{\"_id\" : 1, \"student\" : \"Maya\", \"homework\" : [ 10, 5, 10 ], \"quiz\" : [ 10, 8 ], \"extraCredit\" : 0, \"totalHomework\" : 25, \"totalQuiz\" : 18, \"totalScore\" : 43,  \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Score\"}"),
 							org.bson.Document.parse(
-									"{ \"_id\" : 2, \"student\" : \"Ryan\", \"homework\" : [ 5, 6, 5 ], \"quiz\" : [ 8, 8 ], \"extraCredit\" : 8, \"totalHomework\" : 16, \"totalQuiz\" : 16, \"totalScore\" : 40, \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Score\"}"));
-				}).verifyComplete();
+									"{ \"_id\" : 2, \"student\" : \"Ryan\", \"homework\" : [ 5, 6, 5 ], \"quiz\" : [ 8, 8 ], \"extraCredit\" : 8, \"totalHomework\" : 16, \"totalQuiz\" : 16, \"totalScore\" : 40, \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Score\"}"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -111,11 +110,10 @@ public class ReactiveMongoTemplateUpdateTests {
 				.then().as(StepVerifier::create).verifyComplete();
 
 		Flux.from(collection(Versioned.class).find(new org.bson.Document("_id", source.id)).limit(1)).collectList()
-				.as(StepVerifier::create).consumeNextWith(it -> {
+				.as(StepVerifier::create).consumeNextWith(it ->
 					assertThat(it).containsExactly(
 							new org.bson.Document("_id", source.id).append("version", 1L).append("value", "changed").append("_class",
-									"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Versioned"));
-				}).verifyComplete();
+									"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Versioned"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -131,11 +129,10 @@ public class ReactiveMongoTemplateUpdateTests {
 				.then().as(StepVerifier::create).verifyComplete();
 
 		Flux.from(collection(Versioned.class).find(new org.bson.Document("_id", source.id)).limit(1)).collectList()
-				.as(StepVerifier::create).consumeNextWith(it -> {
+				.as(StepVerifier::create).consumeNextWith(it ->
 					assertThat(it).containsExactly(
 							new org.bson.Document("_id", source.id).append("version", 10L).append("value", "changed").append("_class",
-									"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Versioned"));
-				}).verifyComplete();
+									"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Versioned"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -164,14 +161,13 @@ public class ReactiveMongoTemplateUpdateTests {
 		AggregationUpdate update = AggregationUpdate.update().unset("isbn", "stock");
 		template.update(Book.class).apply(update).all().then().as(StepVerifier::create).verifyComplete();
 
-		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it -> {
+		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it ->
 
 			assertThat(it).containsExactlyInAnyOrder( //
 					org.bson.Document.parse(
 							"{ \"_id\" : 1, \"title\" : \"Antelope Antics\", \"author\" : { \"last\" : \"An\", \"first\" : \"Auntie\" }, \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\" }"),
 					org.bson.Document.parse(
-							"{ \"_id\" : 2, \"title\" : \"Bees Babble\", \"author\" : { \"last\" : \"Bumble\", \"first\" : \"Bee\" }, \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\" }"));
-		}).verifyComplete();
+							"{ \"_id\" : 2, \"title\" : \"Bees Babble\", \"author\" : { \"last\" : \"Bumble\", \"first\" : \"Bee\" }, \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\" }"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -192,12 +188,11 @@ public class ReactiveMongoTemplateUpdateTests {
 
 		template.update(Book.class).apply(update).all().then().as(StepVerifier::create).verifyComplete();
 
-		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it -> {
+		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it ->
 
 			assertThat(it).containsExactlyInAnyOrder(
 					org.bson.Document.parse("{\"_id\" : 1, \"first\" : \"John\", \"last\" : \"Backus\"}"),
-					org.bson.Document.parse("{\"_id\" : 2, \"first\" : \"Grace\", \"last\" : \"Hopper\"}"));
-		}).verifyComplete();
+					org.bson.Document.parse("{\"_id\" : 2, \"first\" : \"Grace\", \"last\" : \"Hopper\"}"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -208,9 +203,8 @@ public class ReactiveMongoTemplateUpdateTests {
 		template.update(Book.class).matching(Query.query(Criteria.where("id").is(1))).apply(update).upsert().then()
 				.as(StepVerifier::create).verifyComplete();
 
-		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it -> {
-			assertThat(it).containsExactly(org.bson.Document.parse("{\"_id\" : 1, \"title\" : \"The Burning White\" }"));
-		}).verifyComplete();
+		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it ->
+			assertThat(it).containsExactly(org.bson.Document.parse("{\"_id\" : 1, \"title\" : \"The Burning White\" }"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -229,13 +223,12 @@ public class ReactiveMongoTemplateUpdateTests {
 		template.update(Book.class).apply(AggregationUpdate.update().set("title").toValue("The Blinding Knife")).first()
 				.then().as(StepVerifier::create).verifyComplete();
 
-		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it -> {
+		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it ->
 
 			assertThat(it).containsExactly(org.bson.Document.parse(
 					"{\"_id\" : 1, \"title\" : \"The Blinding Knife\", \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\"}"),
 					org.bson.Document.parse(
-							"{\"_id\" : 2, \"title\" : \"The Broken Eye\", \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\"}"));
-		}).verifyComplete();
+							"{\"_id\" : 2, \"title\" : \"The Broken Eye\", \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\"}"))).verifyComplete();
 	}
 
 	@Test // DATAMONGO-2331
@@ -259,13 +252,12 @@ public class ReactiveMongoTemplateUpdateTests {
 				.expectNext(one) //
 				.verifyComplete();
 
-		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it -> {
+		all(Book.class).collectList().as(StepVerifier::create).consumeNextWith(it ->
 
 			assertThat(it).containsExactly(org.bson.Document.parse(
 					"{\"_id\" : 1, \"title\" : \"The Blinding Knife\", \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\"}"),
 					org.bson.Document.parse(
-							"{\"_id\" : 2, \"title\" : \"The Broken Eye\", \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\"}"));
-		}).verifyComplete();
+							"{\"_id\" : 2, \"title\" : \"The Broken Eye\", \"_class\" : \"org.springframework.data.mongodb.core.ReactiveMongoTemplateUpdateTests$Book\"}"))).verifyComplete();
 
 	}
 

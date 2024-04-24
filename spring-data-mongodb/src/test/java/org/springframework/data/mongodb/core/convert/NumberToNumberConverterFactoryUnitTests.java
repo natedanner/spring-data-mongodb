@@ -43,11 +43,11 @@ public class NumberToNumberConverterFactoryUnitTests {
 	@Parameters
 	public static Collection<Number[]> parameters() {
 
-		Number[] longToInt = new Number[] { new Long(10), new Integer(10) };
-		Number[] atomicIntToInt = new Number[] { new AtomicInteger(10), new Integer(10) };
-		Number[] atomicIntToDouble = new Number[] { new AtomicInteger(10), new Double(10) };
-		Number[] atomicLongToInt = new Number[] { new AtomicLong(10), new Integer(10) };
-		Number[] atomicLongToLong = new Number[] { new AtomicLong(10), new Long(10) };
+		Number[] longToInt = new Number[] { Long.valueOf(10), Integer.valueOf(10) };
+		Number[] atomicIntToInt = new Number[] { new AtomicInteger(10), Integer.valueOf(10) };
+		Number[] atomicIntToDouble = new Number[] { new AtomicInteger(10), Double.valueOf(10) };
+		Number[] atomicLongToInt = new Number[] { new AtomicLong(10), Integer.valueOf(10) };
+		Number[] atomicLongToLong = new Number[] { new AtomicLong(10), Long.valueOf(10) };
 
 		return Arrays.<Number[]> asList(longToInt, atomicIntToInt, atomicIntToDouble, atomicLongToInt, atomicLongToLong);
 	}

@@ -425,9 +425,7 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 
 		if (enabled) {
 
-			this.countExecution = (collectionName, filter, options) -> {
-
-				return estimationFilter.apply(filter, options).flatMap(canEstimate -> {
+			this.countExecution = (collectionName, filter, options) -> estimationFilter.apply(filter, options).flatMap(canEstimate -> {
 					if (!canEstimate) {
 						return doExactCount(collectionName, filter, options);
 					}
@@ -439,7 +437,6 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 
 					return doEstimatedCount(collectionName, estimatedDocumentCountOptions);
 				});
-			};
 		} else {
 			this.countExecution = this::doExactCount;
 		}
@@ -546,13 +543,10 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 			@Override
 			public <T> Flux<T> execute(ReactiveSessionCallback<T> action, Consumer<ClientSession> doFinally) {
 
-				return cachedSession.flatMapMany(session -> {
-
-					return ReactiveMongoTemplate.this.withSession(action, session) //
+				return cachedSession.flatMapMany(session -> ReactiveMongoTemplate.this.withSession(action, session) //
 							.doFinally(signalType -> {
 								doFinally.accept(session);
-							});
-				});
+							}));
 			}
 		};
 	}
@@ -1366,18 +1360,13 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 					maybeEmitEvent(new BeforeSaveEvent<>(model.getSource(), model.getTarget(), model.getCollection()));
 					return model;
 				})//
-				.flatMap(it -> {
-					return maybeCallBeforeSave(it.getSource(), it.getTarget(), it.getCollection()).map(it::mutate);
-				}).flatMap(it -> {
-
-					return insertDocument(it.getCollection(), it.getTarget(), it.getSource().getClass()).flatMap(id -> {
+				.flatMap(it -> maybeCallBeforeSave(it.getSource(), it.getTarget(), it.getCollection()).map(it::mutate)).flatMap(it -> insertDocument(it.getCollection(), it.getTarget(), it.getSource().getClass()).flatMap(id -> {
 
 						T saved = operations.forEntity(it.getSource(), mongoConverter.getConversionService())
 								.populateIdIfNecessary(id);
 						maybeEmitEvent(new AfterSaveEvent<>(saved, it.getTarget(), collectionName));
 						return maybeCallAfterSave(saved, it.getTarget(), collectionName);
-					});
-				});
+					}));
 	}
 
 	@Override
@@ -1605,13 +1594,10 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 
 			return collectionToUse.insertMany(documents);
 
-		}).flatMapSequential(s -> {
-
-			return Flux.fromStream(documents.stream() //
+		}).flatMapSequential(s -> Flux.fromStream(documents.stream() //
 					.map(MappedDocument::of) //
 					.filter(it -> it.isIdPresent(ObjectId.class)) //
-					.map(it -> it.getId(ObjectId.class)));
-		});
+					.map(it -> it.getId(ObjectId.class))));
 	}
 
 	private MongoCollection<Document> prepareCollection(MongoCollection<Document> collection,
@@ -1814,8 +1800,9 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 				if (updateResult.wasAcknowledged() && updateResult.getMatchedCount() == 0) {
 
 					Document updateObj = updateContext.getMappedUpdate(entity);
-					if (containsVersionProperty(queryObj, entity))
-						throw new OptimisticLockingFailureException("Optimistic lock exception on saving entity %s to collection %s".formatted(entity.getName(),  collectionName));
+					if (containsVersionProperty(queryObj, entity)) {
+						throw new OptimisticLockingFailureException("Optimistic lock exception on saving entity %s to collection %s".formatted(entity.getName(), collectionName));
+					}
 				}
 			}
 		});
@@ -3408,7 +3395,7 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 	 * @author Christoph Strobl
 	 * @since 2.2
 	 */
-	private static class PersistableEntityModel<T> {
+	private static final class PersistableEntityModel<T> {
 
 		private final T source;
 		private final @Nullable Document target;

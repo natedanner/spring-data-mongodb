@@ -38,7 +38,7 @@ public interface CursorPreparer extends ReadPreferenceAware {
 	 *
 	 * @since 2.2
 	 */
-	CursorPreparer NO_OP_PREPARER = (iterable -> iterable);
+	CursorPreparer NO_OP_PREPARER = iterable -> iterable;
 
 	/**
 	 * Prepare the given cursor (apply limits, skips and so on). Returns the prepared cursor.

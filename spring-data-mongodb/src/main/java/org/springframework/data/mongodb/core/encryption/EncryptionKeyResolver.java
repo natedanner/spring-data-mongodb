@@ -58,7 +58,7 @@ public interface EncryptionKeyResolver {
 
 		Assert.notNull(fallback, "Fallback EncryptionKeyResolver must not be nul");
 
-		return ((encryptionContext) -> {
+		return encryptionContext -> {
 
 			MongoPersistentProperty property = encryptionContext.getProperty();
 			ExplicitEncrypted annotation = property.findAnnotation(ExplicitEncrypted.class);
@@ -95,6 +95,6 @@ public interface EncryptionKeyResolver {
 			} else {
 				return new KeyAltName(keyAltName);
 			}
-		});
+		};
 	}
 }

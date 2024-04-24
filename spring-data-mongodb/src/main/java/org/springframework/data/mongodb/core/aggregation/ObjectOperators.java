@@ -202,7 +202,7 @@ public class ObjectOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/mergeObjects/">https://docs.mongodb.com/manual/reference/operator/aggregation/mergeObjects/</a>
 	 * @since 2.1
 	 */
-	public static class MergeObjects extends AbstractAggregationExpression {
+	public static final class MergeObjects extends AbstractAggregationExpression {
 
 		private MergeObjects(Object value) {
 			super(value);
@@ -302,7 +302,7 @@ public class ObjectOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/objectToArray/">https://docs.mongodb.com/manual/reference/operator/aggregation/objectToArray/</a>
 	 * @since 2.1
 	 */
-	public static class ObjectToArray extends AbstractAggregationExpression {
+	public static final class ObjectToArray extends AbstractAggregationExpression {
 
 		private ObjectToArray(Object value) {
 			super(value);

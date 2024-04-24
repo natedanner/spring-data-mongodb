@@ -50,11 +50,7 @@ public class MongoMonitorIntegrationTests {
 		ServerInfo serverInfo = new ServerInfo(mongoClient);
 
 		String hostName = null;
-		try {
-			hostName = serverInfo.getHostName();
-		} catch (UnknownHostException e) {
-			throw e;
-		}
+		hostName = serverInfo.getHostName();
 
 		assertThat(hostName).isNotNull();
 		assertThat(hostName).isEqualTo("127.0.0.1:27017");

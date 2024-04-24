@@ -1717,7 +1717,7 @@ public class MongoTemplateUnitTests extends MongoOperationsUnitTests {
 	@Test // DATAMONGO-2261
 	void publishesEventsAndEntityCallbacksInOrder() {
 
-		BeforeConvertCallback<Person> beforeConvertCallback = new BeforeConvertCallback<Person>() {
+		BeforeConvertCallback<Person> beforeConvertCallback = new BeforeConvertCallback<>() {
 
 			@Override
 			public Person onBeforeConvert(Person entity, String collection) {
@@ -1728,7 +1728,7 @@ public class MongoTemplateUnitTests extends MongoOperationsUnitTests {
 			}
 		};
 
-		BeforeSaveCallback<Person> beforeSaveCallback = new BeforeSaveCallback<Person>() {
+		BeforeSaveCallback<Person> beforeSaveCallback = new BeforeSaveCallback<>() {
 
 			@Override
 			public Person onBeforeSave(Person entity, Document document, String collection) {
@@ -1739,7 +1739,7 @@ public class MongoTemplateUnitTests extends MongoOperationsUnitTests {
 			}
 		};
 
-		AbstractMongoEventListener<Person> eventListener = new AbstractMongoEventListener<Person>() {
+		AbstractMongoEventListener<Person> eventListener = new AbstractMongoEventListener<>() {
 
 			@Override
 			public void onBeforeConvert(BeforeConvertEvent<Person> event) {
@@ -1776,7 +1776,7 @@ public class MongoTemplateUnitTests extends MongoOperationsUnitTests {
 	@Test // DATAMONGO-2261
 	void beforeSaveCallbackAllowsTargetDocumentModifications() {
 
-		BeforeSaveCallback<Person> beforeSaveCallback = new BeforeSaveCallback<Person>() {
+		BeforeSaveCallback<Person> beforeSaveCallback = new BeforeSaveCallback<>() {
 
 			@Override
 			public Person onBeforeSave(Person entity, Document document, String collection) {
@@ -2312,7 +2312,7 @@ public class MongoTemplateUnitTests extends MongoOperationsUnitTests {
 	@Test // DATAMONGO-2479
 	void findAndReplaceShouldEmitAfterSaveEvent() {
 
-		AbstractMongoEventListener<Person> eventListener = new AbstractMongoEventListener<Person>() {
+		AbstractMongoEventListener<Person> eventListener = new AbstractMongoEventListener<>() {
 
 			@Override
 			public void onAfterSave(AfterSaveEvent<Person> event) {

@@ -44,7 +44,7 @@ import org.springframework.lang.Nullable;
 public class Person extends Contact {
 
 	public enum Sex {
-		MALE, FEMALE;
+		MALE, FEMALE
 	}
 
 	private String firstname;

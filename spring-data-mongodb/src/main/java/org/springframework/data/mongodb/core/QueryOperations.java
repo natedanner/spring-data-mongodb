@@ -253,7 +253,7 @@ class QueryOperations {
 	 *
 	 * @since 3.4.3
 	 */
-	class InsertContext {
+	final class InsertContext {
 
 		private final MappedDocument source;
 
@@ -475,7 +475,7 @@ class QueryOperations {
 	 *
 	 * @author Christoph Strobl
 	 */
-	class DistinctQueryContext extends QueryContext {
+	final class DistinctQueryContext extends QueryContext {
 
 		private final String fieldName;
 

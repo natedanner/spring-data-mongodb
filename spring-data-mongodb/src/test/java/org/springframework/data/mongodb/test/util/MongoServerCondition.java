@@ -74,13 +74,13 @@ public class MongoServerCondition implements ExecutionCondition {
 
 	private boolean serverIsPartOfReplicaSet(ExtensionContext context) {
 
-		return context.getStore(NAMESPACE).getOrComputeIfAbsent("--replSet", (key) -> MongoTestUtils.serverIsReplSet(),
+		return context.getStore(NAMESPACE).getOrComputeIfAbsent("--replSet", key -> MongoTestUtils.serverIsReplSet(),
 				Boolean.class);
 	}
 
 	private Version serverVersion(ExtensionContext context) {
 
-		return context.getStore(NAMESPACE).getOrComputeIfAbsent(Version.class, (key) -> MongoTestUtils.serverVersion(),
+		return context.getStore(NAMESPACE).getOrComputeIfAbsent(Version.class, key -> MongoTestUtils.serverVersion(),
 				Version.class);
 	}
 }

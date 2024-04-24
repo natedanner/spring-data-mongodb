@@ -121,10 +121,12 @@ public interface Message<S, T> {
 
 		@Override
 		public boolean equals(@Nullable Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 
 			MessageProperties that = (MessageProperties) o;
 

@@ -77,7 +77,7 @@ import org.springframework.util.Assert;
  */
 public class AggregationUpdate extends Aggregation implements UpdateDefinition {
 
-	private boolean isolated = false;
+	private boolean isolated;
 	private final Set<String> keysTouched = new HashSet<>();
 
 	/**
@@ -133,9 +133,8 @@ public class AggregationUpdate extends Aggregation implements UpdateDefinition {
 
 		Assert.notNull(setOperation, "SetOperation must not be null");
 
-		setOperation.getFields().forEach(it -> {
-			keysTouched.add(it.getName());
-		});
+		setOperation.getFields().forEach(it ->
+			keysTouched.add(it.getName()));
 		pipeline.add(setOperation);
 		return this;
 	}

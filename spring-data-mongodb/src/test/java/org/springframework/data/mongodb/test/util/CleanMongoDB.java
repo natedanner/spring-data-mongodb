@@ -55,20 +55,20 @@ public class CleanMongoDB implements TestRule {
 	 * Defines contents of MongoDB.
 	 */
 	public enum Struct {
-		DATABASE, COLLECTION, INDEX;
+		DATABASE, COLLECTION, INDEX
 	}
 
 	@SuppressWarnings("serial") //
-	private Set<String> preserveDatabases = new HashSet<String>() {
-		{
-			add("admin");
-			add("local");
-		}
-	};
+	private Set<String> preserveDatabases;
+	{
+		preserveDatabases = new HashSet<>();
+		preserveDatabases.add("admin");
+		preserveDatabases.add("local");
+	}
 
-	private Set<String> dbNames = new HashSet<String>();
-	private Set<String> collectionNames = new HashSet<String>();
-	private Set<Struct> types = new HashSet<CleanMongoDB.Struct>();
+	private Set<String> dbNames = new HashSet<>();
+	private Set<String> collectionNames = new HashSet<>();
+	private Set<Struct> types = new HashSet<>();
 	private MongoClient client;
 
 	/**

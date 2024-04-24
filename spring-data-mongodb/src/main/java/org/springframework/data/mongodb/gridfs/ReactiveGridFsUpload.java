@@ -31,7 +31,7 @@ import com.mongodb.client.gridfs.model.GridFSFile;
  * @author Mark Paluch
  * @since 3.0
  */
-public class ReactiveGridFsUpload<ID> implements GridFsObject<ID, Publisher<DataBuffer>> {
+public final class ReactiveGridFsUpload<ID> implements GridFsObject<ID, Publisher<DataBuffer>> {
 
 	private final @Nullable ID id;
 	private final Publisher<DataBuffer> dataStream;
@@ -93,7 +93,7 @@ public class ReactiveGridFsUpload<ID> implements GridFsObject<ID, Publisher<Data
 	 *
 	 * @param <T> the target id type.
 	 */
-	public static class ReactiveGridFsUploadBuilder<T> {
+	public static final class ReactiveGridFsUploadBuilder<T> {
 
 		private @Nullable Object id;
 		private Publisher<DataBuffer> dataStream;

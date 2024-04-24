@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
  * @author Mark Paluch
  * @since 2.0
  */
-public class UntypedExampleMatcher implements ExampleMatcher {
+public final class UntypedExampleMatcher implements ExampleMatcher {
 
 	private final ExampleMatcher delegate;
 
@@ -134,10 +134,12 @@ public class UntypedExampleMatcher implements ExampleMatcher {
 	@Override
 	public boolean equals(@Nullable Object o) {
 
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 
 		UntypedExampleMatcher that = (UntypedExampleMatcher) o;
 

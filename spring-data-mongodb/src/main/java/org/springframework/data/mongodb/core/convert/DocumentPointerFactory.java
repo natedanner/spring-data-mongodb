@@ -145,7 +145,7 @@ class DocumentPointerFactory {
 	 * the provided {@link PersistentPropertyAccessor} to the target document by looking at the keys of the expressions
 	 * from the source.
 	 */
-	static class LinkageDocument {
+	static final class LinkageDocument {
 
 		static final Pattern EXPRESSION_PATTERN = Pattern.compile("\\?#\\{#?(?<fieldName>[\\w\\d\\.\\-)]*)\\}");
 		static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("###_(?<index>\\d*)_###");

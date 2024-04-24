@@ -32,7 +32,7 @@ import org.springframework.lang.Nullable;
 /**
  * @author Christoph Strobl
  */
-public class TestAggregationContext implements AggregationOperationContext {
+public final class TestAggregationContext implements AggregationOperationContext {
 
 	private final AggregationOperationContext delegate;
 

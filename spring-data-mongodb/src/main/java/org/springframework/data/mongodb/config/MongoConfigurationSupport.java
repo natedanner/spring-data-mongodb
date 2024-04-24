@@ -139,7 +139,7 @@ public abstract class MongoConfigurationSupport {
 	 */
 	protected Set<Class<?>> getInitialEntitySet() throws ClassNotFoundException {
 
-		Set<Class<?>> initialEntitySet = new HashSet<Class<?>>();
+		Set<Class<?>> initialEntitySet = new HashSet<>();
 
 		for (String basePackage : getMappingBasePackages()) {
 			initialEntitySet.addAll(scanForEntities(basePackage));
@@ -162,7 +162,7 @@ public abstract class MongoConfigurationSupport {
 			return Collections.emptySet();
 		}
 
-		Set<Class<?>> initialEntitySet = new HashSet<Class<?>>();
+		Set<Class<?>> initialEntitySet = new HashSet<>();
 
 		if (StringUtils.hasText(basePackage)) {
 

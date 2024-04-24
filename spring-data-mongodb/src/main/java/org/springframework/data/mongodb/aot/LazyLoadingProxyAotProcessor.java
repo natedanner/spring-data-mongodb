@@ -40,7 +40,7 @@ import org.springframework.data.mongodb.core.mapping.DocumentReference;
  */
 public class LazyLoadingProxyAotProcessor {
 
-	private boolean generalLazyLoadingProxyContributed = false;
+	private boolean generalLazyLoadingProxyContributed;
 
 	public void registerLazyLoadingProxyIfNeeded(Class<?> type, GenerationContext generationContext) {
 

@@ -50,7 +50,7 @@ public class ReactiveMongoPersistentEntityIndexCreator {
 
 	private static final Log LOGGER = LogFactory.getLog(ReactiveMongoPersistentEntityIndexCreator.class);
 
-	private final Map<Class<?>, Boolean> classesSeen = new ConcurrentHashMap<Class<?>, Boolean>();
+	private final Map<Class<?>, Boolean> classesSeen = new ConcurrentHashMap<>();
 	private final MongoMappingContext mappingContext;
 	private final ReactiveIndexOperationsProvider operationsProvider;
 	private final IndexResolver indexResolver;
@@ -159,10 +159,8 @@ public class ReactiveMongoPersistentEntityIndexCreator {
 						indexDefinition.getIndexOptions()),
 				e.getCause()));
 
-		return existingIndex.flatMap(it -> {
-			return Mono.<String> error(new DataIntegrityViolationException(
-					String.format("Index already defined as '%s'", indexDefinition.getPath()), e.getCause()));
-		}).switchIfEmpty(defaultError);
+		return existingIndex.flatMap(it -> Mono.<String> error(new DataIntegrityViolationException(
+					String.format("Index already defined as '%s'", indexDefinition.getPath()), e.getCause()))).switchIfEmpty(defaultError);
 	}
 
 	private Mono<IndexInfo> fetchIndexInformation(IndexDefinitionHolder indexDefinition) {

@@ -76,13 +76,12 @@ public class AggregationUnitTests {
 	@Test // DATAMONGO-753
 	void checkForCorrectFieldScopeTransfer() {
 
-		assertThatIllegalArgumentException().isThrownBy(() -> {
+		assertThatIllegalArgumentException().isThrownBy(() ->
 			newAggregation( //
 					project("a", "b"), //
 					group("a").count().as("cnt"), // a was introduced to the context by the project operation
 					project("cnt", "b") // b was removed from the context by the group operation
-			).toDocument("foo", Aggregation.DEFAULT_CONTEXT); // -> triggers IllegalArgumentException
-		});
+			).toDocument("foo", Aggregation.DEFAULT_CONTEXT));
 	}
 
 	@Test // DATAMONGO-753
@@ -182,7 +181,7 @@ public class AggregationUnitTests {
 	@Test // DATAMONGO-791
 	void allowAggregationOperationsToBePassedAsIterable() {
 
-		List<AggregationOperation> ops = new ArrayList<AggregationOperation>();
+		List<AggregationOperation> ops = new ArrayList<>();
 		ops.add(project("a"));
 		ops.add(group("a").count().as("aCnt"));
 		ops.add(project("aCnt", "a"));

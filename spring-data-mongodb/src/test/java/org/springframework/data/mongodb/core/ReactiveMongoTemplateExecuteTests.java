@@ -76,19 +76,17 @@ public class ReactiveMongoTemplateExecuteTests {
 	@Test // DATAMONGO-1444
 	public void executeCommandJsonCommandShouldReturnSingleResponse() {
 
-		operations.executeCommand("{ buildInfo: 1 }").as(StepVerifier::create).consumeNextWith(actual -> {
+		operations.executeCommand("{ buildInfo: 1 }").as(StepVerifier::create).consumeNextWith(actual ->
 
-			assertThat(actual).containsKey("version");
-		}).verifyComplete();
+			assertThat(actual).containsKey("version")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1444
 	public void executeCommandDocumentCommandShouldReturnSingleResponse() {
 
-		operations.executeCommand(new Document("buildInfo", 1)).as(StepVerifier::create).consumeNextWith(actual -> {
+		operations.executeCommand(new Document("buildInfo", 1)).as(StepVerifier::create).consumeNextWith(actual ->
 
-			assertThat(actual).containsKey("version");
-		}).verifyComplete();
+			assertThat(actual).containsKey("version")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1444

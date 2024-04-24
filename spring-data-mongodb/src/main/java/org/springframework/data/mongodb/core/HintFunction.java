@@ -30,7 +30,7 @@ import org.springframework.util.StringUtils;
  * @author Christoph Strobl
  * @since 4.1
  */
-class HintFunction {
+final class HintFunction {
 
 	private static final HintFunction EMPTY = new HintFunction(null);
 

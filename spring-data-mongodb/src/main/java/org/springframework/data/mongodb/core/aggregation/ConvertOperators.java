@@ -264,7 +264,7 @@ public class ConvertOperators {
 	 * "https://docs.mongodb.com/manual/reference/operator/aggregation/convert/">https://docs.mongodb.com/manual/reference/operator/aggregation/convert/</a>
 	 * @since 2.1
 	 */
-	public static class Convert extends AbstractAggregationExpression {
+	public static final class Convert extends AbstractAggregationExpression {
 
 		private Convert(Object value) {
 			super(value);
@@ -458,7 +458,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toBool/">https://docs.mongodb.com/manual/reference/operator/aggregation/toBool/</a>
 	 * @since 2.1
 	 */
-	public static class ToBool extends AbstractAggregationExpression {
+	public static final class ToBool extends AbstractAggregationExpression {
 
 		private ToBool(Object value) {
 			super(value);
@@ -490,7 +490,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toDate/">https://docs.mongodb.com/manual/reference/operator/aggregation/toDate/</a>
 	 * @since 2.1
 	 */
-	public static class ToDate extends AbstractAggregationExpression {
+	public static final class ToDate extends AbstractAggregationExpression {
 
 		private ToDate(Object value) {
 			super(value);
@@ -522,7 +522,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toDecimal/">https://docs.mongodb.com/manual/reference/operator/aggregation/toDecimal/</a>
 	 * @since 2.1
 	 */
-	public static class ToDecimal extends AbstractAggregationExpression {
+	public static final class ToDecimal extends AbstractAggregationExpression {
 
 		private ToDecimal(Object value) {
 			super(value);
@@ -554,7 +554,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toDouble/">https://docs.mongodb.com/manual/reference/operator/aggregation/toDouble/</a>
 	 * @since 2.1
 	 */
-	public static class ToDouble extends AbstractAggregationExpression {
+	public static final class ToDouble extends AbstractAggregationExpression {
 
 		private ToDouble(Object value) {
 			super(value);
@@ -586,7 +586,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toInt/">https://docs.mongodb.com/manual/reference/operator/aggregation/toInt/</a>
 	 * @since 2.1
 	 */
-	public static class ToInt extends AbstractAggregationExpression {
+	public static final class ToInt extends AbstractAggregationExpression {
 
 		private ToInt(Object value) {
 			super(value);
@@ -618,7 +618,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toLong/">https://docs.mongodb.com/manual/reference/operator/aggregation/toLong/</a>
 	 * @since 2.1
 	 */
-	public static class ToLong extends AbstractAggregationExpression {
+	public static final class ToLong extends AbstractAggregationExpression {
 
 		private ToLong(Object value) {
 			super(value);
@@ -650,7 +650,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toObjectId/">https://docs.mongodb.com/manual/reference/operator/aggregation/toObjectId/</a>
 	 * @since 2.1
 	 */
-	public static class ToObjectId extends AbstractAggregationExpression {
+	public static final class ToObjectId extends AbstractAggregationExpression {
 
 		private ToObjectId(Object value) {
 			super(value);
@@ -682,7 +682,7 @@ public class ConvertOperators {
 	 *      "https://docs.mongodb.com/manual/reference/operator/aggregation/toString/">https://docs.mongodb.com/manual/reference/operator/aggregation/toString/</a>
 	 * @since 2.1
 	 */
-	public static class ToString extends AbstractAggregationExpression {
+	public static final class ToString extends AbstractAggregationExpression {
 
 		private ToString(Object value) {
 			super(value);
@@ -710,7 +710,7 @@ public class ConvertOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class DegreesToRadians extends AbstractAggregationExpression {
+	public static final class DegreesToRadians extends AbstractAggregationExpression {
 
 		private DegreesToRadians(Object value) {
 			super(value);

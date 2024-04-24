@@ -42,7 +42,7 @@ public interface ReactiveSessionScoped {
 	 * @return a result object returned by the action, can be {@link Flux#empty()}.
 	 */
 	default <T> Flux<T> execute(ReactiveSessionCallback<T> action) {
-		return execute(action, (session) -> {});
+		return execute(action, session -> {});
 	}
 
 	/**

@@ -101,7 +101,9 @@ public class PersonRepositoryTransactionalTests {
 	@Autowired PersonRepository repository;
 	@Autowired MongoTemplate template;
 
-	Person durzo, kylar, vi;
+	Person durzo;
+	Person kylar;
+	Person vi;
 
 	List<Person> all;
 

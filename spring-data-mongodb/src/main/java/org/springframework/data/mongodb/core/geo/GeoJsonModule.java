@@ -137,7 +137,7 @@ public class GeoJsonModule extends SimpleModule {
 	 * @author Christoph Strobl
 	 * @since 1.7
 	 */
-	private static abstract class GeoJsonDeserializer<T extends GeoJson<?>> extends JsonDeserializer<T> {
+	private abstract static class GeoJsonDeserializer<T extends GeoJson<?>> extends JsonDeserializer<T> {
 
 		@Nullable
 		@Override

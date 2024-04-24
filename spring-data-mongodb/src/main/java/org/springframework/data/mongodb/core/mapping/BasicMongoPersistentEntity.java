@@ -328,7 +328,7 @@ public class BasicMongoPersistentEntity<T> extends BasicPersistentEntity<T, Mong
 	private static class AssertFieldNameUniquenessHandler
 			implements PropertyHandler<MongoPersistentProperty>, AssociationHandler<MongoPersistentProperty> {
 
-		private final Map<String, MongoPersistentProperty> properties = new HashMap<String, MongoPersistentProperty>();
+		private final Map<String, MongoPersistentProperty> properties = new HashMap<>();
 
 		public void doWithPersistentProperty(MongoPersistentProperty persistentProperty) {
 			assertUniqueness(persistentProperty);

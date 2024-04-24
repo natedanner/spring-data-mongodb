@@ -40,7 +40,7 @@ import org.springframework.util.ClassUtils;
  * @author Christoph Strobl
  * @since 1.10
  */
-public class GraphLookupOperation implements InheritsFieldsAggregationOperation {
+public final class GraphLookupOperation implements InheritsFieldsAggregationOperation {
 
 	private static final Set<Class<?>> ALLOWED_START_TYPES = Set.of(AggregationExpression.class, String.class, Field.class, Document.class);
 

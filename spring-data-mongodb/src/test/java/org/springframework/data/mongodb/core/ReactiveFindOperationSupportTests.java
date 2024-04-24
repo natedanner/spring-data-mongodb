@@ -142,9 +142,8 @@ class ReactiveFindOperationSupportTests implements StateFunctions {
 	@Test // DATAMONGO-1719
 	void findAll() {
 
-		template.query(Person.class).all().collectList().as(StepVerifier::create).consumeNextWith(actual -> {
-			assertThat(actual).containsExactlyInAnyOrder(han, luke);
-		}).verifyComplete();
+		template.query(Person.class).all().collectList().as(StepVerifier::create).consumeNextWith(actual ->
+			assertThat(actual).containsExactlyInAnyOrder(han, luke)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1719
@@ -268,9 +267,8 @@ class ReactiveFindOperationSupportTests implements StateFunctions {
 		blocking.save(dantooine);
 
 		template.query(Planet.class).near(NearQuery.near(-73.9667, 40.78).spherical(true)).all().as(StepVerifier::create)
-				.consumeNextWith(actual -> {
-					assertThat(actual.getDistance()).isNotNull();
-				}) //
+				.consumeNextWith(actual ->
+					assertThat(actual.getDistance()).isNotNull()) //
 				.expectNextCount(1) //
 				.verifyComplete();
 	}
@@ -894,8 +892,7 @@ class ReactiveFindOperationSupportTests implements StateFunctions {
 	}
 
 	static <T> Consumer<T> in(T... values) {
-		return (val) -> {
+		return val ->
 			assertThat(values).contains(val);
-		};
 	}
 }

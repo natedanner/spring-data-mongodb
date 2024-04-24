@@ -53,7 +53,7 @@ class ReactiveChangeStreamOperationSupport implements ReactiveChangeStreamOperat
 		return new ReactiveChangeStreamSupport<>(template, domainType, domainType, null, null);
 	}
 
-	static class ReactiveChangeStreamSupport<T>
+	static final class ReactiveChangeStreamSupport<T>
 			implements ReactiveChangeStream<T>, ChangeStreamWithFilterAndProjection<T> {
 
 		private final ReactiveMongoTemplate template;
@@ -143,8 +143,8 @@ class ReactiveChangeStreamOperationSupport implements ReactiveChangeStreamOperat
 		public ChangeStreamWithFilterAndProjection<T> filter(CriteriaDefinition by) {
 
 			MatchOperation $match = Aggregation.match(by);
-			Aggregation aggregation = !Document.class.equals(domainType) ? Aggregation.newAggregation(domainType, $match)
-					: Aggregation.newAggregation($match);
+			Aggregation aggregation = Document.class.equals(domainType) ? Aggregation.newAggregation($match)
+					: Aggregation.newAggregation(domainType, $match);
 			return filter(aggregation);
 		}
 

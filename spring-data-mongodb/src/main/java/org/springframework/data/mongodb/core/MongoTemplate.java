@@ -955,7 +955,7 @@ public class MongoTemplate
 		String mappedFieldName = distinctQueryContext.getMappedFieldName(entity);
 		Class<T> mongoDriverCompatibleType = distinctQueryContext.getDriverCompatibleClass(resultClass);
 
-		MongoIterable<?> result = execute(collectionName, (collection) -> {
+		MongoIterable<?> result = execute(collectionName, collection -> {
 
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug(String.format("Executing findDistinct using query %s for field: %s in collection: %s",
@@ -975,7 +975,7 @@ public class MongoTemplate
 			MongoConverter converter = getConverter();
 			DefaultDbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
 
-			result = result.map((source) -> converter.mapValueToTargetType(source,
+			result = result.map(source -> converter.mapValueToTargetType(source,
 					distinctQueryContext.getMostSpecificConversionTargetType(resultClass, entityClass), dbRefResolver));
 		}
 
@@ -1042,7 +1042,7 @@ public class MongoTemplate
 		}
 
 		Distance avgDistance = new Distance(
-				result.size() == 0 ? 0 : aggregate.divide(new BigDecimal(result.size()), RoundingMode.HALF_UP).doubleValue(),
+				result.isEmpty() ? 0 : aggregate.divide(new BigDecimal(result.size()), RoundingMode.HALF_UP).doubleValue(),
 				near.getMetric());
 
 		return new GeoResults<>(result, avgDistance);
@@ -2671,9 +2671,8 @@ public class MongoTemplate
 		});
 
 		collectionOptions.getChangeStreamOptions().map(it -> new Document("enabled", it.getPreAndPostImages()))
-				.ifPresent(it -> {
-					doc.put("changeStreamPreAndPostImages", it);
-				});
+				.ifPresent(it ->
+					doc.put("changeStreamPreAndPostImages", it));
 
 		return doc;
 	}

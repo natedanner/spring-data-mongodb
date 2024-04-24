@@ -77,6 +77,6 @@ public class TypedAggregation<I> extends Aggregation {
 	public TypedAggregation<I> withOptions(AggregationOptions options) {
 
 		Assert.notNull(options, "AggregationOptions must not be null");
-		return new TypedAggregation<I>(inputType, pipeline.getOperations(), options);
+		return new TypedAggregation<>(inputType, pipeline.getOperations(), options);
 	}
 }

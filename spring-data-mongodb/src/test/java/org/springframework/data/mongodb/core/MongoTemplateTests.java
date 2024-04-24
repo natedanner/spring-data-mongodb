@@ -154,11 +154,10 @@ public class MongoTemplateTests {
 			it.addEventListener(new PersonWithIdPropertyOfTypeUUIDListener());
 		});
 
-		cfg.configureAuditing(it -> {
+		cfg.configureAuditing(it ->
 			it.auditingHandler(ctx -> {
 				return new IsNewAwareAuditingHandler(PersistentEntities.of(ctx));
-			});
-		});
+			}));
 	});
 
 	MongoTestTemplate mappingTemplate = new MongoTestTemplate(cfg -> {
@@ -169,13 +168,11 @@ public class MongoTemplateTests {
 			it.defaultDb(DB_NAME);
 		});
 
-		cfg.configureConversion(it -> {
-			it.customConverters(DateToDateTimeConverter.INSTANCE, DateTimeToDateConverter.INSTANCE);
-		});
+		cfg.configureConversion(it ->
+			it.customConverters(DateToDateTimeConverter.INSTANCE, DateTimeToDateConverter.INSTANCE));
 
-		cfg.configureMappingContext(it -> {
-			it.autocreateIndex(false);
-		});
+		cfg.configureMappingContext(it ->
+			it.autocreateIndex(false));
 
 		cfg.configureApplicationContext(it -> {
 			it.applicationContext(new GenericApplicationContext());
@@ -1096,8 +1093,8 @@ public class MongoTemplateTests {
 		Query q1 = new Query(Criteria.where("id").is(p1.getId()));
 		PersonWithIdPropertyOfTypeObjectId found1 = template.findOne(q1, PersonWithIdPropertyOfTypeObjectId.class);
 		assertThat(found1).isNotNull();
-		Query _q = new Query(Criteria.where("_id").is(p1.getId()));
-		template.remove(_q, PersonWithIdPropertyOfTypeObjectId.class);
+		Query q = new Query(Criteria.where("_id").is(p1.getId()));
+		template.remove(q, PersonWithIdPropertyOfTypeObjectId.class);
 		PersonWithIdPropertyOfTypeObjectId notFound1 = template.findOne(q1, PersonWithIdPropertyOfTypeObjectId.class);
 		assertThat(notFound1).isNull();
 
@@ -1796,12 +1793,11 @@ public class MongoTemplateTests {
 	@Test // GH-4390
 	void nativeDriverDateTimeCodecShouldBeApplied/*when configured*/() {
 
-		MongoTestTemplate ops = new MongoTestTemplate(cfg -> {
+		MongoTestTemplate ops = new MongoTestTemplate(cfg ->
 			cfg.configureConversion(conversion -> {
 				conversion.customConversions(
 						MongoCustomConversions.create(MongoConverterConfigurationAdapter::useNativeDriverJavaTimeCodecs));
-			});
-		});
+			}));
 
 		TypeWithDate source = new TypeWithDate();
 		source.id = "id-1";
@@ -2370,7 +2366,7 @@ public class MongoTemplateTests {
 	public void findAndModifyShouldAddTypeInformationWithinUpdatedTypeOnEmbeddedDocumentWithCollectionWhenRewriting()
 			throws Exception {
 
-		List<Model> models = Arrays.<Model> asList(new ModelA("value1"));
+		List<Model> models = Arrays. asList(new ModelA("value1"));
 
 		DocumentWithEmbeddedDocumentWithCollection doc = new DocumentWithEmbeddedDocumentWithCollection(
 				new DocumentWithCollection(models));
@@ -2601,7 +2597,7 @@ public class MongoTemplateTests {
 	@Test // DATAMONGO-407
 	public void updatesShouldRetainTypeInformationEvenForCollections() {
 
-		List<Model> models = Arrays.<Model> asList(new ModelA("foo"));
+		List<Model> models = Arrays. asList(new ModelA("foo"));
 
 		DocumentWithCollection doc = new DocumentWithCollection(models);
 		doc.id = "4711";
@@ -4450,7 +4446,7 @@ public class MongoTemplateTests {
 		String name;
 	}
 
-	static enum DateTimeToDateConverter implements Converter<LocalDateTime, Date> {
+	enum DateTimeToDateConverter implements Converter<LocalDateTime, Date> {
 
 		INSTANCE;
 
@@ -4459,7 +4455,7 @@ public class MongoTemplateTests {
 		}
 	}
 
-	static enum DateToDateTimeConverter implements Converter<Date, LocalDateTime> {
+	enum DateToDateTimeConverter implements Converter<Date, LocalDateTime> {
 
 		INSTANCE;
 
@@ -4512,10 +4508,12 @@ public class MongoTemplateTests {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o)
+			if (this == o) {
 				return true;
-			if (o == null || getClass() != o.getClass())
+			}
+			if (o == null || getClass() != o.getClass()) {
 				return false;
+			}
 			MyPerson myPerson = (MyPerson) o;
 			return Objects.equals(id, myPerson.id) && Objects.equals(name, myPerson.name)
 					&& Objects.equals(address, myPerson.address);
@@ -4576,7 +4574,8 @@ public class MongoTemplateTests {
 	static class VersionedPerson {
 
 		@Version Long version;
-		String id, firstname;
+		String id;
+		String firstname;
 		@Field(write = Field.Write.ALWAYS) String lastname;
 	}
 
@@ -4621,7 +4620,7 @@ public class MongoTemplateTests {
 		@Field("adr") Address address;
 	}
 
-	static enum EnumValue {
+	enum EnumValue {
 		VALUE1, VALUE2, VALUE3
 	}
 
@@ -4975,7 +4974,8 @@ public class MongoTemplateTests {
 
 	static class SubdocumentWithWriteNull {
 
-		final String firstname, lastname;
+		final String firstname;
+		final String lastname;
 
 		@Field(write = Field.Write.ALWAYS) String nickname;
 

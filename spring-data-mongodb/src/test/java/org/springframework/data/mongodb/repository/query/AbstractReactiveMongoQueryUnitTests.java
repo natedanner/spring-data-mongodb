@@ -174,10 +174,9 @@ class AbstractReactiveMongoQueryUnitTests {
 	@Test // DATAMONGO-1854
 	void shouldThrowExceptionOnNonParsableCollation() {
 
-		assertThatIllegalArgumentException().isThrownBy(() -> {
+		assertThatIllegalArgumentException().isThrownBy(() ->
 			createQueryForMethod("findWithCollationUsingPlaceholderByFirstName", String.class, Object.class) //
-					.executeBlocking(new Object[] { "dalinar", 100 });
-		});
+					.executeBlocking(new Object[] { "dalinar", 100 }));
 	}
 
 	@Test // DATAMONGO-1854

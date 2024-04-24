@@ -44,14 +44,14 @@ public class MappingMongoEntityInformationUnitTests {
 
 		when(info.getCollection()).thenReturn("Person");
 
-		MongoEntityInformation<Person, Long> information = new MappingMongoEntityInformation<Person, Long>(info);
+		MongoEntityInformation<Person, Long> information = new MappingMongoEntityInformation<>(info);
 		assertThat(information.getCollectionName()).isEqualTo("Person");
 	}
 
 	@Test // DATAMONGO-248
 	public void usesCustomCollectionIfGiven() {
 
-		MongoEntityInformation<Person, Long> information = new MappingMongoEntityInformation<Person, Long>(info, "foobar");
+		MongoEntityInformation<Person, Long> information = new MappingMongoEntityInformation<>(info, "foobar");
 		assertThat(information.getCollectionName()).isEqualTo("foobar");
 	}
 

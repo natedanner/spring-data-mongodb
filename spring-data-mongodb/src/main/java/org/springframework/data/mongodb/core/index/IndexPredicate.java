@@ -24,7 +24,7 @@ public abstract class IndexPredicate {
 
 	private @Nullable String name;
 	private IndexDirection direction = IndexDirection.ASCENDING;
-	private boolean unique = false;
+	private boolean unique;
 
 	@Nullable
 	public String getName() {

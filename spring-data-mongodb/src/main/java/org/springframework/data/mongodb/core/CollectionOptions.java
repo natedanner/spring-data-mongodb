@@ -39,13 +39,13 @@ import com.mongodb.client.model.ValidationLevel;
  * @author Mark Paluch
  * @author Andreas Zink
  */
-public class CollectionOptions {
+public final class CollectionOptions {
 
 	private @Nullable Long maxDocuments;
 	private @Nullable Long size;
 	private @Nullable Boolean capped;
 	private @Nullable Collation collation;
-	private ValidationOptions validationOptions;
+	private final ValidationOptions validationOptions;
 	private @Nullable TimeSeriesOptions timeSeriesOptions;
 	private @Nullable CollectionChangeStreamOptions changeStreamOptions;
 
@@ -547,8 +547,9 @@ public class CollectionOptions {
 			if (!ObjectUtils.nullSafeEquals(validator, that.validator)) {
 				return false;
 			}
-			if (validationLevel != that.validationLevel)
+			if (validationLevel != that.validationLevel) {
 				return false;
+			}
 			return validationAction == that.validationAction;
 		}
 
@@ -567,7 +568,7 @@ public class CollectionOptions {
 	 * @author Christoph Strobl
 	 * @since 4.0
 	 */
-	public static class CollectionChangeStreamOptions {
+	public static final class CollectionChangeStreamOptions {
 
 		private final boolean preAndPostImages;
 
@@ -609,7 +610,7 @@ public class CollectionOptions {
 
 		@Override
 		public int hashCode() {
-			return (preAndPostImages ? 1 : 0);
+			return preAndPostImages ? 1 : 0;
 		}
 	}
 
@@ -621,7 +622,7 @@ public class CollectionOptions {
 	 * @see <a href=
 	 *      "https://docs.mongodb.com/manual/core/timeseries-collections">https://docs.mongodb.com/manual/core/timeseries-collections</a>
 	 */
-	public static class TimeSeriesOptions {
+	public static final class TimeSeriesOptions {
 
 		private final String timeField;
 

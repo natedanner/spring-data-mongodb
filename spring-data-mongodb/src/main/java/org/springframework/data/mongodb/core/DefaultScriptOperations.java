@@ -137,7 +137,7 @@ class DefaultScriptOperations implements ScriptOperations {
 			return Collections.emptySet();
 		}
 
-		Set<String> scriptNames = new HashSet<String>();
+		Set<String> scriptNames = new HashSet<>();
 
 		for (NamedMongoScript script : scripts) {
 			scriptNames.add(script.getName());

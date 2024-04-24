@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * @soundtrack Fruitcake - Jeff Coffin (The Inside of the Outside)
  * @since 1.9
  */
-class GeoCommandStatistics {
+final class GeoCommandStatistics {
 
 	private static final GeoCommandStatistics NONE = new GeoCommandStatistics(new Document());
 

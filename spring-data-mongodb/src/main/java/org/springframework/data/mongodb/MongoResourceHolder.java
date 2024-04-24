@@ -36,7 +36,7 @@ import com.mongodb.client.ClientSession;
 class MongoResourceHolder extends ResourceHolderSupport {
 
 	private @Nullable ClientSession session;
-	private MongoDatabaseFactory dbFactory;
+	private final MongoDatabaseFactory dbFactory;
 
 	/**
 	 * Create a new {@link MongoResourceHolder} for a given {@link ClientSession session}.

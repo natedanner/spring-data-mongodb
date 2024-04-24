@@ -70,10 +70,9 @@ class MongoTemplateFieldProjectionTests {
 	@Test // GH-3583
 	void usesMongoExpressionAsIs() {
 
-		Person result = findLuke(fields -> {
+		Person result = findLuke(fields ->
 			fields.include("firstname").project(MongoExpression.create("'$toUpper' : '$last_name'"))
-					.as("last_name");
-		});
+					.as("last_name"));
 
 		assertThat(result).isEqualTo(luke.upperCaseLastnameClone());
 	}
@@ -81,10 +80,9 @@ class MongoTemplateFieldProjectionTests {
 	@Test // GH-3583
 	void usesMongoExpressionWithPlaceholdersAsIs() {
 
-		Person result = findLuke(fields -> {
+		Person result = findLuke(fields ->
 			fields.include("firstname").project(MongoExpression.create("'$toUpper' : '$?0'", "last_name"))
-					.as("last_name");
-		});
+					.as("last_name"));
 
 		assertThat(result).isEqualTo(luke.upperCaseLastnameClone());
 	}
@@ -92,9 +90,8 @@ class MongoTemplateFieldProjectionTests {
 	@Test // GH-3583
 	void mapsAggregationExpressionToDomainType() {
 
-		Person result = findLuke(fields -> {
-			fields.include("firstname").project(StringOperators.valueOf("lastname").toUpper()).as("last_name");
-		});
+		Person result = findLuke(fields ->
+			fields.include("firstname").project(StringOperators.valueOf("lastname").toUpper()).as("last_name"));
 
 		assertThat(result).isEqualTo(luke.upperCaseLastnameClone());
 	}
@@ -102,9 +99,8 @@ class MongoTemplateFieldProjectionTests {
 	@Test // GH-3583
 	void mapsAggregationSpELExpressionToDomainType() {
 
-		Person result = findLuke(fields -> {
-			fields.include("firstname").project(AggregationSpELExpression.expressionOf("toUpper(lastname)")).as("last_name");
-		});
+		Person result = findLuke(fields ->
+			fields.include("firstname").project(AggregationSpELExpression.expressionOf("toUpper(lastname)")).as("last_name"));
 
 		assertThat(result).isEqualTo(luke.upperCaseLastnameClone());
 	}
@@ -134,9 +130,8 @@ class MongoTemplateFieldProjectionTests {
 
 		template.save(luke);
 
-		Person result = findLuke(fields -> {
-			fields.project(StringOperators.valueOf("address.planet").toUpper()).as("planet");
-		});
+		Person result = findLuke(fields ->
+			fields.project(StringOperators.valueOf("address.planet").toUpper()).as("planet"));
 
 		assertThat(result.address.planet).isEqualTo("TATOINE");
 	}

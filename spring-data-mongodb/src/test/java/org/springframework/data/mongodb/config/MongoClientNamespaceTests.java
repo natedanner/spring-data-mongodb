@@ -157,8 +157,7 @@ public class MongoClientNamespaceTests {
 		MongoClientFactoryBean factoryBean = ctx.getBean("&client-with-server-api-settings", MongoClientFactoryBean.class);
 
 		MongoClientSettings settings = (MongoClientSettings) getField(factoryBean, "mongoClientSettings");
-		assertThat(settings.getServerApi()).isNotNull().satisfies(it -> {
-			assertThat(it.getVersion()).isEqualTo(ServerApiVersion.V1);
-		});
+		assertThat(settings.getServerApi()).isNotNull().satisfies(it ->
+			assertThat(it.getVersion()).isEqualTo(ServerApiVersion.V1));
 	}
 }

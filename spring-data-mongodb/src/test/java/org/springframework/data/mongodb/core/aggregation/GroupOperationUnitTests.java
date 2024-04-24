@@ -282,7 +282,6 @@ class GroupOperationUnitTests {
 
 	private Document extractDocumentFromGroupOperation(GroupOperation groupOperation) {
 		Document document = groupOperation.toDocument(Aggregation.DEFAULT_CONTEXT);
-		Document groupClause = DocumentTestUtils.getAsDocument(document, "$group");
-		return groupClause;
+		return DocumentTestUtils.getAsDocument(document, "$group");
 	}
 }

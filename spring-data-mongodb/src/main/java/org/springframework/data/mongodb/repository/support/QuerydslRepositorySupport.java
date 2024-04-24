@@ -72,6 +72,6 @@ public abstract class QuerydslRepositorySupport {
 		Assert.notNull(path, "EntityPath must not be null");
 		Assert.hasText(collection, "Collection name must not be null or empty");
 
-		return new SpringDataMongodbQuery<T>(template, path.getType(), collection);
+		return new SpringDataMongodbQuery<>(template, path.getType(), collection);
 	}
 }

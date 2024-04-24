@@ -152,7 +152,7 @@ public interface MongoJsonSchemaCreator {
 	 */
 	static Predicate<JsonSchemaPropertyContext> encryptedOnly() {
 
-		return new Predicate<JsonSchemaPropertyContext>() {
+		return new Predicate<>() {
 
 			// cycle guard
 			private final Set<MongoPersistentProperty> seen = new HashSet<>();

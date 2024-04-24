@@ -169,7 +169,7 @@ public class ParameterBindingDocumentCodec implements CollectibleCodec<Document>
 	// Spring Data Customization START
 	public Document decode(@Nullable String json, Object[] values) {
 
-		return decode(json, new ParameterBindingContext((index) -> values[index], new SpelExpressionParser(),
+		return decode(json, new ParameterBindingContext(index -> values[index], new SpelExpressionParser(),
 				EvaluationContextProvider.DEFAULT.getEvaluationContext(values)));
 	}
 

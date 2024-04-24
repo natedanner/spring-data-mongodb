@@ -43,7 +43,7 @@ public class MethodReferenceNode extends ExpressionNode {
 
 	static {
 
-		Map<String, AggregationMethodReference> map = new HashMap<String, AggregationMethodReference>();
+		Map<String, AggregationMethodReference> map = new HashMap<>();
 
 		// BOOLEAN OPERATORS
 		map.put("and", arrayArgRef().forOperator("$and"));

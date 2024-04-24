@@ -30,7 +30,7 @@ import org.springframework.util.ObjectUtils;
  * @since 2.1
  * @see <a href="https://docs.mongodb.com/manual/core/schema-validation/">Schema Validation</a>
  */
-class DocumentValidator implements Validator {
+final class DocumentValidator implements Validator {
 
 	private final Document validatorObject;
 
@@ -64,10 +64,12 @@ class DocumentValidator implements Validator {
 	@Override
 	public boolean equals(@Nullable Object o) {
 
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 
 		DocumentValidator that = (DocumentValidator) o;
 

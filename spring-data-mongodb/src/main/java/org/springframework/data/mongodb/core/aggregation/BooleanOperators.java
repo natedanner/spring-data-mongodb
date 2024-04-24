@@ -183,7 +183,7 @@ public class BooleanOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class And extends AbstractAggregationExpression {
+	public static final class And extends AbstractAggregationExpression {
 
 		private And(List<?> values) {
 			super(values);
@@ -247,7 +247,7 @@ public class BooleanOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Or extends AbstractAggregationExpression {
+	public static final class Or extends AbstractAggregationExpression {
 
 		private Or(List<?> values) {
 			super(values);
@@ -313,7 +313,7 @@ public class BooleanOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Not extends AbstractAggregationExpression {
+	public static final class Not extends AbstractAggregationExpression {
 
 		private Not(Object value) {
 			super(value);

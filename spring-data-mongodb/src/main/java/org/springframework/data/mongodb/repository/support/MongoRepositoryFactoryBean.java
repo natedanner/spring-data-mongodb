@@ -35,8 +35,8 @@ public class MongoRepositoryFactoryBean<T extends Repository<S, ID>, S, ID exten
 		extends RepositoryFactoryBeanSupport<T, S, ID> {
 
 	private @Nullable MongoOperations operations;
-	private boolean createIndexesForQueryMethods = false;
-	private boolean mappingContextConfigured = false;
+	private boolean createIndexesForQueryMethods;
+	private boolean mappingContextConfigured;
 
 	/**
 	 * Creates a new {@link MongoRepositoryFactoryBean} for the given repository interface.

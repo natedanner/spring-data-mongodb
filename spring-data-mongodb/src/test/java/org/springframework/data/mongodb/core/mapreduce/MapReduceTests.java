@@ -168,7 +168,7 @@ public class MapReduceTests {
 
 		createMapReduceData();
 
-		Map<String, Object> scopeVariables = new HashMap<String, Object>();
+		Map<String, Object> scopeVariables = new HashMap<>();
 		scopeVariables.put("exclude", "a");
 
 		String mapWithExcludeFunction = "function(){ for ( var i=0; i<this.x.length; i++ ){ if(this.x[i] != exclude) emit( this.x[i] , 1 ); } }";

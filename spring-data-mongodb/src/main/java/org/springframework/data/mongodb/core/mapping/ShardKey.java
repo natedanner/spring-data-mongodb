@@ -37,7 +37,7 @@ import org.springframework.util.ObjectUtils;
  * @author Mark Paluch
  * @since 3.0
  */
-public class ShardKey {
+public final class ShardKey {
 
 	private static final ShardKey NONE = new ShardKey(Collections.emptyList(), null, true);
 

@@ -41,7 +41,7 @@ public class DataTypeOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class Type extends AbstractAggregationExpression {
+	public static final class Type extends AbstractAggregationExpression {
 
 		private Type(Object value) {
 			super(value);

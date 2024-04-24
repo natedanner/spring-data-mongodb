@@ -47,7 +47,7 @@ class AggregationOperationRenderer {
 	 */
 	static List<Document> toDocument(List<AggregationOperation> operations, AggregationOperationContext rootContext) {
 
-		List<Document> operationDocuments = new ArrayList<Document>(operations.size());
+		List<Document> operationDocuments = new ArrayList<>(operations.size());
 
 		AggregationOperationContext contextToUse = rootContext;
 

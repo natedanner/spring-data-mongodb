@@ -44,7 +44,7 @@ public class MongoMappingContext extends AbstractMappingContext<MongoPersistentE
 	private static final FieldNamingStrategy DEFAULT_NAMING_STRATEGY = PropertyNameFieldNamingStrategy.INSTANCE;
 
 	private FieldNamingStrategy fieldNamingStrategy = DEFAULT_NAMING_STRATEGY;
-	private boolean autoIndexCreation = false;
+	private boolean autoIndexCreation;
 
 	@Nullable
 	private ApplicationContext applicationContext;

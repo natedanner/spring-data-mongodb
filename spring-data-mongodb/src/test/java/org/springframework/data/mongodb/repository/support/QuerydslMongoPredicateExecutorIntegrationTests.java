@@ -67,7 +67,9 @@ public class QuerydslMongoPredicateExecutorIntegrationTests {
 
 	QuerydslMongoPredicateExecutor<Person> repository;
 
-	Person dave, oliver, carter;
+	Person dave;
+	Person oliver;
+	Person carter;
 	QPerson person;
 
 	@Before

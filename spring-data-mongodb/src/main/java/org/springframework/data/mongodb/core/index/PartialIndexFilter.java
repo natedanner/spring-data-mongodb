@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * @author Christoph Strobl
  * @since 1.10
  */
-public class PartialIndexFilter implements IndexFilter {
+public final class PartialIndexFilter implements IndexFilter {
 
 	private final Object filterExpression;
 

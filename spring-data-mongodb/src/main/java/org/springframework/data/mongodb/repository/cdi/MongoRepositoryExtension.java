@@ -48,7 +48,7 @@ public class MongoRepositoryExtension extends CdiRepositoryExtensionSupport {
 
 	private static final Log LOG = LogFactory.getLog(MongoRepositoryExtension.class);
 
-	private final Map<Set<Annotation>, Bean<MongoOperations>> mongoOperations = new HashMap<Set<Annotation>, Bean<MongoOperations>>();
+	private final Map<Set<Annotation>, Bean<MongoOperations>> mongoOperations = new HashMap<>();
 
 	public MongoRepositoryExtension() {
 		LOG.info("Activating CDI extension for Spring Data MongoDB repositories.");
@@ -113,7 +113,7 @@ public class MongoRepositoryExtension extends CdiRepositoryExtensionSupport {
 		}
 
 		// Construct and return the repository bean.
-		return new MongoRepositoryBean<T>(mongoOperations, qualifiers, repositoryType, beanManager,
+		return new MongoRepositoryBean<>(mongoOperations, qualifiers, repositoryType, beanManager,
 				Optional.of(getCustomImplementationDetector()));
 	}
 }

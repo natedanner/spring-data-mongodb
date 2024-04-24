@@ -175,12 +175,11 @@ public class ReactiveMongoTemplateTransactionTests {
 		initTx().execute(new TransactionCallback<>() {
 			@Override
 			public Publisher<Object> doInTransaction(ReactiveTransaction status) {
-				return template.remove(ID_QUERY, Document.class, COLLECTION_NAME).flatMapMany(val -> {
+				return template.remove(ID_QUERY, Document.class, COLLECTION_NAME).flatMapMany(val ->
 
 					// once we use the collection directly we're no longer participating in the tx
-					return client.getDatabase(DATABASE_NAME).getCollection(COLLECTION_NAME).find(ID_QUERY.getQueryObject())
-							.first();
-				});
+					client.getDatabase(DATABASE_NAME).getCollection(COLLECTION_NAME).find(ID_QUERY.getQueryObject())
+							.first());
 			}
 		}).as(StepVerifier::create).expectNext(DOCUMENT).verifyComplete();
 
@@ -243,13 +242,10 @@ public class ReactiveMongoTemplateTransactionTests {
 			@Override
 			public Publisher<Object> doInTransaction(ReactiveTransaction status) {
 				return template.find(query(where("age").is(22)).with(Sort.by("age")), Person.class).buffer(2)
-						.flatMap(values -> {
-
-							return template
+						.flatMap(values -> template
 									.remove(query(where("id").in(values.stream().map(Person::getId).collect(Collectors.toList()))),
 											Person.class)
-									.then(Mono.just(values));
-						});
+									.then(Mono.just(values)));
 			}
 		}).collectList() // completes the above computation
 				.flatMap(deleted -> {

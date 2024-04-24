@@ -154,14 +154,14 @@ public class AggregationPipeline {
 	}
 
 	private static boolean isUnionWith(AggregationOperation operator) {
-		return operator instanceof UnionWithOperation || operator.getOperator().equals("$unionWith");
+		return operator instanceof UnionWithOperation || "$unionWith".equals(operator.getOperator());
 	}
 
 	private static boolean isMerge(AggregationOperation operator) {
-		return operator instanceof MergeOperation || operator.getOperator().equals("$merge");
+		return operator instanceof MergeOperation || "$merge".equals(operator.getOperator());
 	}
 
 	private static boolean isOut(AggregationOperation operator) {
-		return operator instanceof OutOperation || operator.getOperator().equals("$out");
+		return operator instanceof OutOperation || "$out".equals(operator.getOperator());
 	}
 }

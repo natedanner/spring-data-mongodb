@@ -38,7 +38,7 @@ interface AggregationUtils {
 
 		Assert.notNull(range, "Range must not be null");
 
-		List<Long> result = new ArrayList<Long>(2);
+		List<Long> result = new ArrayList<>(2);
 		result.add(range.getLowerBound().getValue()
 				.orElseThrow(() -> new IllegalArgumentException("Lower bound of range must be bounded")));
 		range.getUpperBound().getValue().ifPresent(result::add);

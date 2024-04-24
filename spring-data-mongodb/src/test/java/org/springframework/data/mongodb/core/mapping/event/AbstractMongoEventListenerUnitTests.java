@@ -40,7 +40,7 @@ public class AbstractMongoEventListenerUnitTests {
 	@Test
 	public void invokesCallbackForEventForPerson() {
 
-		MongoMappingEvent<Person> event = new BeforeConvertEvent<Person>(new Person("Dave", "Matthews"), "collection-1");
+		MongoMappingEvent<Person> event = new BeforeConvertEvent<>(new Person("Dave", "Matthews"), "collection-1");
 		SamplePersonEventListener listener = new SamplePersonEventListener();
 		listener.onApplicationEvent(event);
 		assertThat(listener.invokedOnBeforeConvert).isTrue();

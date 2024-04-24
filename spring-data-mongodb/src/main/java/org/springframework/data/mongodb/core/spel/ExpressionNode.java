@@ -205,7 +205,7 @@ public class ExpressionNode implements Iterable<ExpressionNode> {
 			return EMPTY_ITERATOR;
 		}
 
-		return new Iterator<ExpressionNode>() {
+		return new Iterator<>() {
 
 			int index = 0;
 

@@ -119,7 +119,7 @@ public class SpringDataMongodbSerializerUnitTests {
 
 		ObjectId id = new ObjectId();
 
-		PathBuilder<Address> builder = new PathBuilder<Address>(Address.class, "address");
+		PathBuilder<Address> builder = new PathBuilder<>(Address.class, "address");
 		StringPath idPath = builder.getString("id");
 
 		Document result = (Document) serializer.visit((BooleanOperation) idPath.eq(id.toString()), null);
@@ -129,7 +129,7 @@ public class SpringDataMongodbSerializerUnitTests {
 	@Test // DATAMONGO-761
 	public void looksUpKeyForNonPropertyPath() {
 
-		PathBuilder<Address> builder = new PathBuilder<Address>(Address.class, "address");
+		PathBuilder<Address> builder = new PathBuilder<>(Address.class, "address");
 		SimplePath<Object> firstElementPath = builder.getArray("foo", String[].class).get(0);
 		String path = serializer.getKeyForPath(firstElementPath, firstElementPath.getMetadata());
 

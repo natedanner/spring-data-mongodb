@@ -74,7 +74,13 @@ class SimpleMongoRepositoryTests implements StateFunctions {
 	@Template(initialEntitySet = Person.class) //
 	private static MongoTestTemplate template;
 
-	private Person oliver, dave, carter, boyd, stefan, leroi, alicia;
+	private Person oliver;
+	private Person dave;
+	private Person carter;
+	private Person boyd;
+	private Person stefan;
+	private Person leroi;
+	private Person alicia;
 	private List<Person> all;
 
 	private MongoEntityInformation<Person, String> personEntityInformation = new CustomizedPersonInformation();
@@ -154,8 +160,8 @@ class SimpleMongoRepositoryTests implements StateFunctions {
 	void shouldInsertMultipleFromList() {
 
 		String randomId = UUID.randomUUID().toString();
-		Map<String, Person> idToPerson = new HashMap<String, Person>();
-		List<Person> persons = new ArrayList<Person>();
+		Map<String, Person> idToPerson = new HashMap<>();
+		List<Person> persons = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
 			Person person = new Person("First" + i + randomId, "Last" + randomId + i, 42 + i);
@@ -174,8 +180,8 @@ class SimpleMongoRepositoryTests implements StateFunctions {
 	void shouldInsertMutlipleFromSet() {
 
 		String randomId = UUID.randomUUID().toString();
-		Map<String, Person> idToPerson = new HashMap<String, Person>();
-		Set<Person> persons = new HashSet<Person>();
+		Map<String, Person> idToPerson = new HashMap<>();
+		Set<Person> persons = new HashSet<>();
 
 		for (int i = 0; i < 10; i++) {
 			Person person = new Person("First" + i + randomId, "Last" + i + randomId, 42 + i);

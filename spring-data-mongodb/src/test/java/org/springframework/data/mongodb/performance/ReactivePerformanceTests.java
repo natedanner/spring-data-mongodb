@@ -415,11 +415,11 @@ public class ReactivePerformanceTests {
 
 	private List<Person> getPersonObjects(int numberOfPersons) {
 
-		List<Person> result = new ArrayList<Person>();
+		List<Person> result = new ArrayList<>();
 
 		for (int i = 0; i < numberOfPersons; i++) {
 
-			List<Address> addresses = new ArrayList<Address>();
+			List<Address> addresses = new ArrayList<>();
 
 			for (int a = 0; a < 5; a++) {
 				addresses.add(new Address("zip" + a, "city" + a));
@@ -439,7 +439,7 @@ public class ReactivePerformanceTests {
 
 	private List<Document> getPersonDocuments(int numberOfPersons) {
 
-		List<Document> dbObjects = new ArrayList<Document>(numberOfPersons);
+		List<Document> dbObjects = new ArrayList<>(numberOfPersons);
 
 		for (Person person : getPersonObjects(numberOfPersons)) {
 			dbObjects.add(person.toDocument());
@@ -462,7 +462,8 @@ public class ReactivePerformanceTests {
 	static class Person {
 
 		ObjectId id;
-		String firstname, lastname;
+		String firstname;
+		String lastname;
 		List<Address> addresses;
 		Set<Order> orders;
 
@@ -470,19 +471,19 @@ public class ReactivePerformanceTests {
 			this.firstname = firstname;
 			this.lastname = lastname;
 			this.addresses = addresses;
-			this.orders = new HashSet<Order>();
+			this.orders = new HashSet<>();
 		}
 
 		public static Person from(Document source) {
 
 			List<Document> addressesSource = (List<Document>) source.get("addresses");
-			List<Address> addresses = new ArrayList<Address>(addressesSource.size());
+			List<Address> addresses = new ArrayList<>(addressesSource.size());
 			for (Object addressSource : addressesSource) {
 				addresses.add(Address.from((Document) addressSource));
 			}
 
 			List<Document> ordersSource = (List<Document>) source.get("orders");
-			Set<Order> orders = new HashSet<Order>(ordersSource.size());
+			Set<Order> orders = new HashSet<>(ordersSource.size());
 			for (Object orderSource : ordersSource) {
 				orders.add(Order.from((Document) orderSource));
 			}
@@ -510,7 +511,7 @@ public class ReactivePerformanceTests {
 		final Set<AddressType> types;
 
 		public Address(String zipCode, String city) {
-			this(zipCode, city, new HashSet<AddressType>(pickRandomNumerOfItemsFrom(Arrays.asList(AddressType.values()))));
+			this(zipCode, city, new HashSet<>(pickRandomNumerOfItemsFrom(Arrays.asList(AddressType.values()))));
 		}
 
 		@PersistenceConstructor
@@ -539,7 +540,7 @@ public class ReactivePerformanceTests {
 
 	private static <T extends Enum<T>> List<T> fromList(List source, Class<T> type) {
 
-		List<T> result = new ArrayList<T>(source.size());
+		List<T> result = new ArrayList<>(source.size());
 		for (Object object : source) {
 			result.add(Enum.valueOf(type, object.toString()));
 		}
@@ -581,7 +582,7 @@ public class ReactivePerformanceTests {
 		public static Order from(Document source) {
 
 			List lineItemsSource = (List) source.get("lineItems");
-			List<LineItem> lineItems = new ArrayList<ReactivePerformanceTests.LineItem>(lineItemsSource.size());
+			List<LineItem> lineItems = new ArrayList<>(lineItemsSource.size());
 			for (Object lineItemSource : lineItemsSource) {
 				lineItems.add(LineItem.from((Document) lineItemSource));
 			}
@@ -652,7 +653,7 @@ public class ReactivePerformanceTests {
 		int numberOfItems = random.nextInt(source.size());
 		numberOfItems = numberOfItems == 0 ? 1 : numberOfItems;
 
-		List<T> result = new ArrayList<T>(numberOfItems);
+		List<T> result = new ArrayList<>(numberOfItems);
 		while (result.size() < numberOfItems) {
 			int index = random.nextInt(source.size());
 			T candidate = source.get(index);
@@ -710,7 +711,7 @@ public class ReactivePerformanceTests {
 		public Statistics(String headline) {
 
 			this.headline = headline;
-			this.times = new HashMap<Mode, ModeTimes>();
+			this.times = new HashMap<>();
 
 			for (Mode mode : Mode.values()) {
 				times.put(mode, new ModeTimes(mode));
@@ -785,7 +786,7 @@ public class ReactivePerformanceTests {
 		public ApiTimes(Api api, Mode mode) {
 			this.api = api;
 			this.mode = mode;
-			this.times = new ArrayList<Double>();
+			this.times = new ArrayList<>();
 		}
 
 		public void add(double time) {
@@ -813,7 +814,7 @@ public class ReactivePerformanceTests {
 				return 0.0;
 			}
 
-			ArrayList<Double> list = new ArrayList<Double>(times);
+			ArrayList<Double> list = new ArrayList<>(times);
 			Collections.sort(list);
 
 			int size = list.size();
@@ -873,7 +874,7 @@ public class ReactivePerformanceTests {
 
 		public ModeTimes(Mode mode) {
 
-			this.times = new HashMap<Api, ApiTimes>();
+			this.times = new HashMap<>();
 
 			for (Api api : Api.values()) {
 				this.times.put(api, new ApiTimes(api, mode));

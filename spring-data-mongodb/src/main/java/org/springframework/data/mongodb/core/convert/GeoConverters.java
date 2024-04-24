@@ -63,7 +63,7 @@ import com.mongodb.Function;
 @SuppressWarnings("ConstantConditions")
 abstract class GeoConverters {
 
-	private final static Map<String, Function<Document, GeoJson<?>>> converters;
+	private static final Map<String, Function<Document, GeoJson<?>>> converters;
 
 	static {
 

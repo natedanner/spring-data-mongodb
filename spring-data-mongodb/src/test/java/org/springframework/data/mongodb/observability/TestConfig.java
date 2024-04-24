@@ -82,13 +82,11 @@ class TestConfig {
 		ConnectionString connectionString = new ConnectionString(
 				String.format("mongodb://%s:%s/?w=majority&uuidrepresentation=javaLegacy", "127.0.0.1", 27017));
 
-		MongoClientSettings settings = MongoClientSettings.builder() //
+		return MongoClientSettings.builder() //
 				.addCommandListener(new MongoObservationCommandListener(observationRegistry, connectionString)) //
 				.contextProvider(ContextProviderFactory.create(observationRegistry)) //
 				.applyConnectionString(connectionString) //
 				.build();
-
-		return settings;
 	}
 
 	@Bean
@@ -104,16 +102,14 @@ class TestConfig {
 	@Bean
 	MongoTemplate mongoTemplate(MongoDatabaseFactory mongoDatabaseFactory, MongoConverter mongoConverter) {
 
-		MongoTemplate template = new MongoTemplate(mongoDatabaseFactory, mongoConverter);
-		return template;
+		return new MongoTemplate(mongoDatabaseFactory, mongoConverter);
 	}
 
 	@Bean
 	ReactiveMongoTemplate reactiveMongoTemplate(ReactiveMongoDatabaseFactory mongoDatabaseFactory,
 			MongoConverter mongoConverter) {
 
-		ReactiveMongoTemplate template = new ReactiveMongoTemplate(mongoDatabaseFactory, mongoConverter);
-		return template;
+		return new ReactiveMongoTemplate(mongoDatabaseFactory, mongoConverter);
 	}
 
 	@Bean

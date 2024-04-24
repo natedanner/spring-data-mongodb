@@ -118,9 +118,8 @@ class QueryOperationsUnitTests {
 	void insertContextDoesNotAddIdIfNoPersistentEntityCanBeFound() {
 
 		assertThat(queryOperations.createInsertContext(new Document("value", "one")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("value", "one"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("value", "one")));
 	}
 
 	@Test // GH-4026
@@ -131,9 +130,8 @@ class QueryOperationsUnitTests {
 		when(mappingContext.getPersistentEntity(eq(Person.class))).thenReturn((MongoPersistentEntity) entity);
 
 		assertThat(queryOperations.createInsertContext(new Document("value", "one")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("value", "one"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("value", "one")));
 	}
 
 	@Test // GH-4026
@@ -146,9 +144,8 @@ class QueryOperationsUnitTests {
 		doReturn(entity).when(mappingContext).getPersistentEntity(eq(Person.class));
 
 		assertThat(queryOperations.createInsertContext(new Document("value", "one")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("value", "one"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("value", "one")));
 	}
 
 	@Test // GH-4026
@@ -164,9 +161,8 @@ class QueryOperationsUnitTests {
 		when(queryMapper.convertId(any(), eq(String.class))).thenReturn("&#9774;");
 
 		assertThat(queryOperations.createInsertContext(new Document("value", "one")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("value", "one").append("_id", "&#9774;"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("value", "one").append("_id", "&#9774;")));
 	}
 
 	@Test // GH-4026
@@ -183,9 +179,8 @@ class QueryOperationsUnitTests {
 		when(queryMapper.convertId(any(), eq(String.class))).thenReturn("&#9774;");
 
 		assertThat(queryOperations.createInsertContext(new Document("value", "one")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("value", "one").append("_id", "&#9774;"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("value", "one").append("_id", "&#9774;")));
 	}
 
 	@Test // GH-4026
@@ -200,18 +195,16 @@ class QueryOperationsUnitTests {
 		doReturn(entity).when(mappingContext).getPersistentEntity(eq(Person.class));
 
 		assertThat(queryOperations.createInsertContext(new Document("value", "one")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("value", "one"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("value", "one")));
 	}
 
 	@Test // GH-4184
 	void insertContextDoesNotOverrideExistingId() {
 
 		assertThat(queryOperations.createInsertContext(new Document("_id", "abc")).prepareId(Person.class).getDocument())//
-				.satisfies(result -> {
-					assertThat(result).isEqualTo(new Document("_id", "abc"));
-				});
+				.satisfies(result ->
+					assertThat(result).isEqualTo(new Document("_id", "abc")));
 	}
 
 	static class Person {

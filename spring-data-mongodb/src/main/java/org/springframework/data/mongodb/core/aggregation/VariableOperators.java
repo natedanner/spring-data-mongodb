@@ -82,7 +82,7 @@ public class VariableOperators {
 	/**
 	 * {@link AggregationExpression} for {@code $map}.
 	 */
-	public static class Map implements AggregationExpression {
+	public static final class Map implements AggregationExpression {
 
 		private Object sourceArray;
 		private String itemVariableName;
@@ -220,7 +220,7 @@ public class VariableOperators {
 	 * @author Christoph Strobl
 	 * @since 1.10
 	 */
-	public static class Let implements AggregationExpression {
+	public static final class Let implements AggregationExpression {
 
 		private final List<ExpressionVariable> vars;
 
@@ -342,7 +342,7 @@ public class VariableOperators {
 		/**
 		 * @author Christoph Strobl
 		 */
-		public static class ExpressionVariable {
+		public static final class ExpressionVariable {
 
 			private final @Nullable String variableName;
 			private final @Nullable Object expression;

@@ -103,7 +103,7 @@ class FilterExpressionUnitTests {
 	@Test // DATAMONGO-2320
 	void shouldConstructFilterExpressionCorrectlyWhenConditionContainsFieldReference() {
 
-		Aggregation agg = Aggregation.newAggregation(Aggregation.project().and((ctx) -> new Document()).as("field-1")
+		Aggregation agg = Aggregation.newAggregation(Aggregation.project().and(ctx -> new Document()).as("field-1")
 				.and(filter("items").as("item").by(ComparisonOperators.valueOf("item.price").greaterThan("field-1")))
 				.as("items"));
 

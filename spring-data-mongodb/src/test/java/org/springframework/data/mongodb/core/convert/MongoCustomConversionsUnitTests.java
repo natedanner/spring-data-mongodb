@@ -55,11 +55,10 @@ class MongoCustomConversionsUnitTests {
 		when(persistentProperty.getOwner()).thenReturn(owner);
 		when(owner.getType()).thenReturn(Foo.class);
 
-		MongoCustomConversions conversions = MongoCustomConversions.create(config -> {
+		MongoCustomConversions conversions = MongoCustomConversions.create(config ->
 
 			config.configurePropertyConversions(
-					registry -> registry.registerConverter(Foo.class, "name", mock(PropertyValueConverter.class)));
-		});
+					registry -> registry.registerConverter(Foo.class, "name", mock(PropertyValueConverter.class))));
 
 		assertThat(conversions.getPropertyValueConversions().hasValueConverter(persistentProperty)).isTrue();
 	}
@@ -67,9 +66,8 @@ class MongoCustomConversionsUnitTests {
 	@Test // GH-4390
 	void doesNotReturnConverterForNativeTimeTimeIfUsingDriverCodec() {
 
-		MongoCustomConversions conversions = MongoCustomConversions.create(config -> {
-			config.useNativeDriverJavaTimeCodecs();
-		});
+		MongoCustomConversions conversions = MongoCustomConversions.create(config ->
+			config.useNativeDriverJavaTimeCodecs());
 
 		assertThat(conversions.getCustomWriteTarget(Date.class)).isEmpty();
 	}

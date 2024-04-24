@@ -55,7 +55,7 @@ class GeoJsonSerializersModule extends SimpleModule {
 	 * @param <T>
 	 * @author Christoph Strobl
 	 */
-	private static abstract class GeoJsonSerializer<T extends GeoJson<? extends Iterable>> extends JsonSerializer<T> {
+	private abstract static class GeoJsonSerializer<T extends GeoJson<? extends Iterable>> extends JsonSerializer<T> {
 
 		@Override
 		public void serialize(T shape, JsonGenerator jsonGenerator, SerializerProvider serializers) throws IOException {

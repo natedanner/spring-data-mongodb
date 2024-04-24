@@ -35,7 +35,7 @@ import com.mongodb.client.model.Collation;
  */
 class TailableCursorTask extends CursorReadingTask<Document, Object> {
 
-	private QueryMapper queryMapper;
+	private final QueryMapper queryMapper;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public TailableCursorTask(MongoTemplate template, TailableCursorRequest<?> request, Class<?> targetType,

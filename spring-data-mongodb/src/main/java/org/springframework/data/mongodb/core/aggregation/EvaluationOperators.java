@@ -104,7 +104,7 @@ public class EvaluationOperators {
 	/**
 	 * Allows the use of aggregation expressions within the query language.
 	 */
-	public static class Expr extends AbstractAggregationExpression {
+	public static final class Expr extends AbstractAggregationExpression {
 
 		private Expr(Object value) {
 			super(value);
@@ -167,7 +167,7 @@ public class EvaluationOperators {
 	 *
 	 * @since 4.0
 	 */
-	public static class LastObservationCarriedForward extends AbstractAggregationExpression {
+	public static final class LastObservationCarriedForward extends AbstractAggregationExpression {
 
 		private LastObservationCarriedForward(Object value) {
 			super(value);

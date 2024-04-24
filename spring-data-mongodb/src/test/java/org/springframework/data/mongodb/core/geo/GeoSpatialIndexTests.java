@@ -179,7 +179,7 @@ public class GeoSpatialIndexTests extends AbstractIntegrationTests {
 
 	static class GeoJsonPoint {
 		String type = "Point";
-		double coordinates[];
+		double[] coordinates;
 	}
 
 	@Document

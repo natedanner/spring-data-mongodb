@@ -32,7 +32,7 @@ import org.springframework.util.ObjectUtils;
  * @see Criteria
  * @see <a href="https://docs.mongodb.com/manual/core/schema-validation/#query-expressions">Schema Validation</a>
  */
-class CriteriaValidator implements Validator {
+final class CriteriaValidator implements Validator {
 
 	private final CriteriaDefinition criteria;
 
@@ -67,10 +67,12 @@ class CriteriaValidator implements Validator {
 
 	@Override
 	public boolean equals(@Nullable Object o) {
-		if (this == o)
+		if (this == o) {
 			return true;
-		if (o == null || getClass() != o.getClass())
+		}
+		if (o == null || getClass() != o.getClass()) {
 			return false;
+		}
 
 		CriteriaValidator that = (CriteriaValidator) o;
 

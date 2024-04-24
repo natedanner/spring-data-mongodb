@@ -110,9 +110,8 @@ public class ReactiveAggregationTests {
 				match(where("population").lt(103)));
 
 		reactiveMongoTemplate.aggregate(agg, "city", City.class).collectList().as(StepVerifier::create)
-				.consumeNextWith(actual -> {
-					assertThat(actual).hasSize(3).contains(dresden, linz, braunschweig);
-				}).verifyComplete();
+				.consumeNextWith(actual ->
+					assertThat(actual).hasSize(3).contains(dresden, linz, braunschweig)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1646

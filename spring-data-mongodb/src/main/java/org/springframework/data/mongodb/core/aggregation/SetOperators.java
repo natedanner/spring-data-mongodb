@@ -242,7 +242,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class SetEquals extends AbstractAggregationExpression {
+	public static final class SetEquals extends AbstractAggregationExpression {
 
 		private SetEquals(List<?> arrays) {
 			super(arrays);
@@ -319,7 +319,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class SetIntersection extends AbstractAggregationExpression {
+	public static final class SetIntersection extends AbstractAggregationExpression {
 
 		private SetIntersection(List<?> arrays) {
 			super(arrays);
@@ -384,7 +384,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class SetUnion extends AbstractAggregationExpression {
+	public static final class SetUnion extends AbstractAggregationExpression {
 
 		private SetUnion(Object value) {
 			super(value);
@@ -449,7 +449,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class SetDifference extends AbstractAggregationExpression {
+	public static final class SetDifference extends AbstractAggregationExpression {
 
 		private SetDifference(Object value) {
 			super(value);
@@ -514,7 +514,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class SetIsSubset extends AbstractAggregationExpression {
+	public static final class SetIsSubset extends AbstractAggregationExpression {
 
 		private SetIsSubset(Object value) {
 			super(value);
@@ -579,7 +579,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class AnyElementTrue extends AbstractAggregationExpression {
+	public static final class AnyElementTrue extends AbstractAggregationExpression {
 
 		private AnyElementTrue(Object value) {
 			super(value);
@@ -624,7 +624,7 @@ public class SetOperators {
 	 *
 	 * @author Christoph Strobl
 	 */
-	public static class AllElementsTrue extends AbstractAggregationExpression {
+	public static final class AllElementsTrue extends AbstractAggregationExpression {
 
 		private AllElementsTrue(Object value) {
 			super(value);

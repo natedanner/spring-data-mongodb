@@ -33,7 +33,7 @@ import java.time.ZonedDateTime;
  * @author Ross Lawley
  * @since 2.2
  */
-class DateTimeFormatter {
+final class DateTimeFormatter {
 
 	private static final int DATE_STRING_LENGTH = "1970-01-01".length();
 

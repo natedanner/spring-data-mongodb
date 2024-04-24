@@ -376,10 +376,8 @@ public abstract class AbstractReactiveMongoQuery implements RepositoryQuery {
 	private Mono<AggregationOperation> computePipelineStage(String source, MongoParameterAccessor accessor,
 			ParameterBindingDocumentCodec codec) {
 
-		return expressionEvaluator(source, accessor, codec).map(it -> {
-			return ctx -> ctx.getMappedObject(decode(it.getT1(), source, accessor, it.getT2()),
-					getQueryMethod().getDomainClass());
-		});
+		return expressionEvaluator(source, accessor, codec).map(it -> ctx -> ctx.getMappedObject(decode(it.getT1(), source, accessor, it.getT2()),
+					getQueryMethod().getDomainClass()));
 	}
 
 	private Mono<Tuple2<SpELExpressionEvaluator, ParameterBindingDocumentCodec>> expressionEvaluator(String source,

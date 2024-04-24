@@ -77,7 +77,7 @@ public class MongoNamespaceTests {
 		Integer port = (Integer) getField(mfb, "port");
 
 		assertThat(host).isEqualTo("localhost");
-		assertThat(port).isEqualTo(new Integer(27017));
+		assertThat(port).isEqualTo(Integer.valueOf(27017));
 
 		MongoClientSettings options = (MongoClientSettings) getField(mfb, "mongoClientSettings");
 		assertThat(options).isNull();
@@ -228,6 +228,6 @@ public class MongoNamespaceTests {
 		Integer port = (Integer) getField(mfb, "port");
 
 		assertThat(host).isEqualTo("127.0.0.1");
-		assertThat(port).isEqualTo(new Integer(27017));
+		assertThat(port).isEqualTo(Integer.valueOf(27017));
 	}
 }

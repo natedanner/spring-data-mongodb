@@ -49,10 +49,9 @@ class LazyLoadingInterceptorUnitTests {
 		NullPointerException npe = new NullPointerException("Some Exception we did not think about.");
 		when(callbackMock.resolve(propertyMock)).thenThrow(npe);
 
-		assertThatExceptionOfType(LazyLoadingException.class).isThrownBy(() -> {
+		assertThatExceptionOfType(LazyLoadingException.class).isThrownBy(() ->
 			new LazyLoadingInterceptor(propertyMock, callbackMock, dbrefMock, new NullExceptionTranslator()).intercept(null,
-					LazyLoadingProxy.class.getMethod("getTarget"), null, null);
-		}).withCause(npe);
+					LazyLoadingProxy.class.getMethod("getTarget"), null, null)).withCause(npe);
 	}
 
 	static class NullExceptionTranslator implements PersistenceExceptionTranslator {

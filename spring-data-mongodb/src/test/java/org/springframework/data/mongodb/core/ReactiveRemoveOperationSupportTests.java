@@ -74,9 +74,8 @@ class ReactiveRemoveOperationSupportTests {
 	@Test // DATAMONGO-1719
 	void removeAll() {
 
-		template.remove(Person.class).all().as(StepVerifier::create).consumeNextWith(actual -> {
-			assertThat(actual.getDeletedCount()).isEqualTo(2L);
-		}).verifyComplete();
+		template.remove(Person.class).all().as(StepVerifier::create).consumeNextWith(actual ->
+			assertThat(actual.getDeletedCount()).isEqualTo(2L)).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1719

@@ -84,7 +84,7 @@ public class PersonRepositoryLazyLoadingIntegrationTests {
 
 		Person person = new Person();
 		person.setFirstname("Oliver");
-		person.setRealFans(new ArrayList<User>(Arrays.asList(thomas)));
+		person.setRealFans(new ArrayList<>(Arrays.asList(thomas)));
 		repository.save(person);
 
 		Person oliver = repository.findById(person.id).get();

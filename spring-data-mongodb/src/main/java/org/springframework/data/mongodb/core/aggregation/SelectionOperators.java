@@ -32,7 +32,7 @@ public class SelectionOperators {
 	 * {@link AbstractAggregationExpression} to return the bottom element according to the specified {@link #sortBy(Sort)
 	 * order}.
 	 */
-	public static class Bottom extends AbstractAggregationExpression {
+	public static final class Bottom extends AbstractAggregationExpression {
 
 		private Bottom(Object value) {
 			super(value);
@@ -135,7 +135,7 @@ public class SelectionOperators {
 	 * {@link AbstractAggregationExpression} to return the top element according to the specified {@link #sortBy(Sort)
 	 * order}.
 	 */
-	public static class Top extends AbstractAggregationExpression {
+	public static final class Top extends AbstractAggregationExpression {
 
 		private Top(Object value) {
 			super(value);

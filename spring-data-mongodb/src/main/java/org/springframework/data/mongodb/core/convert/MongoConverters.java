@@ -385,7 +385,7 @@ abstract class MongoConverters {
 			return !sourceType.equals(targetType);
 		}
 
-		private final static class NumberToNumberConverter<T extends Number> implements Converter<Number, T> {
+		private static final class NumberToNumberConverter<T extends Number> implements Converter<Number, T> {
 
 			private final Class<T> targetType;
 

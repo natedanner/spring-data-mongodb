@@ -66,7 +66,7 @@ public class DefaultReferenceResolver implements ReferenceResolver {
 	public Object resolveReference(MongoPersistentProperty property, Object source,
 			ReferenceLookupDelegate referenceLookupDelegate, MongoEntityReader entityReader) {
 
-		LookupFunction lookupFunction = (property.isCollectionLike() || property.isMap()) ? collectionLookupFunction
+		LookupFunction lookupFunction = property.isCollectionLike() || property.isMap() ? collectionLookupFunction
 				: singleValueLookupFunction;
 
 		if (isLazyReference(property)) {

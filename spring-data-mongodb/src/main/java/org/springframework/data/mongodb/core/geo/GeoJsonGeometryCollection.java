@@ -34,7 +34,7 @@ public class GeoJsonGeometryCollection implements GeoJson<Iterable<GeoJson<?>>> 
 
 	private static final String TYPE = "GeometryCollection";
 
-	private final List<GeoJson<?>> geometries = new ArrayList<GeoJson<?>>();
+	private final List<GeoJson<?>> geometries = new ArrayList<>();
 
 	/**
 	 * Creates a new {@link GeoJsonGeometryCollection} for the given {@link GeoJson} instances.

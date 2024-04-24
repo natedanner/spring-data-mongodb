@@ -143,7 +143,7 @@ abstract class MongoParsingUtils {
 	 */
 	static BeanDefinitionBuilder getWriteConcernPropertyEditorBuilder() {
 
-		Map<String, Class<?>> customEditors = new ManagedMap<String, Class<?>>();
+		Map<String, Class<?>> customEditors = new ManagedMap<>();
 		customEditors.put("com.mongodb.WriteConcern", WriteConcernPropertyEditor.class);
 
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(CustomEditorConfigurer.class);
@@ -213,7 +213,7 @@ abstract class MongoParsingUtils {
 	 */
 	static BeanDefinitionBuilder getMongoCredentialPropertyEditor() {
 
-		Map<String, Class<?>> customEditors = new ManagedMap<String, Class<?>>();
+		Map<String, Class<?>> customEditors = new ManagedMap<>();
 		customEditors.put("com.mongodb.MongoCredential[]", MongoCredentialPropertyEditor.class);
 
 		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(CustomEditorConfigurer.class);

@@ -66,11 +66,12 @@ public class MongoRegexCreatorUnitTests {
 		parameter.check();
 	}
 
-	static class TestParameter {
+	static final class TestParameter {
 
 		private final String source;
 		private final MatchMode mode;
-		private final String expectedResult, comment;
+		private final String expectedResult;
+		private final String comment;
 
 		private TestParameter(String source, MatchMode mode, String expectedResult, String comment) {
 			this.source = source;

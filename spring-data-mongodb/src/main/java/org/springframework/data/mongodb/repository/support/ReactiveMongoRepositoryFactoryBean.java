@@ -44,8 +44,8 @@ public class ReactiveMongoRepositoryFactoryBean<T extends Repository<S, ID>, S, 
 		extends RepositoryFactoryBeanSupport<T, S, ID> {
 
 	private @Nullable ReactiveMongoOperations operations;
-	private boolean createIndexesForQueryMethods = false;
-	private boolean mappingContextConfigured = false;
+	private boolean createIndexesForQueryMethods;
+	private boolean mappingContextConfigured;
 
 	/**
 	 * Creates a new {@link ReactiveMongoRepositoryFactoryBean} for the given repository interface.

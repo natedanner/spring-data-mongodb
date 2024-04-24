@@ -232,10 +232,9 @@ public class ReactiveMongoTemplateUnitTests {
 				any(Class.class));
 
 		Map<String, String> entity = new LinkedHashMap<>();
-		template.save(entity, "foo").as(StepVerifier::create).consumeNextWith(actual -> {
+		template.save(entity, "foo").as(StepVerifier::create).consumeNextWith(actual ->
 
-			assertThat(entity).containsKey("_id");
-		}).verifyComplete();
+			assertThat(entity).containsKey("_id")).verifyComplete();
 	}
 
 	@Test // DATAMONGO-1311
@@ -1505,7 +1504,7 @@ public class ReactiveMongoTemplateUnitTests {
 	@Test // DATAMONGO-2479
 	void findAndReplaceShouldEmitAfterSaveEvent() {
 
-		AbstractMongoEventListener<Person> eventListener = new AbstractMongoEventListener<Person>() {
+		AbstractMongoEventListener<Person> eventListener = new AbstractMongoEventListener<>() {
 
 			@Override
 			public void onAfterSave(AfterSaveEvent<Person> event) {

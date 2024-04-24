@@ -157,7 +157,7 @@ public class DocumentOperators {
 	 * @author Christoph Strobl
 	 * @since 3.3
 	 */
-	public static class Shift extends AbstractAggregationExpression {
+	public static final class Shift extends AbstractAggregationExpression {
 
 		private Shift(Object value) {
 			super(value);

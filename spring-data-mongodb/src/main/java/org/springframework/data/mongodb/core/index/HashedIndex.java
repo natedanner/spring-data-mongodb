@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * @author Christoph Strobl
  * @since 2.2
  */
-public class HashedIndex implements IndexDefinition {
+public final class HashedIndex implements IndexDefinition {
 
 	private final String field;
 

@@ -73,7 +73,7 @@ class MappingMongoJsonSchemaCreator implements MongoJsonSchemaCreator {
 	MappingMongoJsonSchemaCreator(MongoConverter converter) {
 
 		this(converter, (MappingContext<MongoPersistentEntity<?>, MongoPersistentProperty>) converter.getMappingContext(),
-				(property) -> true, new LinkedMultiValueMap<>());
+				property -> true, new LinkedMultiValueMap<>());
 	}
 
 	@SuppressWarnings("unchecked")

@@ -20,7 +20,7 @@ package org.springframework.data.mongodb.core.mapping;
  */
 public class PersonPojoLongId {
 
-	private long id;
+	private final long id;
 	private String text;
 
 	public PersonPojoLongId(long id, String text) {

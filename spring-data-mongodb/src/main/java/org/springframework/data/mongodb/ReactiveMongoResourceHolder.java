@@ -36,7 +36,7 @@ import com.mongodb.reactivestreams.client.ClientSession;
 class ReactiveMongoResourceHolder extends ResourceHolderSupport {
 
 	private @Nullable ClientSession session;
-	private ReactiveMongoDatabaseFactory databaseFactory;
+	private final ReactiveMongoDatabaseFactory databaseFactory;
 
 	/**
 	 * Create a new {@link ReactiveMongoResourceHolder} for a given {@link ClientSession session}.

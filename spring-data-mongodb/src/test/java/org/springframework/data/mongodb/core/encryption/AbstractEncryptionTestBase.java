@@ -462,7 +462,7 @@ public abstract class AbstractEncryptionTestBase {
 					new DataKeyOptions().keyAltNames(Collections.singletonList("mySuperSecretKey"))));
 
 			return new MongoEncryptionConverter(mongoClientEncryption,
-					EncryptionKeyResolver.annotated((ctx) -> EncryptionKey.keyId(dataKey.get())));
+					EncryptionKeyResolver.annotated(ctx -> EncryptionKey.keyId(dataKey.get())));
 		}
 
 		@Bean
